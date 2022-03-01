@@ -1,0 +1,138 @@
+{
+	"info": {
+		"_postman_id": "42ead789-b175-4221-b0ff-9af236af3b95",
+		"name": "X POST Correct CHANGE (done)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "setup",
+			"item": [
+				{
+					"name": "DB Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Database deleted\", function () {\r",
+									"    let jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.deleteDB.message).equals(\"DB successfully deleted\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/postendpoint/deleteDB",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"postendpoint",
+								"deleteDB"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddUserNew",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successfully prepared user\", function () {\r",
+									"    let jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.createAccount.message).equals(\"Received data from POST request, new account has been stored.\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"createAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAiD6Bs9oGSvUXecXDKldwoHyfynDelNvxyc1Ui5TGhajWp4IMskqV8SnQyfhbErIGWgStAivKbMOGja9ecciKTS6/VDZOno048zMsZRzzKo9UeqoOqKluRwPcoiQnQlABYUvKu7IMapU9aBsMGxUWMlirhjvEkDrdg3B+w5PClLMr2XE5txriW7tmyu4fLTILxYN9IeJtN5EAoWPhxqq05ksOAS0USwdAHgbvThOkGiaoKvOQsbj+kG3+ND9C+SYuipT5glQYrMzlhvlGvHK0QAaDq/c7GI+eTNyBb5TZm7A4anW2p8MPExKHrtbbzDs2nfFvBYWKJIH3iiLuyGg7uzv+r/9FrNgjQizu7wI3cl5WDmyXxgh9DUPUdezVaV4D0JGG4DjNXLdXAaV11lbdXhlCHDPUw3g3MbDsy1mLDVnzBJNxgUv945Xp6DjxLlWDcFGnbDfmJrksd7aOoP9kGY3KtvAuOyw1TsK/burWyKeFhvaDoOyaoHEroP6THp5E017YsT2AjXmDIeHYCd0/R7COi1hGazInYoZDbfbJMTtmzHD6Dp+f2QaY9gsOfL/+H6q4+a/sVQg9vnolZZq53rz9oteRzdpvtmRNHjXN/nxY39TjcN6fO6YibSE4EaSRQX0AjznLIENvt3+YWWsmVScNW8BMen3cyAerdOuPrLcCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"9d34adfa62df83e03988fa3ee69163e74809b37e\",\r\n        \"publisherName\":\"new-factchecker\",\r\n        \"firstLogin\":\"2021-11-22T14:06:44+01:00\",\r\n        \"signatureOnPublicKeyPublisherName\":\"445dfc2b8345227425a4b5b52fe76d7b82ae213e04210b52778e4eb414d49fa80524bb195897427ccb596941496dbc212ca52618e016f24452c2e1e38e88e20423821841d76d4148bfc11add7c8e01d884f6353e64045e2675a4b96367febd59cd7ffe7a8ad99882e3fba679a4c85807709cd855d7ab98487d7aa1792ab311e32082b3578b2f4ff7789c665b18282c9e4f219c520625c48e7ab504c0f1c95c7fdd25855d784d0496d684be1ba1ad96394532099c1f17fe4a62576ae6ee6e04dc621f29957e6ff65d044b902135ac428171f9adaf54d6698cefbce3e13ddc5729c287716d8bb7d89b9f556c81fd852687fd1f7ec3ed128263e046d36591287481b31fcb0af9e43d73b1690b057bd8531290dd2442d1dea7b168fe674516001a09a1a9f118641b4c1b302c0efd638554e852174cfd99801365fc6cf4c049df0bca2dbfdec8e1c95fc651735f4923a3ff632d5da1bc225e9886536602a438e40bd3aea1b1981afb8e2651e3f382721cf22019e48484ee6139d1372d04936a0cbe73bf762a277d023402b2ae85815db90dd8fd3762cb685bf3873a001e0f0199bcf8134c4647737cd5fd6a32298e9095429e8aac04ed996172c5145b194eceb5f5fb5edfa5245a541594a560e85fbcb213b47740b5d94ecca892c8a1b5537c82d9f1dfcc5df3c4c4978f20e3dce1d3b581917f73638f481994a345fe01c61511d8d8\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/postendpoint",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"postendpoint"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "change publisher name",
+			"item": [
+				{
+					"name": "ChangeUserNew",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request OK\", function () {\r",
+									"    pm.response.to.be.ok;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Change publisher name\", function () {\r",
+									"    let jsonData = pm.response.json();\r",
+									"    // pm.expect(jsonData.createAccount.message).equals(\"Received data from POST request, new account has been stored.\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"renameAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAiD6Bs9oGSvUXecXDKldwoHyfynDelNvxyc1Ui5TGhajWp4IMskqV8SnQyfhbErIGWgStAivKbMOGja9ecciKTS6/VDZOno048zMsZRzzKo9UeqoOqKluRwPcoiQnQlABYUvKu7IMapU9aBsMGxUWMlirhjvEkDrdg3B+w5PClLMr2XE5txriW7tmyu4fLTILxYN9IeJtN5EAoWPhxqq05ksOAS0USwdAHgbvThOkGiaoKvOQsbj+kG3+ND9C+SYuipT5glQYrMzlhvlGvHK0QAaDq/c7GI+eTNyBb5TZm7A4anW2p8MPExKHrtbbzDs2nfFvBYWKJIH3iiLuyGg7uzv+r/9FrNgjQizu7wI3cl5WDmyXxgh9DUPUdezVaV4D0JGG4DjNXLdXAaV11lbdXhlCHDPUw3g3MbDsy1mLDVnzBJNxgUv945Xp6DjxLlWDcFGnbDfmJrksd7aOoP9kGY3KtvAuOyw1TsK/burWyKeFhvaDoOyaoHEroP6THp5E017YsT2AjXmDIeHYCd0/R7COi1hGazInYoZDbfbJMTtmzHD6Dp+f2QaY9gsOfL/+H6q4+a/sVQg9vnolZZq53rz9oteRzdpvtmRNHjXN/nxY39TjcN6fO6YibSE4EaSRQX0AjznLIENvt3+YWWsmVScNW8BMen3cyAerdOuPrLcCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"9d34adfa62df83e03988fa3ee69163e74809b37e\",\r\n        \"publisherName\":\"new-factchecker\",\r\n        \"newPublisherName\":\"realy_old-factchecker\",\r\n        \"timestamp\":\"2021-11-22T14:06:44+01:00\",\r\n        \"signatureOnFingerPrintPublicKeyPublisherNameNewPublisherNameTimestampCHANGEFLAG\":\"1278024e2c8138d9b7f686950e80916beba786e9b2afe0a8b612f9e03042e77ad92b0f792b24c4d3ad6bc0ccf9a23ad3c2181e1bfcaff1102b600aa991d0b3943abc3f9375224c693cbbc1ebc5003cbe289e019e9644ce80417a157d1e41677131c9c7b0a47c22fa6fc364b810d9d0ca59c81e40dc39d5b49545ee80b8473917244e9268c4f520ce5585bdd2dd9f9e843f004654b873f611620ae7c377088228c13377d3a87dec45f8a27842c8e4050e6805ae3c73b537db575c2e0ec69b004e0eac6ff3d8399497aa7133473b9cf18c00c6e51532ed2767c3b7919f881b8766d90567749009b7fd119ef2253ee1457c19cea7dc991312029556132f50532e0184ad9691c7ddd10f7910ec4b646d8cc37b13605ff4464a2e4fe0cad1f69c40f7abec00a3c4730e13839cee64097b1ca960a46421b1fe9a70a5ee53e255cec4c1b2b47fafc939fcab97cbba5da28128612d38b952e04c22fe4c47fc5da522aa953e2844fe7b6a5eafe1f5194010750b58943d371b880b425843d622853a4c5a6eb5ef523bd9cef225ff93c05dbb1dd7955a0e9f898010659ec7da4c88fd3506d3bb8029a296f587a1b3966db48cae23f17cf5e4be6bbbc879967d16d4f91ee804967b26521e41db220c3c2bd23576d3686533b697ad4b479040695d674a3576c70a2db36f733cf98ca6e512cd91ccaa5b1a75037c828f833a21bcdb2f85b2e0e0\"\r\n    }   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/postendpoint",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"postendpoint"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

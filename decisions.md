@@ -1,0 +1,11 @@
+The following decisions were made in the developing process and provide guidance for further developments.
+- project goal: create a browser extension to check facts on websites
+- write the developer / contact person at the beginning of each code
+- initially client server architecture, later eventually P2P
+- initially feature complete, not pixel perfect → create basic functionality
+- general description: https://github.com/clecap/archicheck/blob/main/narrative-description/General%20description/README.md/
+- component description: https://github.com/clecap/archicheck/blob/main/narrative-description/Components%20description/README.md/
+- GitHub policy: https://github.com/clecap/archicheck/blob/main/github-policy.md
+- how to make ‘GET publishers/*’ compatible with p2p? → global popularity counter → bitcoin-based solution (difficult, but works)
+- testing depending on date
+- provide an adequate detailed documentation in code

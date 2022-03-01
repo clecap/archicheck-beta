@@ -1,0 +1,1359 @@
+{
+	"info": {
+		"_postman_id": "fd912e57-690a-4a48-a208-cba0e70fc7c5",
+		"name": "X POST Incorrect DELETE (done)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "JSON format",
+			"item": [
+				{
+					"name": "setup",
+					"item": [
+						{
+							"name": "DB Delete",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Database deleted\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.deleteDB.message).equals(\"DB successfully deleted\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/postendpoint/deleteDB",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint",
+										"deleteDB"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AddUserReal",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successfully prepared user\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.createAccount.message).equals(\"Received data from POST request, new account has been stored.\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"createAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAr1faDzSg07x+5hvEDGzUzpSkedtQaq0CHJV8MZrRXXUVOQ21a0eBnoVMZLADuBISyW0gj6nJ9dtu+T+KFUxJKuDIIVfNPMqmehPqqWxv8qRsUQywaRBnWm4QIW2I8BdQINvvDULFO6nG3DknyzYku3HPA+TVt147opqWqTUPivkBuEJN/ANroAq1P9WlrjbyFSdqHtuPDavXaVwq8JZhxKqhE4w0aAGryE5HCDIT1hAq42G2CC5NNW3IaZVBBMqPn/tNCp0sQtUJiQZ19erolrcAxVIFd4Rv+YuMSpYKXuyFHPcUUjwLGyj7wq5mE9YRp+xnQ0RHLl3JSoyJeGAQCKD1M6d2mI1sBP/kqQS9xFWmvDbHG9XnGrYRAWFPlEln8gPF4WyhSqDyX7959gfhowGZJksZk9l9Ofbr9BWpOp65Aib4TQJXRgfeMkmDsYneF7e2p+4Watbbe7KBlvMgR6YIRq9OYbSGPAikdVet/j0A9SAKY0DZhq2FRlzG2RAiIV0GvI+j5aZs3d4ljjy6VVK/O3URKL4znOM6mRZUl0Fq7Jo5c0JDFgeXorGbqo8RHKeSmMHh8O37sj1V1p6AWgtJgu4cSkFPkxqUp7z9XHZo/KZaUAf8YfzTqQGThTS6MpqVczrKXYsdghwFAtBep+Ba+QKuYVVIpPbwgGRyCmsCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"075966285278f8dbc92b49342ede3869b1a75cec\",\r\n        \"publisherName\":\"real-factchecker\",\r\n        \"firstLogin\":\"Mon, 22 Nov 2021 14:06:44 GMT\",\r\n        \"signatureOnPublicKeyPublisherName\":\"8e20534defb6844f12b5942f73dde15ebd5e1ddeb77ddddda57fbc700cc984112d74c516560eb21374c4eabdcd717190f5a128309f668c9ba070d6dbe7f8ffea6251f1ee9877783ad61565354a095acf83382654c4078ab70ccc88b8f75eefc7f98dd38505cb7b30d49852d0b313faf483aef9af2a5a492dd6cfa52c0e59518f2f2cccdf82193433c56b545a79b6dc5f452eec4b2de01cb0168306ea4e0431277940fb4e977caf458295afe01e34a65934066aebc984c599ff2a6fa4dadd72b846f27199ada09b5aef74a13cbdb48c0fd9a1427f5bba747939ab06e64b9d4f090a67e7a3966ce28ea68b2177005c7d379079ab326347970c121804997c25337eb4677850f7684662ab3b588cb48c250e7c9649f7407380bb5e82d43438dba51cc7755dd894f6d2c9b7a3c73133522505903e7efb4b9b437bd9da6388ef66ef4c81e3096b0c0beca1f4b15bfc8c3237e12f00a7b58647d935cbe2b9c2b32923d4c36d8e18489ada5ead380858009424559949b1943cbd18fa192422d44699622629ccab2ebb935831a8dc7b837ce5106854e4f7b9cecdb325a09a26b03eed5dc4b6f0d071df2610137cc13ef678f926fa370f6821f02c251c41c7bcbccf23e25cf2800497c2768f89963fa84ee8a85d30d1ffc3173d926b732937bc78c55ef6f14c60e1e8a7c0776a5750afed436122829309c23034c5fcdf12bba589f6ea1c32\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "delete user",
+					"item": [
+						{
+							"name": "DeleteUserReal (Typo Attribute)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Delete user\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.deleteAccount.message).equals(\"JSON is not wellformed.\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"deleteAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAr1faDzSg07x+5hvEDGzUzpSkedtQaq0CHJV8MZrRXXUVOQ21a0eBnoVMZLADuBISyW0gj6nJ9dtu+T+KFUxJKuDIIVfNPMqmehPqqWxv8qRsUQywaRBnWm4QIW2I8BdQINvvDULFO6nG3DknyzYku3HPA+TVt147opqWqTUPivkBuEJN/ANroAq1P9WlrjbyFSdqHtuPDavXaVwq8JZhxKqhE4w0aAGryE5HCDIT1hAq42G2CC5NNW3IaZVBBMqPn/tNCp0sQtUJiQZ19erolrcAxVIFd4Rv+YuMSpYKXuyFHPcUUjwLGyj7wq5mE9YRp+xnQ0RHLl3JSoyJeGAQCKD1M6d2mI1sBP/kqQS9xFWmvDbHG9XnGrYRAWFPlEln8gPF4WyhSqDyX7959gfhowGZJksZk9l9Ofbr9BWpOp65Aib4TQJXRgfeMkmDsYneF7e2p+4Watbbe7KBlvMgR6YIRq9OYbSGPAikdVet/j0A9SAKY0DZhq2FRlzG2RAiIV0GvI+j5aZs3d4ljjy6VVK/O3URKL4znOM6mRZUl0Fq7Jo5c0JDFgeXorGbqo8RHKeSmMHh8O37sj1V1p6AWgtJgu4cSkFPkxqUp7z9XHZo/KZaUAf8YfzTqQGThTS6MpqVczrKXYsdghwFAtBep+Ba+QKuYVVIpPbwgGRyCmsCAwEAAQ==\",\r\n        \"finger1PrintPublicKey\":\"075966285278f8dbc92b49342ede3869b1a75cec\",\r\n        \"publisherName\":\"real-factchecker\",\r\n        \"signatureOnFingerPrintPublicKeyPublisherNameDELETEFLAG\":\"5c529eb36f4a7c703dab06f4edf8f9a443f24295bff8b2720ca1e0fbc84f9b8c9ab8c2da2b1542513e05ffb95c35a59740b2d70468163dbe3e4d535933df88d4e1931a05aa1925b13f773ceeb398630f99a115132baac0b8ff3081c28ac29caca6382a3003203a86ba5faa14233a96aba8929c89539f5ec6064c4f851ee2dd0a1b04cf719cc65539b4b8d3de54c75fa5024aca8d76475d1ac1b00c26491231909668ea9606d088b21191360814b58717b1f9b8b17ce1a87fea09ff35d9894da6690e2663ad878dfc095ae49108fffde5f9baedfd37b12a6344ddfe058ab4a8606f012eeaf4cbc3c7c1ae9983b395960c065a2c6eedb0edd56255412f5115a305e4215bfea02974c9b12f6c2a9282040f830f4a3a7c4c284de91e87720dea428b6c7dbf585fa4ba89bdebe71817409bd72a8ca5bcc8fd9195f6d0abf2630f38930bc06ade515d1f782e578ae9842dfee422e8bec1defc638d211c2989b98139344c9dad4e31d2206030f1668a6d58785a7d0fa620c4f6616350c1f021ab93d4d65d26deaabc6369de43cc96b6035649b9f1822586d46780e61b2b56f471402ad5c2e6b51e6e13c5f5bff89ef6caa1fed46511c945c3f2d462bd5043702cd630c5d733014f95db0032cdecd4ae5419e4eeaf5cdfd514188535b69a9fa96b237d90283cb3c75cd6892bd891f149fd7c5dd5351bbc68282e8d7047aee6810cdb5d01\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteUserReal (Typo MAttribute)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"deleteAccount1\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAr1faDzSg07x+5hvEDGzUzpSkedtQaq0CHJV8MZrRXXUVOQ21a0eBnoVMZLADuBISyW0gj6nJ9dtu+T+KFUxJKuDIIVfNPMqmehPqqWxv8qRsUQywaRBnWm4QIW2I8BdQINvvDULFO6nG3DknyzYku3HPA+TVt147opqWqTUPivkBuEJN/ANroAq1P9WlrjbyFSdqHtuPDavXaVwq8JZhxKqhE4w0aAGryE5HCDIT1hAq42G2CC5NNW3IaZVBBMqPn/tNCp0sQtUJiQZ19erolrcAxVIFd4Rv+YuMSpYKXuyFHPcUUjwLGyj7wq5mE9YRp+xnQ0RHLl3JSoyJeGAQCKD1M6d2mI1sBP/kqQS9xFWmvDbHG9XnGrYRAWFPlEln8gPF4WyhSqDyX7959gfhowGZJksZk9l9Ofbr9BWpOp65Aib4TQJXRgfeMkmDsYneF7e2p+4Watbbe7KBlvMgR6YIRq9OYbSGPAikdVet/j0A9SAKY0DZhq2FRlzG2RAiIV0GvI+j5aZs3d4ljjy6VVK/O3URKL4znOM6mRZUl0Fq7Jo5c0JDFgeXorGbqo8RHKeSmMHh8O37sj1V1p6AWgtJgu4cSkFPkxqUp7z9XHZo/KZaUAf8YfzTqQGThTS6MpqVczrKXYsdghwFAtBep+Ba+QKuYVVIpPbwgGRyCmsCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"075966285278f8dbc92b49342ede3869b1a75cec\",\r\n        \"publisherName\":\"real-factchecker\",\r\n        \"signatureOnFingerPrintPublicKeyPublisherNameDELETEFLAG\":\"5c529eb36f4a7c703dab06f4edf8f9a443f24295bff8b2720ca1e0fbc84f9b8c9ab8c2da2b1542513e05ffb95c35a59740b2d70468163dbe3e4d535933df88d4e1931a05aa1925b13f773ceeb398630f99a115132baac0b8ff3081c28ac29caca6382a3003203a86ba5faa14233a96aba8929c89539f5ec6064c4f851ee2dd0a1b04cf719cc65539b4b8d3de54c75fa5024aca8d76475d1ac1b00c26491231909668ea9606d088b21191360814b58717b1f9b8b17ce1a87fea09ff35d9894da6690e2663ad878dfc095ae49108fffde5f9baedfd37b12a6344ddfe058ab4a8606f012eeaf4cbc3c7c1ae9983b395960c065a2c6eedb0edd56255412f5115a305e4215bfea02974c9b12f6c2a9282040f830f4a3a7c4c284de91e87720dea428b6c7dbf585fa4ba89bdebe71817409bd72a8ca5bcc8fd9195f6d0abf2630f38930bc06ade515d1f782e578ae9842dfee422e8bec1defc638d211c2989b98139344c9dad4e31d2206030f1668a6d58785a7d0fa620c4f6616350c1f021ab93d4d65d26deaabc6369de43cc96b6035649b9f1822586d46780e61b2b56f471402ad5c2e6b51e6e13c5f5bff89ef6caa1fed46511c945c3f2d462bd5043702cd630c5d733014f95db0032cdecd4ae5419e4eeaf5cdfd514188535b69a9fa96b237d90283cb3c75cd6892bd891f149fd7c5dd5351bbc68282e8d7047aee6810cdb5d01\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteUserReal (Missing Field)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Delete user\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.deleteAccount.message).equals(\"JSON is not wellformed.\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"deleteAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAr1faDzSg07x+5hvEDGzUzpSkedtQaq0CHJV8MZrRXXUVOQ21a0eBnoVMZLADuBISyW0gj6nJ9dtu+T+KFUxJKuDIIVfNPMqmehPqqWxv8qRsUQywaRBnWm4QIW2I8BdQINvvDULFO6nG3DknyzYku3HPA+TVt147opqWqTUPivkBuEJN/ANroAq1P9WlrjbyFSdqHtuPDavXaVwq8JZhxKqhE4w0aAGryE5HCDIT1hAq42G2CC5NNW3IaZVBBMqPn/tNCp0sQtUJiQZ19erolrcAxVIFd4Rv+YuMSpYKXuyFHPcUUjwLGyj7wq5mE9YRp+xnQ0RHLl3JSoyJeGAQCKD1M6d2mI1sBP/kqQS9xFWmvDbHG9XnGrYRAWFPlEln8gPF4WyhSqDyX7959gfhowGZJksZk9l9Ofbr9BWpOp65Aib4TQJXRgfeMkmDsYneF7e2p+4Watbbe7KBlvMgR6YIRq9OYbSGPAikdVet/j0A9SAKY0DZhq2FRlzG2RAiIV0GvI+j5aZs3d4ljjy6VVK/O3URKL4znOM6mRZUl0Fq7Jo5c0JDFgeXorGbqo8RHKeSmMHh8O37sj1V1p6AWgtJgu4cSkFPkxqUp7z9XHZo/KZaUAf8YfzTqQGThTS6MpqVczrKXYsdghwFAtBep+Ba+QKuYVVIpPbwgGRyCmsCAwEAAQ==\",\r\n        \"publisherName\":\"real-factchecker\",\r\n        \"signatureOnFingerPrintPublicKeyPublisherNameDELETEFLAG\":\"5c529eb36f4a7c703dab06f4edf8f9a443f24295bff8b2720ca1e0fbc84f9b8c9ab8c2da2b1542513e05ffb95c35a59740b2d70468163dbe3e4d535933df88d4e1931a05aa1925b13f773ceeb398630f99a115132baac0b8ff3081c28ac29caca6382a3003203a86ba5faa14233a96aba8929c89539f5ec6064c4f851ee2dd0a1b04cf719cc65539b4b8d3de54c75fa5024aca8d76475d1ac1b00c26491231909668ea9606d088b21191360814b58717b1f9b8b17ce1a87fea09ff35d9894da6690e2663ad878dfc095ae49108fffde5f9baedfd37b12a6344ddfe058ab4a8606f012eeaf4cbc3c7c1ae9983b395960c065a2c6eedb0edd56255412f5115a305e4215bfea02974c9b12f6c2a9282040f830f4a3a7c4c284de91e87720dea428b6c7dbf585fa4ba89bdebe71817409bd72a8ca5bcc8fd9195f6d0abf2630f38930bc06ade515d1f782e578ae9842dfee422e8bec1defc638d211c2989b98139344c9dad4e31d2206030f1668a6d58785a7d0fa620c4f6616350c1f021ab93d4d65d26deaabc6369de43cc96b6035649b9f1822586d46780e61b2b56f471402ad5c2e6b51e6e13c5f5bff89ef6caa1fed46511c945c3f2d462bd5043702cd630c5d733014f95db0032cdecd4ae5419e4eeaf5cdfd514188535b69a9fa96b237d90283cb3c75cd6892bd891f149fd7c5dd5351bbc68282e8d7047aee6810cdb5d01\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteUserReal (Missing All Fields)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Delete user\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.deleteAccount.message).equals(\"JSON is not wellformed.\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"deleteAccount\":{\r\n        \r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "No Use Case",
+			"item": [
+				{
+					"name": "setup",
+					"item": [
+						{
+							"name": "DB Delete",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Database deleted\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.deleteDB.message).equals(\"DB successfully deleted\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/postendpoint/deleteDB",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint",
+										"deleteDB"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AddUserReal",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successfully prepared user\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.createAccount.message).equals(\"Received data from POST request, new account has been stored.\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"createAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAr1faDzSg07x+5hvEDGzUzpSkedtQaq0CHJV8MZrRXXUVOQ21a0eBnoVMZLADuBISyW0gj6nJ9dtu+T+KFUxJKuDIIVfNPMqmehPqqWxv8qRsUQywaRBnWm4QIW2I8BdQINvvDULFO6nG3DknyzYku3HPA+TVt147opqWqTUPivkBuEJN/ANroAq1P9WlrjbyFSdqHtuPDavXaVwq8JZhxKqhE4w0aAGryE5HCDIT1hAq42G2CC5NNW3IaZVBBMqPn/tNCp0sQtUJiQZ19erolrcAxVIFd4Rv+YuMSpYKXuyFHPcUUjwLGyj7wq5mE9YRp+xnQ0RHLl3JSoyJeGAQCKD1M6d2mI1sBP/kqQS9xFWmvDbHG9XnGrYRAWFPlEln8gPF4WyhSqDyX7959gfhowGZJksZk9l9Ofbr9BWpOp65Aib4TQJXRgfeMkmDsYneF7e2p+4Watbbe7KBlvMgR6YIRq9OYbSGPAikdVet/j0A9SAKY0DZhq2FRlzG2RAiIV0GvI+j5aZs3d4ljjy6VVK/O3URKL4znOM6mRZUl0Fq7Jo5c0JDFgeXorGbqo8RHKeSmMHh8O37sj1V1p6AWgtJgu4cSkFPkxqUp7z9XHZo/KZaUAf8YfzTqQGThTS6MpqVczrKXYsdghwFAtBep+Ba+QKuYVVIpPbwgGRyCmsCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"075966285278f8dbc92b49342ede3869b1a75cec\",\r\n        \"publisherName\":\"real-factchecker\",\r\n        \"firstLogin\":\"Mon, 22 Nov 2021 14:06:44 GMT\",\r\n        \"signatureOnPublicKeyPublisherName\":\"8e20534defb6844f12b5942f73dde15ebd5e1ddeb77ddddda57fbc700cc984112d74c516560eb21374c4eabdcd717190f5a128309f668c9ba070d6dbe7f8ffea6251f1ee9877783ad61565354a095acf83382654c4078ab70ccc88b8f75eefc7f98dd38505cb7b30d49852d0b313faf483aef9af2a5a492dd6cfa52c0e59518f2f2cccdf82193433c56b545a79b6dc5f452eec4b2de01cb0168306ea4e0431277940fb4e977caf458295afe01e34a65934066aebc984c599ff2a6fa4dadd72b846f27199ada09b5aef74a13cbdb48c0fd9a1427f5bba747939ab06e64b9d4f090a67e7a3966ce28ea68b2177005c7d379079ab326347970c121804997c25337eb4677850f7684662ab3b588cb48c250e7c9649f7407380bb5e82d43438dba51cc7755dd894f6d2c9b7a3c73133522505903e7efb4b9b437bd9da6388ef66ef4c81e3096b0c0beca1f4b15bfc8c3237e12f00a7b58647d935cbe2b9c2b32923d4c36d8e18489ada5ead380858009424559949b1943cbd18fa192422d44699622629ccab2ebb935831a8dc7b837ce5106854e4f7b9cecdb325a09a26b03eed5dc4b6f0d071df2610137cc13ef678f926fa370f6821f02c251c41c7bcbccf23e25cf2800497c2768f89963fa84ee8a85d30d1ffc3173d926b732937bc78c55ef6f14c60e1e8a7c0776a5750afed436122829309c23034c5fcdf12bba589f6ea1c32\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "delete user",
+					"item": [
+						{
+							"name": "DeleteUserReal (Missing Everything)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteUserReal (String: \"test\")",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "\"test\"",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteUserReal (String: \"deleteAccount\")",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "\"deleteAccount\"",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteUserReal (No Body)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Wrong Values",
+			"item": [
+				{
+					"name": "setup1",
+					"item": [
+						{
+							"name": "DB Delete",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Database deleted\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.deleteDB.message).equals(\"DB successfully deleted\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/postendpoint/deleteDB",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint",
+										"deleteDB"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AddUserReal",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successfully prepared user\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.createAccount.message).equals(\"Received data from POST request, new account has been stored.\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"createAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAr1faDzSg07x+5hvEDGzUzpSkedtQaq0CHJV8MZrRXXUVOQ21a0eBnoVMZLADuBISyW0gj6nJ9dtu+T+KFUxJKuDIIVfNPMqmehPqqWxv8qRsUQywaRBnWm4QIW2I8BdQINvvDULFO6nG3DknyzYku3HPA+TVt147opqWqTUPivkBuEJN/ANroAq1P9WlrjbyFSdqHtuPDavXaVwq8JZhxKqhE4w0aAGryE5HCDIT1hAq42G2CC5NNW3IaZVBBMqPn/tNCp0sQtUJiQZ19erolrcAxVIFd4Rv+YuMSpYKXuyFHPcUUjwLGyj7wq5mE9YRp+xnQ0RHLl3JSoyJeGAQCKD1M6d2mI1sBP/kqQS9xFWmvDbHG9XnGrYRAWFPlEln8gPF4WyhSqDyX7959gfhowGZJksZk9l9Ofbr9BWpOp65Aib4TQJXRgfeMkmDsYneF7e2p+4Watbbe7KBlvMgR6YIRq9OYbSGPAikdVet/j0A9SAKY0DZhq2FRlzG2RAiIV0GvI+j5aZs3d4ljjy6VVK/O3URKL4znOM6mRZUl0Fq7Jo5c0JDFgeXorGbqo8RHKeSmMHh8O37sj1V1p6AWgtJgu4cSkFPkxqUp7z9XHZo/KZaUAf8YfzTqQGThTS6MpqVczrKXYsdghwFAtBep+Ba+QKuYVVIpPbwgGRyCmsCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"075966285278f8dbc92b49342ede3869b1a75cec\",\r\n        \"publisherName\":\"real-factchecker\",\r\n        \"firstLogin\":\"Mon, 22 Nov 2021 14:06:44 GMT\",\r\n        \"signatureOnPublicKeyPublisherName\":\"8e20534defb6844f12b5942f73dde15ebd5e1ddeb77ddddda57fbc700cc984112d74c516560eb21374c4eabdcd717190f5a128309f668c9ba070d6dbe7f8ffea6251f1ee9877783ad61565354a095acf83382654c4078ab70ccc88b8f75eefc7f98dd38505cb7b30d49852d0b313faf483aef9af2a5a492dd6cfa52c0e59518f2f2cccdf82193433c56b545a79b6dc5f452eec4b2de01cb0168306ea4e0431277940fb4e977caf458295afe01e34a65934066aebc984c599ff2a6fa4dadd72b846f27199ada09b5aef74a13cbdb48c0fd9a1427f5bba747939ab06e64b9d4f090a67e7a3966ce28ea68b2177005c7d379079ab326347970c121804997c25337eb4677850f7684662ab3b588cb48c250e7c9649f7407380bb5e82d43438dba51cc7755dd894f6d2c9b7a3c73133522505903e7efb4b9b437bd9da6388ef66ef4c81e3096b0c0beca1f4b15bfc8c3237e12f00a7b58647d935cbe2b9c2b32923d4c36d8e18489ada5ead380858009424559949b1943cbd18fa192422d44699622629ccab2ebb935831a8dc7b837ce5106854e4f7b9cecdb325a09a26b03eed5dc4b6f0d071df2610137cc13ef678f926fa370f6821f02c251c41c7bcbccf23e25cf2800497c2768f89963fa84ee8a85d30d1ffc3173d926b732937bc78c55ef6f14c60e1e8a7c0776a5750afed436122829309c23034c5fcdf12bba589f6ea1c32\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "publickey",
+					"item": [
+						{
+							"name": "DeleteUserReal (symbol add)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"deleteAccount\":{\r\n        \"publicKey\":\"1MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAr1faDzSg07x+5hvEDGzUzpSkedtQaq0CHJV8MZrRXXUVOQ21a0eBnoVMZLADuBISyW0gj6nJ9dtu+T+KFUxJKuDIIVfNPMqmehPqqWxv8qRsUQywaRBnWm4QIW2I8BdQINvvDULFO6nG3DknyzYku3HPA+TVt147opqWqTUPivkBuEJN/ANroAq1P9WlrjbyFSdqHtuPDavXaVwq8JZhxKqhE4w0aAGryE5HCDIT1hAq42G2CC5NNW3IaZVBBMqPn/tNCp0sQtUJiQZ19erolrcAxVIFd4Rv+YuMSpYKXuyFHPcUUjwLGyj7wq5mE9YRp+xnQ0RHLl3JSoyJeGAQCKD1M6d2mI1sBP/kqQS9xFWmvDbHG9XnGrYRAWFPlEln8gPF4WyhSqDyX7959gfhowGZJksZk9l9Ofbr9BWpOp65Aib4TQJXRgfeMkmDsYneF7e2p+4Watbbe7KBlvMgR6YIRq9OYbSGPAikdVet/j0A9SAKY0DZhq2FRlzG2RAiIV0GvI+j5aZs3d4ljjy6VVK/O3URKL4znOM6mRZUl0Fq7Jo5c0JDFgeXorGbqo8RHKeSmMHh8O37sj1V1p6AWgtJgu4cSkFPkxqUp7z9XHZo/KZaUAf8YfzTqQGThTS6MpqVczrKXYsdghwFAtBep+Ba+QKuYVVIpPbwgGRyCmsCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"075966285278f8dbc92b49342ede3869b1a75cec\",\r\n        \"publisherName\":\"real-factchecker\",\r\n        \"signatureOnFingerPrintPublicKeyPublisherNameDELETEFLAG\":\"5c529eb36f4a7c703dab06f4edf8f9a443f24295bff8b2720ca1e0fbc84f9b8c9ab8c2da2b1542513e05ffb95c35a59740b2d70468163dbe3e4d535933df88d4e1931a05aa1925b13f773ceeb398630f99a115132baac0b8ff3081c28ac29caca6382a3003203a86ba5faa14233a96aba8929c89539f5ec6064c4f851ee2dd0a1b04cf719cc65539b4b8d3de54c75fa5024aca8d76475d1ac1b00c26491231909668ea9606d088b21191360814b58717b1f9b8b17ce1a87fea09ff35d9894da6690e2663ad878dfc095ae49108fffde5f9baedfd37b12a6344ddfe058ab4a8606f012eeaf4cbc3c7c1ae9983b395960c065a2c6eedb0edd56255412f5115a305e4215bfea02974c9b12f6c2a9282040f830f4a3a7c4c284de91e87720dea428b6c7dbf585fa4ba89bdebe71817409bd72a8ca5bcc8fd9195f6d0abf2630f38930bc06ade515d1f782e578ae9842dfee422e8bec1defc638d211c2989b98139344c9dad4e31d2206030f1668a6d58785a7d0fa620c4f6616350c1f021ab93d4d65d26deaabc6369de43cc96b6035649b9f1822586d46780e61b2b56f471402ad5c2e6b51e6e13c5f5bff89ef6caa1fed46511c945c3f2d462bd5043702cd630c5d733014f95db0032cdecd4ae5419e4eeaf5cdfd514188535b69a9fa96b237d90283cb3c75cd6892bd891f149fd7c5dd5351bbc68282e8d7047aee6810cdb5d01\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteUserReal (symbol add multiple)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"deleteAccount\":{\r\n        \"publicKey\":\"1111MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAr1faDzSg07x+5hvEDGzUzpSkedtQaq0CHJV8MZrRXXUVOQ21a0eBnoVMZLADuBISyW0gj6nJ9dtu+T+KFUxJKuDIIVfNPMqmehPqqWxv8qRsUQywaRBnWm4QIW2I8BdQINvvDULFO6nG3DknyzYku3HPA+TVt147opqWqTUPivkBuEJN/ANroAq1P9WlrjbyFSdqHtuPDavXaVwq8JZhxKqhE4w0aAGryE5HCDIT1hAq42G2CC5NNW3IaZVBBMqPn/tNCp0sQtUJiQZ19erolrcAxVIFd4Rv+YuMSpYKXuyFHPcUUjwLGyj7wq5mE9YRp+xnQ0RHLl3JSoyJeGAQCKD1M6d2mI1sBP/kqQS9xFWmvDbHG9XnGrYRAWFPlEln8gPF4WyhSqDyX7959gfhowGZJksZk9l9Ofbr9BWpOp65Aib4TQJXRgfeMkmDsYneF7e2p+4Watbbe7KBlvMgR6YIRq9OYbSGPAikdVet/j0A9SAKY0DZhq2FRlzG2RAiIV0GvI+j5aZs3d4ljjy6VVK/O3URKL4znOM6mRZUl0Fq7Jo5c0JDFgeXorGbqo8RHKeSmMHh8O37sj1V1p6AWgtJgu4cSkFPkxqUp7z9XHZo/KZaUAf8YfzTqQGThTS6MpqVczrKXYsdghwFAtBep+Ba+QKuYVVIpPbwgGRyCmsCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"075966285278f8dbc92b49342ede3869b1a75cec\",\r\n        \"publisherName\":\"real-factchecker\",\r\n        \"signatureOnFingerPrintPublicKeyPublisherNameDELETEFLAG\":\"5c529eb36f4a7c703dab06f4edf8f9a443f24295bff8b2720ca1e0fbc84f9b8c9ab8c2da2b1542513e05ffb95c35a59740b2d70468163dbe3e4d535933df88d4e1931a05aa1925b13f773ceeb398630f99a115132baac0b8ff3081c28ac29caca6382a3003203a86ba5faa14233a96aba8929c89539f5ec6064c4f851ee2dd0a1b04cf719cc65539b4b8d3de54c75fa5024aca8d76475d1ac1b00c26491231909668ea9606d088b21191360814b58717b1f9b8b17ce1a87fea09ff35d9894da6690e2663ad878dfc095ae49108fffde5f9baedfd37b12a6344ddfe058ab4a8606f012eeaf4cbc3c7c1ae9983b395960c065a2c6eedb0edd56255412f5115a305e4215bfea02974c9b12f6c2a9282040f830f4a3a7c4c284de91e87720dea428b6c7dbf585fa4ba89bdebe71817409bd72a8ca5bcc8fd9195f6d0abf2630f38930bc06ade515d1f782e578ae9842dfee422e8bec1defc638d211c2989b98139344c9dad4e31d2206030f1668a6d58785a7d0fa620c4f6616350c1f021ab93d4d65d26deaabc6369de43cc96b6035649b9f1822586d46780e61b2b56f471402ad5c2e6b51e6e13c5f5bff89ef6caa1fed46511c945c3f2d462bd5043702cd630c5d733014f95db0032cdecd4ae5419e4eeaf5cdfd514188535b69a9fa96b237d90283cb3c75cd6892bd891f149fd7c5dd5351bbc68282e8d7047aee6810cdb5d01\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteUserReal (symbol remove)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"deleteAccount\":{\r\n        \"publicKey\":\"IICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAr1faDzSg07x+5hvEDGzUzpSkedtQaq0CHJV8MZrRXXUVOQ21a0eBnoVMZLADuBISyW0gj6nJ9dtu+T+KFUxJKuDIIVfNPMqmehPqqWxv8qRsUQywaRBnWm4QIW2I8BdQINvvDULFO6nG3DknyzYku3HPA+TVt147opqWqTUPivkBuEJN/ANroAq1P9WlrjbyFSdqHtuPDavXaVwq8JZhxKqhE4w0aAGryE5HCDIT1hAq42G2CC5NNW3IaZVBBMqPn/tNCp0sQtUJiQZ19erolrcAxVIFd4Rv+YuMSpYKXuyFHPcUUjwLGyj7wq5mE9YRp+xnQ0RHLl3JSoyJeGAQCKD1M6d2mI1sBP/kqQS9xFWmvDbHG9XnGrYRAWFPlEln8gPF4WyhSqDyX7959gfhowGZJksZk9l9Ofbr9BWpOp65Aib4TQJXRgfeMkmDsYneF7e2p+4Watbbe7KBlvMgR6YIRq9OYbSGPAikdVet/j0A9SAKY0DZhq2FRlzG2RAiIV0GvI+j5aZs3d4ljjy6VVK/O3URKL4znOM6mRZUl0Fq7Jo5c0JDFgeXorGbqo8RHKeSmMHh8O37sj1V1p6AWgtJgu4cSkFPkxqUp7z9XHZo/KZaUAf8YfzTqQGThTS6MpqVczrKXYsdghwFAtBep+Ba+QKuYVVIpPbwgGRyCmsCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"075966285278f8dbc92b49342ede3869b1a75cec\",\r\n        \"publisherName\":\"real-factchecker\",\r\n        \"signatureOnFingerPrintPublicKeyPublisherNameDELETEFLAG\":\"5c529eb36f4a7c703dab06f4edf8f9a443f24295bff8b2720ca1e0fbc84f9b8c9ab8c2da2b1542513e05ffb95c35a59740b2d70468163dbe3e4d535933df88d4e1931a05aa1925b13f773ceeb398630f99a115132baac0b8ff3081c28ac29caca6382a3003203a86ba5faa14233a96aba8929c89539f5ec6064c4f851ee2dd0a1b04cf719cc65539b4b8d3de54c75fa5024aca8d76475d1ac1b00c26491231909668ea9606d088b21191360814b58717b1f9b8b17ce1a87fea09ff35d9894da6690e2663ad878dfc095ae49108fffde5f9baedfd37b12a6344ddfe058ab4a8606f012eeaf4cbc3c7c1ae9983b395960c065a2c6eedb0edd56255412f5115a305e4215bfea02974c9b12f6c2a9282040f830f4a3a7c4c284de91e87720dea428b6c7dbf585fa4ba89bdebe71817409bd72a8ca5bcc8fd9195f6d0abf2630f38930bc06ade515d1f782e578ae9842dfee422e8bec1defc638d211c2989b98139344c9dad4e31d2206030f1668a6d58785a7d0fa620c4f6616350c1f021ab93d4d65d26deaabc6369de43cc96b6035649b9f1822586d46780e61b2b56f471402ad5c2e6b51e6e13c5f5bff89ef6caa1fed46511c945c3f2d462bd5043702cd630c5d733014f95db0032cdecd4ae5419e4eeaf5cdfd514188535b69a9fa96b237d90283cb3c75cd6892bd891f149fd7c5dd5351bbc68282e8d7047aee6810cdb5d01\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteUserReal (symbol remove multiple)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"deleteAccount\":{\r\n        \"publicKey\":\"IjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAr1faDzSg07x+5hvEDGzUzpSkedtQaq0CHJV8MZrRXXUVOQ21a0eBnoVMZLADuBISyW0gj6nJ9dtu+T+KFUxJKuDIIVfNPMqmehPqqWxv8qRsUQywaRBnWm4QIW2I8BdQINvvDULFO6nG3DknyzYku3HPA+TVt147opqWqTUPivkBuEJN/ANroAq1P9WlrjbyFSdqHtuPDavXaVwq8JZhxKqhE4w0aAGryE5HCDIT1hAq42G2CC5NNW3IaZVBBMqPn/tNCp0sQtUJiQZ19erolrcAxVIFd4Rv+YuMSpYKXuyFHPcUUjwLGyj7wq5mE9YRp+xnQ0RHLl3JSoyJeGAQCKD1M6d2mI1sBP/kqQS9xFWmvDbHG9XnGrYRAWFPlEln8gPF4WyhSqDyX7959gfhowGZJksZk9l9Ofbr9BWpOp65Aib4TQJXRgfeMkmDsYneF7e2p+4Watbbe7KBlvMgR6YIRq9OYbSGPAikdVet/j0A9SAKY0DZhq2FRlzG2RAiIV0GvI+j5aZs3d4ljjy6VVK/O3URKL4znOM6mRZUl0Fq7Jo5c0JDFgeXorGbqo8RHKeSmMHh8O37sj1V1p6AWgtJgu4cSkFPkxqUp7z9XHZo/KZaUAf8YfzTqQGThTS6MpqVczrKXYsdghwFAtBep+Ba+QKuYVVIpPbwgGRyCmsCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"075966285278f8dbc92b49342ede3869b1a75cec\",\r\n        \"publisherName\":\"real-factchecker\",\r\n        \"signatureOnFingerPrintPublicKeyPublisherNameDELETEFLAG\":\"5c529eb36f4a7c703dab06f4edf8f9a443f24295bff8b2720ca1e0fbc84f9b8c9ab8c2da2b1542513e05ffb95c35a59740b2d70468163dbe3e4d535933df88d4e1931a05aa1925b13f773ceeb398630f99a115132baac0b8ff3081c28ac29caca6382a3003203a86ba5faa14233a96aba8929c89539f5ec6064c4f851ee2dd0a1b04cf719cc65539b4b8d3de54c75fa5024aca8d76475d1ac1b00c26491231909668ea9606d088b21191360814b58717b1f9b8b17ce1a87fea09ff35d9894da6690e2663ad878dfc095ae49108fffde5f9baedfd37b12a6344ddfe058ab4a8606f012eeaf4cbc3c7c1ae9983b395960c065a2c6eedb0edd56255412f5115a305e4215bfea02974c9b12f6c2a9282040f830f4a3a7c4c284de91e87720dea428b6c7dbf585fa4ba89bdebe71817409bd72a8ca5bcc8fd9195f6d0abf2630f38930bc06ade515d1f782e578ae9842dfee422e8bec1defc638d211c2989b98139344c9dad4e31d2206030f1668a6d58785a7d0fa620c4f6616350c1f021ab93d4d65d26deaabc6369de43cc96b6035649b9f1822586d46780e61b2b56f471402ad5c2e6b51e6e13c5f5bff89ef6caa1fed46511c945c3f2d462bd5043702cd630c5d733014f95db0032cdecd4ae5419e4eeaf5cdfd514188535b69a9fa96b237d90283cb3c75cd6892bd891f149fd7c5dd5351bbc68282e8d7047aee6810cdb5d01\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "setup2",
+					"item": [
+						{
+							"name": "DB Delete",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Database deleted\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.deleteDB.message).equals(\"DB successfully deleted\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/postendpoint/deleteDB",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint",
+										"deleteDB"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AddUserReal",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successfully prepared user\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.createAccount.message).equals(\"Received data from POST request, new account has been stored.\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"createAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAr1faDzSg07x+5hvEDGzUzpSkedtQaq0CHJV8MZrRXXUVOQ21a0eBnoVMZLADuBISyW0gj6nJ9dtu+T+KFUxJKuDIIVfNPMqmehPqqWxv8qRsUQywaRBnWm4QIW2I8BdQINvvDULFO6nG3DknyzYku3HPA+TVt147opqWqTUPivkBuEJN/ANroAq1P9WlrjbyFSdqHtuPDavXaVwq8JZhxKqhE4w0aAGryE5HCDIT1hAq42G2CC5NNW3IaZVBBMqPn/tNCp0sQtUJiQZ19erolrcAxVIFd4Rv+YuMSpYKXuyFHPcUUjwLGyj7wq5mE9YRp+xnQ0RHLl3JSoyJeGAQCKD1M6d2mI1sBP/kqQS9xFWmvDbHG9XnGrYRAWFPlEln8gPF4WyhSqDyX7959gfhowGZJksZk9l9Ofbr9BWpOp65Aib4TQJXRgfeMkmDsYneF7e2p+4Watbbe7KBlvMgR6YIRq9OYbSGPAikdVet/j0A9SAKY0DZhq2FRlzG2RAiIV0GvI+j5aZs3d4ljjy6VVK/O3URKL4znOM6mRZUl0Fq7Jo5c0JDFgeXorGbqo8RHKeSmMHh8O37sj1V1p6AWgtJgu4cSkFPkxqUp7z9XHZo/KZaUAf8YfzTqQGThTS6MpqVczrKXYsdghwFAtBep+Ba+QKuYVVIpPbwgGRyCmsCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"075966285278f8dbc92b49342ede3869b1a75cec\",\r\n        \"publisherName\":\"real-factchecker\",\r\n        \"firstLogin\":\"Mon, 22 Nov 2021 14:06:44 GMT\",\r\n        \"signatureOnPublicKeyPublisherName\":\"8e20534defb6844f12b5942f73dde15ebd5e1ddeb77ddddda57fbc700cc984112d74c516560eb21374c4eabdcd717190f5a128309f668c9ba070d6dbe7f8ffea6251f1ee9877783ad61565354a095acf83382654c4078ab70ccc88b8f75eefc7f98dd38505cb7b30d49852d0b313faf483aef9af2a5a492dd6cfa52c0e59518f2f2cccdf82193433c56b545a79b6dc5f452eec4b2de01cb0168306ea4e0431277940fb4e977caf458295afe01e34a65934066aebc984c599ff2a6fa4dadd72b846f27199ada09b5aef74a13cbdb48c0fd9a1427f5bba747939ab06e64b9d4f090a67e7a3966ce28ea68b2177005c7d379079ab326347970c121804997c25337eb4677850f7684662ab3b588cb48c250e7c9649f7407380bb5e82d43438dba51cc7755dd894f6d2c9b7a3c73133522505903e7efb4b9b437bd9da6388ef66ef4c81e3096b0c0beca1f4b15bfc8c3237e12f00a7b58647d935cbe2b9c2b32923d4c36d8e18489ada5ead380858009424559949b1943cbd18fa192422d44699622629ccab2ebb935831a8dc7b837ce5106854e4f7b9cecdb325a09a26b03eed5dc4b6f0d071df2610137cc13ef678f926fa370f6821f02c251c41c7bcbccf23e25cf2800497c2768f89963fa84ee8a85d30d1ffc3173d926b732937bc78c55ef6f14c60e1e8a7c0776a5750afed436122829309c23034c5fcdf12bba589f6ea1c32\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "fingerprint",
+					"item": [
+						{
+							"name": "DeleteUserReal (symbol add)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"deleteAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAr1faDzSg07x+5hvEDGzUzpSkedtQaq0CHJV8MZrRXXUVOQ21a0eBnoVMZLADuBISyW0gj6nJ9dtu+T+KFUxJKuDIIVfNPMqmehPqqWxv8qRsUQywaRBnWm4QIW2I8BdQINvvDULFO6nG3DknyzYku3HPA+TVt147opqWqTUPivkBuEJN/ANroAq1P9WlrjbyFSdqHtuPDavXaVwq8JZhxKqhE4w0aAGryE5HCDIT1hAq42G2CC5NNW3IaZVBBMqPn/tNCp0sQtUJiQZ19erolrcAxVIFd4Rv+YuMSpYKXuyFHPcUUjwLGyj7wq5mE9YRp+xnQ0RHLl3JSoyJeGAQCKD1M6d2mI1sBP/kqQS9xFWmvDbHG9XnGrYRAWFPlEln8gPF4WyhSqDyX7959gfhowGZJksZk9l9Ofbr9BWpOp65Aib4TQJXRgfeMkmDsYneF7e2p+4Watbbe7KBlvMgR6YIRq9OYbSGPAikdVet/j0A9SAKY0DZhq2FRlzG2RAiIV0GvI+j5aZs3d4ljjy6VVK/O3URKL4znOM6mRZUl0Fq7Jo5c0JDFgeXorGbqo8RHKeSmMHh8O37sj1V1p6AWgtJgu4cSkFPkxqUp7z9XHZo/KZaUAf8YfzTqQGThTS6MpqVczrKXYsdghwFAtBep+Ba+QKuYVVIpPbwgGRyCmsCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"075966285278f8dbc92b49342ede3869b1a75cec1\",\r\n        \"publisherName\":\"real-factchecker\",\r\n        \"signatureOnFingerPrintPublicKeyPublisherNameDELETEFLAG\":\"5c529eb36f4a7c703dab06f4edf8f9a443f24295bff8b2720ca1e0fbc84f9b8c9ab8c2da2b1542513e05ffb95c35a59740b2d70468163dbe3e4d535933df88d4e1931a05aa1925b13f773ceeb398630f99a115132baac0b8ff3081c28ac29caca6382a3003203a86ba5faa14233a96aba8929c89539f5ec6064c4f851ee2dd0a1b04cf719cc65539b4b8d3de54c75fa5024aca8d76475d1ac1b00c26491231909668ea9606d088b21191360814b58717b1f9b8b17ce1a87fea09ff35d9894da6690e2663ad878dfc095ae49108fffde5f9baedfd37b12a6344ddfe058ab4a8606f012eeaf4cbc3c7c1ae9983b395960c065a2c6eedb0edd56255412f5115a305e4215bfea02974c9b12f6c2a9282040f830f4a3a7c4c284de91e87720dea428b6c7dbf585fa4ba89bdebe71817409bd72a8ca5bcc8fd9195f6d0abf2630f38930bc06ade515d1f782e578ae9842dfee422e8bec1defc638d211c2989b98139344c9dad4e31d2206030f1668a6d58785a7d0fa620c4f6616350c1f021ab93d4d65d26deaabc6369de43cc96b6035649b9f1822586d46780e61b2b56f471402ad5c2e6b51e6e13c5f5bff89ef6caa1fed46511c945c3f2d462bd5043702cd630c5d733014f95db0032cdecd4ae5419e4eeaf5cdfd514188535b69a9fa96b237d90283cb3c75cd6892bd891f149fd7c5dd5351bbc68282e8d7047aee6810cdb5d01\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteUserReal (symbol remove)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"deleteAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAr1faDzSg07x+5hvEDGzUzpSkedtQaq0CHJV8MZrRXXUVOQ21a0eBnoVMZLADuBISyW0gj6nJ9dtu+T+KFUxJKuDIIVfNPMqmehPqqWxv8qRsUQywaRBnWm4QIW2I8BdQINvvDULFO6nG3DknyzYku3HPA+TVt147opqWqTUPivkBuEJN/ANroAq1P9WlrjbyFSdqHtuPDavXaVwq8JZhxKqhE4w0aAGryE5HCDIT1hAq42G2CC5NNW3IaZVBBMqPn/tNCp0sQtUJiQZ19erolrcAxVIFd4Rv+YuMSpYKXuyFHPcUUjwLGyj7wq5mE9YRp+xnQ0RHLl3JSoyJeGAQCKD1M6d2mI1sBP/kqQS9xFWmvDbHG9XnGrYRAWFPlEln8gPF4WyhSqDyX7959gfhowGZJksZk9l9Ofbr9BWpOp65Aib4TQJXRgfeMkmDsYneF7e2p+4Watbbe7KBlvMgR6YIRq9OYbSGPAikdVet/j0A9SAKY0DZhq2FRlzG2RAiIV0GvI+j5aZs3d4ljjy6VVK/O3URKL4znOM6mRZUl0Fq7Jo5c0JDFgeXorGbqo8RHKeSmMHh8O37sj1V1p6AWgtJgu4cSkFPkxqUp7z9XHZo/KZaUAf8YfzTqQGThTS6MpqVczrKXYsdghwFAtBep+Ba+QKuYVVIpPbwgGRyCmsCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"075966285278f8dbc92b49342ede3869b1a75ce\",\r\n        \"publisherName\":\"real-factchecker\",\r\n        \"signatureOnFingerPrintPublicKeyPublisherNameDELETEFLAG\":\"5c529eb36f4a7c703dab06f4edf8f9a443f24295bff8b2720ca1e0fbc84f9b8c9ab8c2da2b1542513e05ffb95c35a59740b2d70468163dbe3e4d535933df88d4e1931a05aa1925b13f773ceeb398630f99a115132baac0b8ff3081c28ac29caca6382a3003203a86ba5faa14233a96aba8929c89539f5ec6064c4f851ee2dd0a1b04cf719cc65539b4b8d3de54c75fa5024aca8d76475d1ac1b00c26491231909668ea9606d088b21191360814b58717b1f9b8b17ce1a87fea09ff35d9894da6690e2663ad878dfc095ae49108fffde5f9baedfd37b12a6344ddfe058ab4a8606f012eeaf4cbc3c7c1ae9983b395960c065a2c6eedb0edd56255412f5115a305e4215bfea02974c9b12f6c2a9282040f830f4a3a7c4c284de91e87720dea428b6c7dbf585fa4ba89bdebe71817409bd72a8ca5bcc8fd9195f6d0abf2630f38930bc06ade515d1f782e578ae9842dfee422e8bec1defc638d211c2989b98139344c9dad4e31d2206030f1668a6d58785a7d0fa620c4f6616350c1f021ab93d4d65d26deaabc6369de43cc96b6035649b9f1822586d46780e61b2b56f471402ad5c2e6b51e6e13c5f5bff89ef6caa1fed46511c945c3f2d462bd5043702cd630c5d733014f95db0032cdecd4ae5419e4eeaf5cdfd514188535b69a9fa96b237d90283cb3c75cd6892bd891f149fd7c5dd5351bbc68282e8d7047aee6810cdb5d01\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "setup3",
+					"item": [
+						{
+							"name": "DB Delete",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Database deleted\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.deleteDB.message).equals(\"DB successfully deleted\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/postendpoint/deleteDB",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint",
+										"deleteDB"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AddUserReal",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successfully prepared user\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.createAccount.message).equals(\"Received data from POST request, new account has been stored.\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"createAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAr1faDzSg07x+5hvEDGzUzpSkedtQaq0CHJV8MZrRXXUVOQ21a0eBnoVMZLADuBISyW0gj6nJ9dtu+T+KFUxJKuDIIVfNPMqmehPqqWxv8qRsUQywaRBnWm4QIW2I8BdQINvvDULFO6nG3DknyzYku3HPA+TVt147opqWqTUPivkBuEJN/ANroAq1P9WlrjbyFSdqHtuPDavXaVwq8JZhxKqhE4w0aAGryE5HCDIT1hAq42G2CC5NNW3IaZVBBMqPn/tNCp0sQtUJiQZ19erolrcAxVIFd4Rv+YuMSpYKXuyFHPcUUjwLGyj7wq5mE9YRp+xnQ0RHLl3JSoyJeGAQCKD1M6d2mI1sBP/kqQS9xFWmvDbHG9XnGrYRAWFPlEln8gPF4WyhSqDyX7959gfhowGZJksZk9l9Ofbr9BWpOp65Aib4TQJXRgfeMkmDsYneF7e2p+4Watbbe7KBlvMgR6YIRq9OYbSGPAikdVet/j0A9SAKY0DZhq2FRlzG2RAiIV0GvI+j5aZs3d4ljjy6VVK/O3URKL4znOM6mRZUl0Fq7Jo5c0JDFgeXorGbqo8RHKeSmMHh8O37sj1V1p6AWgtJgu4cSkFPkxqUp7z9XHZo/KZaUAf8YfzTqQGThTS6MpqVczrKXYsdghwFAtBep+Ba+QKuYVVIpPbwgGRyCmsCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"075966285278f8dbc92b49342ede3869b1a75cec\",\r\n        \"publisherName\":\"real-factchecker\",\r\n        \"firstLogin\":\"Mon, 22 Nov 2021 14:06:44 GMT\",\r\n        \"signatureOnPublicKeyPublisherName\":\"8e20534defb6844f12b5942f73dde15ebd5e1ddeb77ddddda57fbc700cc984112d74c516560eb21374c4eabdcd717190f5a128309f668c9ba070d6dbe7f8ffea6251f1ee9877783ad61565354a095acf83382654c4078ab70ccc88b8f75eefc7f98dd38505cb7b30d49852d0b313faf483aef9af2a5a492dd6cfa52c0e59518f2f2cccdf82193433c56b545a79b6dc5f452eec4b2de01cb0168306ea4e0431277940fb4e977caf458295afe01e34a65934066aebc984c599ff2a6fa4dadd72b846f27199ada09b5aef74a13cbdb48c0fd9a1427f5bba747939ab06e64b9d4f090a67e7a3966ce28ea68b2177005c7d379079ab326347970c121804997c25337eb4677850f7684662ab3b588cb48c250e7c9649f7407380bb5e82d43438dba51cc7755dd894f6d2c9b7a3c73133522505903e7efb4b9b437bd9da6388ef66ef4c81e3096b0c0beca1f4b15bfc8c3237e12f00a7b58647d935cbe2b9c2b32923d4c36d8e18489ada5ead380858009424559949b1943cbd18fa192422d44699622629ccab2ebb935831a8dc7b837ce5106854e4f7b9cecdb325a09a26b03eed5dc4b6f0d071df2610137cc13ef678f926fa370f6821f02c251c41c7bcbccf23e25cf2800497c2768f89963fa84ee8a85d30d1ffc3173d926b732937bc78c55ef6f14c60e1e8a7c0776a5750afed436122829309c23034c5fcdf12bba589f6ea1c32\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "publishername",
+					"item": [
+						{
+							"name": "DeleteUserReal1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request OK\", function () {\r",
+											"    pm.response.to.be.ok;\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"deleteAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAr1faDzSg07x+5hvEDGzUzpSkedtQaq0CHJV8MZrRXXUVOQ21a0eBnoVMZLADuBISyW0gj6nJ9dtu+T+KFUxJKuDIIVfNPMqmehPqqWxv8qRsUQywaRBnWm4QIW2I8BdQINvvDULFO6nG3DknyzYku3HPA+TVt147opqWqTUPivkBuEJN/ANroAq1P9WlrjbyFSdqHtuPDavXaVwq8JZhxKqhE4w0aAGryE5HCDIT1hAq42G2CC5NNW3IaZVBBMqPn/tNCp0sQtUJiQZ19erolrcAxVIFd4Rv+YuMSpYKXuyFHPcUUjwLGyj7wq5mE9YRp+xnQ0RHLl3JSoyJeGAQCKD1M6d2mI1sBP/kqQS9xFWmvDbHG9XnGrYRAWFPlEln8gPF4WyhSqDyX7959gfhowGZJksZk9l9Ofbr9BWpOp65Aib4TQJXRgfeMkmDsYneF7e2p+4Watbbe7KBlvMgR6YIRq9OYbSGPAikdVet/j0A9SAKY0DZhq2FRlzG2RAiIV0GvI+j5aZs3d4ljjy6VVK/O3URKL4znOM6mRZUl0Fq7Jo5c0JDFgeXorGbqo8RHKeSmMHh8O37sj1V1p6AWgtJgu4cSkFPkxqUp7z9XHZo/KZaUAf8YfzTqQGThTS6MpqVczrKXYsdghwFAtBep+Ba+QKuYVVIpPbwgGRyCmsCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"075966285278f8dbc92b49342ede3869b1a75cec\",\r\n        \"publisherName\":\"real-factchecker1\",\r\n        \"signatureOnFingerPrintPublicKeyPublisherNameDELETEFLAG\":\"5c529eb36f4a7c703dab06f4edf8f9a443f24295bff8b2720ca1e0fbc84f9b8c9ab8c2da2b1542513e05ffb95c35a59740b2d70468163dbe3e4d535933df88d4e1931a05aa1925b13f773ceeb398630f99a115132baac0b8ff3081c28ac29caca6382a3003203a86ba5faa14233a96aba8929c89539f5ec6064c4f851ee2dd0a1b04cf719cc65539b4b8d3de54c75fa5024aca8d76475d1ac1b00c26491231909668ea9606d088b21191360814b58717b1f9b8b17ce1a87fea09ff35d9894da6690e2663ad878dfc095ae49108fffde5f9baedfd37b12a6344ddfe058ab4a8606f012eeaf4cbc3c7c1ae9983b395960c065a2c6eedb0edd56255412f5115a305e4215bfea02974c9b12f6c2a9282040f830f4a3a7c4c284de91e87720dea428b6c7dbf585fa4ba89bdebe71817409bd72a8ca5bcc8fd9195f6d0abf2630f38930bc06ade515d1f782e578ae9842dfee422e8bec1defc638d211c2989b98139344c9dad4e31d2206030f1668a6d58785a7d0fa620c4f6616350c1f021ab93d4d65d26deaabc6369de43cc96b6035649b9f1822586d46780e61b2b56f471402ad5c2e6b51e6e13c5f5bff89ef6caa1fed46511c945c3f2d462bd5043702cd630c5d733014f95db0032cdecd4ae5419e4eeaf5cdfd514188535b69a9fa96b237d90283cb3c75cd6892bd891f149fd7c5dd5351bbc68282e8d7047aee6810cdb5d01\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteUserReal2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"deleteAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAr1faDzSg07x+5hvEDGzUzpSkedtQaq0CHJV8MZrRXXUVOQ21a0eBnoVMZLADuBISyW0gj6nJ9dtu+T+KFUxJKuDIIVfNPMqmehPqqWxv8qRsUQywaRBnWm4QIW2I8BdQINvvDULFO6nG3DknyzYku3HPA+TVt147opqWqTUPivkBuEJN/ANroAq1P9WlrjbyFSdqHtuPDavXaVwq8JZhxKqhE4w0aAGryE5HCDIT1hAq42G2CC5NNW3IaZVBBMqPn/tNCp0sQtUJiQZ19erolrcAxVIFd4Rv+YuMSpYKXuyFHPcUUjwLGyj7wq5mE9YRp+xnQ0RHLl3JSoyJeGAQCKD1M6d2mI1sBP/kqQS9xFWmvDbHG9XnGrYRAWFPlEln8gPF4WyhSqDyX7959gfhowGZJksZk9l9Ofbr9BWpOp65Aib4TQJXRgfeMkmDsYneF7e2p+4Watbbe7KBlvMgR6YIRq9OYbSGPAikdVet/j0A9SAKY0DZhq2FRlzG2RAiIV0GvI+j5aZs3d4ljjy6VVK/O3URKL4znOM6mRZUl0Fq7Jo5c0JDFgeXorGbqo8RHKeSmMHh8O37sj1V1p6AWgtJgu4cSkFPkxqUp7z9XHZo/KZaUAf8YfzTqQGThTS6MpqVczrKXYsdghwFAtBep+Ba+QKuYVVIpPbwgGRyCmsCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"075966285278f8dbc92b49342ede3869b1a75cec\",\r\n        \"publisherName\":\"real-factchecke\",\r\n        \"signatureOnFingerPrintPublicKeyPublisherNameDELETEFLAG\":\"5c529eb36f4a7c703dab06f4edf8f9a443f24295bff8b2720ca1e0fbc84f9b8c9ab8c2da2b1542513e05ffb95c35a59740b2d70468163dbe3e4d535933df88d4e1931a05aa1925b13f773ceeb398630f99a115132baac0b8ff3081c28ac29caca6382a3003203a86ba5faa14233a96aba8929c89539f5ec6064c4f851ee2dd0a1b04cf719cc65539b4b8d3de54c75fa5024aca8d76475d1ac1b00c26491231909668ea9606d088b21191360814b58717b1f9b8b17ce1a87fea09ff35d9894da6690e2663ad878dfc095ae49108fffde5f9baedfd37b12a6344ddfe058ab4a8606f012eeaf4cbc3c7c1ae9983b395960c065a2c6eedb0edd56255412f5115a305e4215bfea02974c9b12f6c2a9282040f830f4a3a7c4c284de91e87720dea428b6c7dbf585fa4ba89bdebe71817409bd72a8ca5bcc8fd9195f6d0abf2630f38930bc06ade515d1f782e578ae9842dfee422e8bec1defc638d211c2989b98139344c9dad4e31d2206030f1668a6d58785a7d0fa620c4f6616350c1f021ab93d4d65d26deaabc6369de43cc96b6035649b9f1822586d46780e61b2b56f471402ad5c2e6b51e6e13c5f5bff89ef6caa1fed46511c945c3f2d462bd5043702cd630c5d733014f95db0032cdecd4ae5419e4eeaf5cdfd514188535b69a9fa96b237d90283cb3c75cd6892bd891f149fd7c5dd5351bbc68282e8d7047aee6810cdb5d01\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "setup4",
+					"item": [
+						{
+							"name": "DB Delete",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Database deleted\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.deleteDB.message).equals(\"DB successfully deleted\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/postendpoint/deleteDB",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint",
+										"deleteDB"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AddUserReal",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successfully prepared user\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.createAccount.message).equals(\"Received data from POST request, new account has been stored.\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"createAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAr1faDzSg07x+5hvEDGzUzpSkedtQaq0CHJV8MZrRXXUVOQ21a0eBnoVMZLADuBISyW0gj6nJ9dtu+T+KFUxJKuDIIVfNPMqmehPqqWxv8qRsUQywaRBnWm4QIW2I8BdQINvvDULFO6nG3DknyzYku3HPA+TVt147opqWqTUPivkBuEJN/ANroAq1P9WlrjbyFSdqHtuPDavXaVwq8JZhxKqhE4w0aAGryE5HCDIT1hAq42G2CC5NNW3IaZVBBMqPn/tNCp0sQtUJiQZ19erolrcAxVIFd4Rv+YuMSpYKXuyFHPcUUjwLGyj7wq5mE9YRp+xnQ0RHLl3JSoyJeGAQCKD1M6d2mI1sBP/kqQS9xFWmvDbHG9XnGrYRAWFPlEln8gPF4WyhSqDyX7959gfhowGZJksZk9l9Ofbr9BWpOp65Aib4TQJXRgfeMkmDsYneF7e2p+4Watbbe7KBlvMgR6YIRq9OYbSGPAikdVet/j0A9SAKY0DZhq2FRlzG2RAiIV0GvI+j5aZs3d4ljjy6VVK/O3URKL4znOM6mRZUl0Fq7Jo5c0JDFgeXorGbqo8RHKeSmMHh8O37sj1V1p6AWgtJgu4cSkFPkxqUp7z9XHZo/KZaUAf8YfzTqQGThTS6MpqVczrKXYsdghwFAtBep+Ba+QKuYVVIpPbwgGRyCmsCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"075966285278f8dbc92b49342ede3869b1a75cec\",\r\n        \"publisherName\":\"real-factchecker\",\r\n        \"firstLogin\":\"Mon, 22 Nov 2021 14:06:44 GMT\",\r\n        \"signatureOnPublicKeyPublisherName\":\"8e20534defb6844f12b5942f73dde15ebd5e1ddeb77ddddda57fbc700cc984112d74c516560eb21374c4eabdcd717190f5a128309f668c9ba070d6dbe7f8ffea6251f1ee9877783ad61565354a095acf83382654c4078ab70ccc88b8f75eefc7f98dd38505cb7b30d49852d0b313faf483aef9af2a5a492dd6cfa52c0e59518f2f2cccdf82193433c56b545a79b6dc5f452eec4b2de01cb0168306ea4e0431277940fb4e977caf458295afe01e34a65934066aebc984c599ff2a6fa4dadd72b846f27199ada09b5aef74a13cbdb48c0fd9a1427f5bba747939ab06e64b9d4f090a67e7a3966ce28ea68b2177005c7d379079ab326347970c121804997c25337eb4677850f7684662ab3b588cb48c250e7c9649f7407380bb5e82d43438dba51cc7755dd894f6d2c9b7a3c73133522505903e7efb4b9b437bd9da6388ef66ef4c81e3096b0c0beca1f4b15bfc8c3237e12f00a7b58647d935cbe2b9c2b32923d4c36d8e18489ada5ead380858009424559949b1943cbd18fa192422d44699622629ccab2ebb935831a8dc7b837ce5106854e4f7b9cecdb325a09a26b03eed5dc4b6f0d071df2610137cc13ef678f926fa370f6821f02c251c41c7bcbccf23e25cf2800497c2768f89963fa84ee8a85d30d1ffc3173d926b732937bc78c55ef6f14c60e1e8a7c0776a5750afed436122829309c23034c5fcdf12bba589f6ea1c32\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "signature",
+					"item": [
+						{
+							"name": "DeleteUserReal (symbol add)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"deleteAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAr1faDzSg07x+5hvEDGzUzpSkedtQaq0CHJV8MZrRXXUVOQ21a0eBnoVMZLADuBISyW0gj6nJ9dtu+T+KFUxJKuDIIVfNPMqmehPqqWxv8qRsUQywaRBnWm4QIW2I8BdQINvvDULFO6nG3DknyzYku3HPA+TVt147opqWqTUPivkBuEJN/ANroAq1P9WlrjbyFSdqHtuPDavXaVwq8JZhxKqhE4w0aAGryE5HCDIT1hAq42G2CC5NNW3IaZVBBMqPn/tNCp0sQtUJiQZ19erolrcAxVIFd4Rv+YuMSpYKXuyFHPcUUjwLGyj7wq5mE9YRp+xnQ0RHLl3JSoyJeGAQCKD1M6d2mI1sBP/kqQS9xFWmvDbHG9XnGrYRAWFPlEln8gPF4WyhSqDyX7959gfhowGZJksZk9l9Ofbr9BWpOp65Aib4TQJXRgfeMkmDsYneF7e2p+4Watbbe7KBlvMgR6YIRq9OYbSGPAikdVet/j0A9SAKY0DZhq2FRlzG2RAiIV0GvI+j5aZs3d4ljjy6VVK/O3URKL4znOM6mRZUl0Fq7Jo5c0JDFgeXorGbqo8RHKeSmMHh8O37sj1V1p6AWgtJgu4cSkFPkxqUp7z9XHZo/KZaUAf8YfzTqQGThTS6MpqVczrKXYsdghwFAtBep+Ba+QKuYVVIpPbwgGRyCmsCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"075966285278f8dbc92b49342ede3869b1a75cec\",\r\n        \"publisherName\":\"real-factchecker\",\r\n        \"signatureOnFingerPrintPublicKeyPublisherNameDELETEFLAG\":\"15c529eb36f4a7c703dab06f4edf8f9a443f24295bff8b2720ca1e0fbc84f9b8c9ab8c2da2b1542513e05ffb95c35a59740b2d70468163dbe3e4d535933df88d4e1931a05aa1925b13f773ceeb398630f99a115132baac0b8ff3081c28ac29caca6382a3003203a86ba5faa14233a96aba8929c89539f5ec6064c4f851ee2dd0a1b04cf719cc65539b4b8d3de54c75fa5024aca8d76475d1ac1b00c26491231909668ea9606d088b21191360814b58717b1f9b8b17ce1a87fea09ff35d9894da6690e2663ad878dfc095ae49108fffde5f9baedfd37b12a6344ddfe058ab4a8606f012eeaf4cbc3c7c1ae9983b395960c065a2c6eedb0edd56255412f5115a305e4215bfea02974c9b12f6c2a9282040f830f4a3a7c4c284de91e87720dea428b6c7dbf585fa4ba89bdebe71817409bd72a8ca5bcc8fd9195f6d0abf2630f38930bc06ade515d1f782e578ae9842dfee422e8bec1defc638d211c2989b98139344c9dad4e31d2206030f1668a6d58785a7d0fa620c4f6616350c1f021ab93d4d65d26deaabc6369de43cc96b6035649b9f1822586d46780e61b2b56f471402ad5c2e6b51e6e13c5f5bff89ef6caa1fed46511c945c3f2d462bd5043702cd630c5d733014f95db0032cdecd4ae5419e4eeaf5cdfd514188535b69a9fa96b237d90283cb3c75cd6892bd891f149fd7c5dd5351bbc68282e8d7047aee6810cdb5d01\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteUserReal (symbol add multiple)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"deleteAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAr1faDzSg07x+5hvEDGzUzpSkedtQaq0CHJV8MZrRXXUVOQ21a0eBnoVMZLADuBISyW0gj6nJ9dtu+T+KFUxJKuDIIVfNPMqmehPqqWxv8qRsUQywaRBnWm4QIW2I8BdQINvvDULFO6nG3DknyzYku3HPA+TVt147opqWqTUPivkBuEJN/ANroAq1P9WlrjbyFSdqHtuPDavXaVwq8JZhxKqhE4w0aAGryE5HCDIT1hAq42G2CC5NNW3IaZVBBMqPn/tNCp0sQtUJiQZ19erolrcAxVIFd4Rv+YuMSpYKXuyFHPcUUjwLGyj7wq5mE9YRp+xnQ0RHLl3JSoyJeGAQCKD1M6d2mI1sBP/kqQS9xFWmvDbHG9XnGrYRAWFPlEln8gPF4WyhSqDyX7959gfhowGZJksZk9l9Ofbr9BWpOp65Aib4TQJXRgfeMkmDsYneF7e2p+4Watbbe7KBlvMgR6YIRq9OYbSGPAikdVet/j0A9SAKY0DZhq2FRlzG2RAiIV0GvI+j5aZs3d4ljjy6VVK/O3URKL4znOM6mRZUl0Fq7Jo5c0JDFgeXorGbqo8RHKeSmMHh8O37sj1V1p6AWgtJgu4cSkFPkxqUp7z9XHZo/KZaUAf8YfzTqQGThTS6MpqVczrKXYsdghwFAtBep+Ba+QKuYVVIpPbwgGRyCmsCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"075966285278f8dbc92b49342ede3869b1a75cec\",\r\n        \"publisherName\":\"real-factchecker\",\r\n        \"signatureOnFingerPrintPublicKeyPublisherNameDELETEFLAG\":\"11115c529eb36f4a7c703dab06f4edf8f9a443f24295bff8b2720ca1e0fbc84f9b8c9ab8c2da2b1542513e05ffb95c35a59740b2d70468163dbe3e4d535933df88d4e1931a05aa1925b13f773ceeb398630f99a115132baac0b8ff3081c28ac29caca6382a3003203a86ba5faa14233a96aba8929c89539f5ec6064c4f851ee2dd0a1b04cf719cc65539b4b8d3de54c75fa5024aca8d76475d1ac1b00c26491231909668ea9606d088b21191360814b58717b1f9b8b17ce1a87fea09ff35d9894da6690e2663ad878dfc095ae49108fffde5f9baedfd37b12a6344ddfe058ab4a8606f012eeaf4cbc3c7c1ae9983b395960c065a2c6eedb0edd56255412f5115a305e4215bfea02974c9b12f6c2a9282040f830f4a3a7c4c284de91e87720dea428b6c7dbf585fa4ba89bdebe71817409bd72a8ca5bcc8fd9195f6d0abf2630f38930bc06ade515d1f782e578ae9842dfee422e8bec1defc638d211c2989b98139344c9dad4e31d2206030f1668a6d58785a7d0fa620c4f6616350c1f021ab93d4d65d26deaabc6369de43cc96b6035649b9f1822586d46780e61b2b56f471402ad5c2e6b51e6e13c5f5bff89ef6caa1fed46511c945c3f2d462bd5043702cd630c5d733014f95db0032cdecd4ae5419e4eeaf5cdfd514188535b69a9fa96b237d90283cb3c75cd6892bd891f149fd7c5dd5351bbc68282e8d7047aee6810cdb5d01\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteUserReal (symbol remove)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"deleteAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAr1faDzSg07x+5hvEDGzUzpSkedtQaq0CHJV8MZrRXXUVOQ21a0eBnoVMZLADuBISyW0gj6nJ9dtu+T+KFUxJKuDIIVfNPMqmehPqqWxv8qRsUQywaRBnWm4QIW2I8BdQINvvDULFO6nG3DknyzYku3HPA+TVt147opqWqTUPivkBuEJN/ANroAq1P9WlrjbyFSdqHtuPDavXaVwq8JZhxKqhE4w0aAGryE5HCDIT1hAq42G2CC5NNW3IaZVBBMqPn/tNCp0sQtUJiQZ19erolrcAxVIFd4Rv+YuMSpYKXuyFHPcUUjwLGyj7wq5mE9YRp+xnQ0RHLl3JSoyJeGAQCKD1M6d2mI1sBP/kqQS9xFWmvDbHG9XnGrYRAWFPlEln8gPF4WyhSqDyX7959gfhowGZJksZk9l9Ofbr9BWpOp65Aib4TQJXRgfeMkmDsYneF7e2p+4Watbbe7KBlvMgR6YIRq9OYbSGPAikdVet/j0A9SAKY0DZhq2FRlzG2RAiIV0GvI+j5aZs3d4ljjy6VVK/O3URKL4znOM6mRZUl0Fq7Jo5c0JDFgeXorGbqo8RHKeSmMHh8O37sj1V1p6AWgtJgu4cSkFPkxqUp7z9XHZo/KZaUAf8YfzTqQGThTS6MpqVczrKXYsdghwFAtBep+Ba+QKuYVVIpPbwgGRyCmsCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"075966285278f8dbc92b49342ede3869b1a75cec\",\r\n        \"publisherName\":\"real-factchecker\",\r\n        \"signatureOnFingerPrintPublicKeyPublisherNameDELETEFLAG\":\"c529eb36f4a7c703dab06f4edf8f9a443f24295bff8b2720ca1e0fbc84f9b8c9ab8c2da2b1542513e05ffb95c35a59740b2d70468163dbe3e4d535933df88d4e1931a05aa1925b13f773ceeb398630f99a115132baac0b8ff3081c28ac29caca6382a3003203a86ba5faa14233a96aba8929c89539f5ec6064c4f851ee2dd0a1b04cf719cc65539b4b8d3de54c75fa5024aca8d76475d1ac1b00c26491231909668ea9606d088b21191360814b58717b1f9b8b17ce1a87fea09ff35d9894da6690e2663ad878dfc095ae49108fffde5f9baedfd37b12a6344ddfe058ab4a8606f012eeaf4cbc3c7c1ae9983b395960c065a2c6eedb0edd56255412f5115a305e4215bfea02974c9b12f6c2a9282040f830f4a3a7c4c284de91e87720dea428b6c7dbf585fa4ba89bdebe71817409bd72a8ca5bcc8fd9195f6d0abf2630f38930bc06ade515d1f782e578ae9842dfee422e8bec1defc638d211c2989b98139344c9dad4e31d2206030f1668a6d58785a7d0fa620c4f6616350c1f021ab93d4d65d26deaabc6369de43cc96b6035649b9f1822586d46780e61b2b56f471402ad5c2e6b51e6e13c5f5bff89ef6caa1fed46511c945c3f2d462bd5043702cd630c5d733014f95db0032cdecd4ae5419e4eeaf5cdfd514188535b69a9fa96b237d90283cb3c75cd6892bd891f149fd7c5dd5351bbc68282e8d7047aee6810cdb5d01\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteUserReal (symbol remove multiple)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"deleteAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAr1faDzSg07x+5hvEDGzUzpSkedtQaq0CHJV8MZrRXXUVOQ21a0eBnoVMZLADuBISyW0gj6nJ9dtu+T+KFUxJKuDIIVfNPMqmehPqqWxv8qRsUQywaRBnWm4QIW2I8BdQINvvDULFO6nG3DknyzYku3HPA+TVt147opqWqTUPivkBuEJN/ANroAq1P9WlrjbyFSdqHtuPDavXaVwq8JZhxKqhE4w0aAGryE5HCDIT1hAq42G2CC5NNW3IaZVBBMqPn/tNCp0sQtUJiQZ19erolrcAxVIFd4Rv+YuMSpYKXuyFHPcUUjwLGyj7wq5mE9YRp+xnQ0RHLl3JSoyJeGAQCKD1M6d2mI1sBP/kqQS9xFWmvDbHG9XnGrYRAWFPlEln8gPF4WyhSqDyX7959gfhowGZJksZk9l9Ofbr9BWpOp65Aib4TQJXRgfeMkmDsYneF7e2p+4Watbbe7KBlvMgR6YIRq9OYbSGPAikdVet/j0A9SAKY0DZhq2FRlzG2RAiIV0GvI+j5aZs3d4ljjy6VVK/O3URKL4znOM6mRZUl0Fq7Jo5c0JDFgeXorGbqo8RHKeSmMHh8O37sj1V1p6AWgtJgu4cSkFPkxqUp7z9XHZo/KZaUAf8YfzTqQGThTS6MpqVczrKXYsdghwFAtBep+Ba+QKuYVVIpPbwgGRyCmsCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"075966285278f8dbc92b49342ede3869b1a75cec\",\r\n        \"publisherName\":\"real-factchecker\",\r\n        \"signatureOnFingerPrintPublicKeyPublisherNameDELETEFLAG\":\"9eb36f4a7c703dab06f4edf8f9a443f24295bff8b2720ca1e0fbc84f9b8c9ab8c2da2b1542513e05ffb95c35a59740b2d70468163dbe3e4d535933df88d4e1931a05aa1925b13f773ceeb398630f99a115132baac0b8ff3081c28ac29caca6382a3003203a86ba5faa14233a96aba8929c89539f5ec6064c4f851ee2dd0a1b04cf719cc65539b4b8d3de54c75fa5024aca8d76475d1ac1b00c26491231909668ea9606d088b21191360814b58717b1f9b8b17ce1a87fea09ff35d9894da6690e2663ad878dfc095ae49108fffde5f9baedfd37b12a6344ddfe058ab4a8606f012eeaf4cbc3c7c1ae9983b395960c065a2c6eedb0edd56255412f5115a305e4215bfea02974c9b12f6c2a9282040f830f4a3a7c4c284de91e87720dea428b6c7dbf585fa4ba89bdebe71817409bd72a8ca5bcc8fd9195f6d0abf2630f38930bc06ade515d1f782e578ae9842dfee422e8bec1defc638d211c2989b98139344c9dad4e31d2206030f1668a6d58785a7d0fa620c4f6616350c1f021ab93d4d65d26deaabc6369de43cc96b6035649b9f1822586d46780e61b2b56f471402ad5c2e6b51e6e13c5f5bff89ef6caa1fed46511c945c3f2d462bd5043702cd630c5d733014f95db0032cdecd4ae5419e4eeaf5cdfd514188535b69a9fa96b237d90283cb3c75cd6892bd891f149fd7c5dd5351bbc68282e8d7047aee6810cdb5d01\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

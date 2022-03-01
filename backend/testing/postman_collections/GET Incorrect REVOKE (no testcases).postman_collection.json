@@ -1,0 +1,8 @@
+{
+	"info": {
+		"_postman_id": "450dbe06-4913-48ec-a5b7-ed57721d2e7f",
+		"name": "GET Incorrect REVOKE (no testcases)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": []
+}

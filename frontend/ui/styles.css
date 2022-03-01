@@ -1,0 +1,40 @@
+/*author:  Mahmoud*/
+.btn{
+    
+    float: right;  
+    top: 0;
+    right: 0;
+}
+
+.main-elements{
+    margin-top: 10px;
+}
+body {
+    width: 500px;
+    height: 500px;
+padding: 5px; 
+}
+
+ #GFG { 
+    text-decoration: none;
+    color: inherit;
+}
+
+.delete-acc-confim {
+   text-decoration: none;
+}
+.center-logo {
+    text-align: center;
+   
+}
+.btn1 {
+    text-align: center;
+  }
+
+.list-group{
+    max-height: 300px;
+    margin-bottom: 10px;
+    overflow:scroll;
+    -webkit-overflow-scrolling: touch;
+}
+

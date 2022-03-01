@@ -1,0 +1,1139 @@
+{
+	"info": {
+		"_postman_id": "9717ddd0-905a-466f-9972-332447927d72",
+		"name": "X POST Incorrect CHANGE (done)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "JSON format",
+			"item": [
+				{
+					"name": "setup",
+					"item": [
+						{
+							"name": "DB Delete",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Database deleted\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.deleteDB.message).equals(\"DB successfully deleted\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/postendpoint/deleteDB",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint",
+										"deleteDB"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AddUserReal",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successfully prepared user\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.createAccount.message).equals(\"Received data from POST request, new account has been stored.\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"createAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAr1faDzSg07x+5hvEDGzUzpSkedtQaq0CHJV8MZrRXXUVOQ21a0eBnoVMZLADuBISyW0gj6nJ9dtu+T+KFUxJKuDIIVfNPMqmehPqqWxv8qRsUQywaRBnWm4QIW2I8BdQINvvDULFO6nG3DknyzYku3HPA+TVt147opqWqTUPivkBuEJN/ANroAq1P9WlrjbyFSdqHtuPDavXaVwq8JZhxKqhE4w0aAGryE5HCDIT1hAq42G2CC5NNW3IaZVBBMqPn/tNCp0sQtUJiQZ19erolrcAxVIFd4Rv+YuMSpYKXuyFHPcUUjwLGyj7wq5mE9YRp+xnQ0RHLl3JSoyJeGAQCKD1M6d2mI1sBP/kqQS9xFWmvDbHG9XnGrYRAWFPlEln8gPF4WyhSqDyX7959gfhowGZJksZk9l9Ofbr9BWpOp65Aib4TQJXRgfeMkmDsYneF7e2p+4Watbbe7KBlvMgR6YIRq9OYbSGPAikdVet/j0A9SAKY0DZhq2FRlzG2RAiIV0GvI+j5aZs3d4ljjy6VVK/O3URKL4znOM6mRZUl0Fq7Jo5c0JDFgeXorGbqo8RHKeSmMHh8O37sj1V1p6AWgtJgu4cSkFPkxqUp7z9XHZo/KZaUAf8YfzTqQGThTS6MpqVczrKXYsdghwFAtBep+Ba+QKuYVVIpPbwgGRyCmsCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"075966285278f8dbc92b49342ede3869b1a75cec\",\r\n        \"publisherName\":\"real-factchecker\",\r\n        \"firstLogin\":\"Mon, 22 Nov 2021 14:06:44 GMT\",\r\n        \"signatureOnPublicKeyPublisherName\":\"8e20534defb6844f12b5942f73dde15ebd5e1ddeb77ddddda57fbc700cc984112d74c516560eb21374c4eabdcd717190f5a128309f668c9ba070d6dbe7f8ffea6251f1ee9877783ad61565354a095acf83382654c4078ab70ccc88b8f75eefc7f98dd38505cb7b30d49852d0b313faf483aef9af2a5a492dd6cfa52c0e59518f2f2cccdf82193433c56b545a79b6dc5f452eec4b2de01cb0168306ea4e0431277940fb4e977caf458295afe01e34a65934066aebc984c599ff2a6fa4dadd72b846f27199ada09b5aef74a13cbdb48c0fd9a1427f5bba747939ab06e64b9d4f090a67e7a3966ce28ea68b2177005c7d379079ab326347970c121804997c25337eb4677850f7684662ab3b588cb48c250e7c9649f7407380bb5e82d43438dba51cc7755dd894f6d2c9b7a3c73133522505903e7efb4b9b437bd9da6388ef66ef4c81e3096b0c0beca1f4b15bfc8c3237e12f00a7b58647d935cbe2b9c2b32923d4c36d8e18489ada5ead380858009424559949b1943cbd18fa192422d44699622629ccab2ebb935831a8dc7b837ce5106854e4f7b9cecdb325a09a26b03eed5dc4b6f0d071df2610137cc13ef678f926fa370f6821f02c251c41c7bcbccf23e25cf2800497c2768f89963fa84ee8a85d30d1ffc3173d926b732937bc78c55ef6f14c60e1e8a7c0776a5750afed436122829309c23034c5fcdf12bba589f6ea1c32\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "change publisher name",
+					"item": [
+						{
+							"name": "ChangeUserReal (Typo Attribute)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Change publisher name\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"    // pm.expect(jsonData.changePublisherName.message).equals(\"Received data from POST request, new account has been stored.\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"changePublisherName\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAiD6Bs9oGSvUXecXDKldwoHyfynDelNvxyc1Ui5TGhajWp4IMskqV8SnQyfhbErIGWgStAivKbMOGja9ecciKTS6/VDZOno048zMsZRzzKo9UeqoOqKluRwPcoiQnQlABYUvKu7IMapU9aBsMGxUWMlirhjvEkDrdg3B+w5PClLMr2XE5txriW7tmyu4fLTILxYN9IeJtN5EAoWPhxqq05ksOAS0USwdAHgbvThOkGiaoKvOQsbj+kG3+ND9C+SYuipT5glQYrMzlhvlGvHK0QAaDq/c7GI+eTNyBb5TZm7A4anW2p8MPExKHrtbbzDs2nfFvBYWKJIH3iiLuyGg7uzv+r/9FrNgjQizu7wI3cl5WDmyXxgh9DUPUdezVaV4D0JGG4DjNXLdXAaV11lbdXhlCHDPUw3g3MbDsy1mLDVnzBJNxgUv945Xp6DjxLlWDcFGnbDfmJrksd7aOoP9kGY3KtvAuOyw1TsK/burWyKeFhvaDoOyaoHEroP6THp5E017YsT2AjXmDIeHYCd0/R7COi1hGazInYoZDbfbJMTtmzHD6Dp+f2QaY9gsOfL/+H6q4+a/sVQg9vnolZZq53rz9oteRzdpvtmRNHjXN/nxY39TjcN6fO6YibSE4EaSRQX0AjznLIENvt3+YWWsmVScNW8BMen3cyAerdOuPrLcCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"9d34adfa62df83e03988fa3ee69163e74809b37e\",\r\n        \"publisherName\":\"new-factchecker\",\r\n        \"new1PublisherName\":\"realy_old-factchecker\",\r\n        \"timestamp\":\"Mon, 22 Nov 2021 14:06:44 GMT\",\r\n        \"signatureOnFingerPrintPublicKeyPublisherNameNewPublisherNameTimestampCHANGEFLAG\":\"54fce964069970e64915a078317a1a5c818f5cea3f2964ca85af2881907c4e7bda2539ac65af9bee2d85f45ef12cf3bf633ef0d40fd0dc2a43bd9d9540ca630695cd325c4c3a58c6a7952892daaad86ebd21fa5926ad7e03f6458fc0880d558c7f7821685387a1205e103d653c571632fa16fc335e0baabb5933629d84831c6fdc221f120190346610893826a31783e00f1f733f4fbf99ced9b2474fea86fe1825207f6c34cddfef84d267b27015d40791d6973033a412a71158cdfeae2b95afa3b48acbf7ae014add245bca8b4931816867d21f3e31bd1d92c6c2671cb6384c3a0124d9c6d8044ba9c614112e1274d7d1dda5827eb62ef5f17feb13a5d5c1344c7e54d9f1737911a9736d74ca5908910d8f5a0ab75fa38a34e2d2013090be12d91540d488eb64cedcef5bfc08d30d4f3c5f05a17f858f1e6809290d667cdddc15517b5b27c2a41812a444973566b73f2f156db77deb4132f0e35ec5373f3439a29e61818ed2d83c007fdd7904ba9eb2d2648286d9cb6207b33e0e767221a0765a0df92244f5d6dea181083c29b73b62af38daa005d71ebc6fe66c5a8989ca241c8b418eee0fe5674629cf4de9f02ace48c99989353f3ca19a4706eaf08505414bec9cf8662e0115d05b850171a47d12f99e23f19df230bcb593715cddb748cf5f93ea625a79018011ebd2a7bc77d06e38f45146bf56352b5983b5fccd7387f9\"\r\n    }   \r\n}\r\n\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ChangeUserReal (Typo MAttribute)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Change publisher name\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"    // pm.expect(jsonData.changePublisherName.message).equals(\"Received data from POST request, new account has been stored.\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"changePublisherName1\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAr1faDzSg07x+5hvEDGzUzpSkedtQaq0CHJV8MZrRXXUVOQ21a0eBnoVMZLADuBISyW0gj6nJ9dtu+T+KFUxJKuDIIVfNPMqmehPqqWxv8qRsUQywaRBnWm4QIW2I8BdQINvvDULFO6nG3DknyzYku3HPA+TVt147opqWqTUPivkBuEJN/ANroAq1P9WlrjbyFSdqHtuPDavXaVwq8JZhxKqhE4w0aAGryE5HCDIT1hAq42G2CC5NNW3IaZVBBMqPn/tNCp0sQtUJiQZ19erolrcAxVIFd4Rv+YuMSpYKXuyFHPcUUjwLGyj7wq5mE9YRp+xnQ0RHLl3JSoyJeGAQCKD1M6d2mI1sBP/kqQS9xFWmvDbHG9XnGrYRAWFPlEln8gPF4WyhSqDyX7959gfhowGZJksZk9l9Ofbr9BWpOp65Aib4TQJXRgfeMkmDsYneF7e2p+4Watbbe7KBlvMgR6YIRq9OYbSGPAikdVet/j0A9SAKY0DZhq2FRlzG2RAiIV0GvI+j5aZs3d4ljjy6VVK/O3URKL4znOM6mRZUl0Fq7Jo5c0JDFgeXorGbqo8RHKeSmMHh8O37sj1V1p6AWgtJgu4cSkFPkxqUp7z9XHZo/KZaUAf8YfzTqQGThTS6MpqVczrKXYsdghwFAtBep+Ba+QKuYVVIpPbwgGRyCmsCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"075966285278f8dbc92b49342ede3869b1a75cec\",\r\n        \"publisherName\":\"real-factchecker\",\r\n        \"newPublisherName\": \"checkey-factfredder\",\r\n        \"timestamp\":\"Mon, 22 Nov 2021 14:06:44 GMT\",\r\n        \"signatureOnFingerPrintPublicKeyPublisherNameNewPublisherNameTimestampCHANGEFLAG\":\"54fce964069970e64915a078317a1a5c818f5cea3f2964ca85af2881907c4e7bda2539ac65af9bee2d85f45ef12cf3bf633ef0d40fd0dc2a43bd9d9540ca630695cd325c4c3a58c6a7952892daaad86ebd21fa5926ad7e03f6458fc0880d558c7f7821685387a1205e103d653c571632fa16fc335e0baabb5933629d84831c6fdc221f120190346610893826a31783e00f1f733f4fbf99ced9b2474fea86fe1825207f6c34cddfef84d267b27015d40791d6973033a412a71158cdfeae2b95afa3b48acbf7ae014add245bca8b4931816867d21f3e31bd1d92c6c2671cb6384c3a0124d9c6d8044ba9c614112e1274d7d1dda5827eb62ef5f17feb13a5d5c1344c7e54d9f1737911a9736d74ca5908910d8f5a0ab75fa38a34e2d2013090be12d91540d488eb64cedcef5bfc08d30d4f3c5f05a17f858f1e6809290d667cdddc15517b5b27c2a41812a444973566b73f2f156db77deb4132f0e35ec5373f3439a29e61818ed2d83c007fdd7904ba9eb2d2648286d9cb6207b33e0e767221a0765a0df92244f5d6dea181083c29b73b62af38daa005d71ebc6fe66c5a8989ca241c8b418eee0fe5674629cf4de9f02ace48c99989353f3ca19a4706eaf08505414bec9cf8662e0115d05b850171a47d12f99e23f19df230bcb593715cddb748cf5f93ea625a79018011ebd2a7bc77d06e38f45146bf56352b5983b5fccd7387f9\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ChangeUserReal (Missing Field)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Change publisher name\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"    // pm.expect(jsonData.changePublisherName.message).equals(\"Received data from POST request, new account has been stored.\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"changePublisherName\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAr1faDzSg07x+5hvEDGzUzpSkedtQaq0CHJV8MZrRXXUVOQ21a0eBnoVMZLADuBISyW0gj6nJ9dtu+T+KFUxJKuDIIVfNPMqmehPqqWxv8qRsUQywaRBnWm4QIW2I8BdQINvvDULFO6nG3DknyzYku3HPA+TVt147opqWqTUPivkBuEJN/ANroAq1P9WlrjbyFSdqHtuPDavXaVwq8JZhxKqhE4w0aAGryE5HCDIT1hAq42G2CC5NNW3IaZVBBMqPn/tNCp0sQtUJiQZ19erolrcAxVIFd4Rv+YuMSpYKXuyFHPcUUjwLGyj7wq5mE9YRp+xnQ0RHLl3JSoyJeGAQCKD1M6d2mI1sBP/kqQS9xFWmvDbHG9XnGrYRAWFPlEln8gPF4WyhSqDyX7959gfhowGZJksZk9l9Ofbr9BWpOp65Aib4TQJXRgfeMkmDsYneF7e2p+4Watbbe7KBlvMgR6YIRq9OYbSGPAikdVet/j0A9SAKY0DZhq2FRlzG2RAiIV0GvI+j5aZs3d4ljjy6VVK/O3URKL4znOM6mRZUl0Fq7Jo5c0JDFgeXorGbqo8RHKeSmMHh8O37sj1V1p6AWgtJgu4cSkFPkxqUp7z9XHZo/KZaUAf8YfzTqQGThTS6MpqVczrKXYsdghwFAtBep+Ba+QKuYVVIpPbwgGRyCmsCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"075966285278f8dbc92b49342ede3869b1a75cec\",\r\n        \"publisherName\":\"real-factchecker\",\r\n        \"newPublisherName\": \"checkey-factfredder\",\r\n        \"signatureOnFingerPrintPublicKeyPublisherNameNewPublisherNameTimestampCHANGEFLAG\":\"54fce964069970e64915a078317a1a5c818f5cea3f2964ca85af2881907c4e7bda2539ac65af9bee2d85f45ef12cf3bf633ef0d40fd0dc2a43bd9d9540ca630695cd325c4c3a58c6a7952892daaad86ebd21fa5926ad7e03f6458fc0880d558c7f7821685387a1205e103d653c571632fa16fc335e0baabb5933629d84831c6fdc221f120190346610893826a31783e00f1f733f4fbf99ced9b2474fea86fe1825207f6c34cddfef84d267b27015d40791d6973033a412a71158cdfeae2b95afa3b48acbf7ae014add245bca8b4931816867d21f3e31bd1d92c6c2671cb6384c3a0124d9c6d8044ba9c614112e1274d7d1dda5827eb62ef5f17feb13a5d5c1344c7e54d9f1737911a9736d74ca5908910d8f5a0ab75fa38a34e2d2013090be12d91540d488eb64cedcef5bfc08d30d4f3c5f05a17f858f1e6809290d667cdddc15517b5b27c2a41812a444973566b73f2f156db77deb4132f0e35ec5373f3439a29e61818ed2d83c007fdd7904ba9eb2d2648286d9cb6207b33e0e767221a0765a0df92244f5d6dea181083c29b73b62af38daa005d71ebc6fe66c5a8989ca241c8b418eee0fe5674629cf4de9f02ace48c99989353f3ca19a4706eaf08505414bec9cf8662e0115d05b850171a47d12f99e23f19df230bcb593715cddb748cf5f93ea625a79018011ebd2a7bc77d06e38f45146bf56352b5983b5fccd7387f9\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ChangeUserReal (Missing All Fields)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Change publisher name\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"    // pm.expect(jsonData.changePublisherName.message).equals(\"Received data from POST request, new account has been stored.\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"changePublisherName\":{\r\n        \r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "No Use Case",
+			"item": [
+				{
+					"name": "setup",
+					"item": [
+						{
+							"name": "DB Delete",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Database deleted\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.deleteDB.message).equals(\"DB successfully deleted\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/postendpoint/deleteDB",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint",
+										"deleteDB"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AddUserPower",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successfully prepared user\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.createAccount.message).equals(\"Received data from POST request, new account has been stored.\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"createAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAqrp9b+gh7PQXOAQVnHbnPswXAX6/dZ3UYkU+KQ7TTPzp+pRudifRvqn7/cqx4zbAfDwf1beZEtjxK6KR16zxqPAQ5m0hEeboVDQk7zTUU8BlFEs3TfhwubK/OJSROyRGhpH+Cx9oMIJNDA9p3Pn74RrgkKwqEpkXUOAx/ld6U39gVxC2uhUMwtmHG1h305tWc4THVpz/nElazuqKtpC7H8mAJmfQcHV5uGm1JoLivKiCQR1l6L8JVjB5x9rINepfljAWvLMZxIqjhEppC3TW6+Gv3/6dxvwSvPrfN525MQOYEW2Cz8nq6r4lTqs5XX8dVXZ3Dqa+P8Vdg3zpU6pUfo8zavHOeGkJHiexS37fdMWGC1A/XkqTCEat5ycM5o/Kms1ox/Nza/tVi+Z2/+cZgGa9YIplaqxrWdJjCwAwJ0xAsCqz3hPTgCmP2LXwRzTrBhvrky6+d48Xcbeqst6Ut9RCNe+Aj/6nDnNBQvNt7oFvVM6Lhw6Ux9d462Mt3uF75doXIJbwczjW3IAYDHnBHbVd9V+feZNDm0IRWo3p9yINu/fIQEQKaMsSHxtxm8oTdwi/BVULhyaSXS3+gcRDMjdrB+u71ictb+iffdSX86e6d/60ouX6M1t/mdh7qFDNdMV9n7eE59Gy0jp/u9NekMkbVnvTUH9bcRAuF4o30zMCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06f\",\r\n        \"publisherName\":\"power-factchecker\",\r\n        \"firstLogin\":\"Mon, 15 Nov 2021 14:06:44 GMT\",\r\n        \"signatureOnPublicKeyPublisherName\":\"08f5e87f9ee6db7c6767791c9006537e3d358c578acc7d790f2b83450bd00f55c4727e49d66fee0de7de4afc262553ce65064846a7dcba37648d0c68442b773ece10be2afa37f53c171f469305b01acdd6d448fd8aec48ec6346651dfe2ed9b62815b0cd976e9331979019df1c3ef2af36177f8cb145be3fd56438e90fc309e1b16418eef317bbfdf67072427a8d3d564d8c0e050e445de25588ab3f1f3aa32fdd64c122892ba2dca2e5fccc836048c37bae3d2528be41a8fbb013e4a9f1a8bedbc8121878658ddfe8fe168e6f9661401cdb2f503356c1c340616573b5fe711b346f6d3ce2438bd3d976df1887e2b753ad82b1f6073961a1c4634e5836757e0e3b37385d2f304949e287354cf6c61a07382b9e3277341561d29d0e50764c55130d48e378b34b43932e20e4cbf3cc8738d612d00064dfda3f0dd1d0600292c436f8b4d92f28687b61d806e75da399aea9b19daff9763e2c6a078dc1e7fc31f4d8cbe0fe53d36cb75f92abca898ba410775592639a2bdd8b3512874432578e3205fb5e6f797206d9b85a6433d969363a932a87a856433f47d5e92f695ecee1c4566db9c5f6b928cb60655a7fd7b339941eec86205c69c69794066fe11919ae9e7c33d08f8de24c60dd2ed09e244a89799cd593035934684df5dab3f53cbb497fcbecef22cf8997ba027d0fd3475c3f47386bec06bad097ca2d11a8726ceeb17b69\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "change publisher name",
+					"item": [
+						{
+							"name": "ChangeUserReal (Missing Everything)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ChangeUserReal (String: \"test\")",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Change publisher name\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"    // pm.expect(jsonData.changePublisherName.message).equals(\"Received data from POST request, new account has been stored.\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "\"test\"",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ChangeUserReal (String: \"changePublisherName\")",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Change publisher name\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"    // pm.expect(jsonData.changePublisherName.message).equals(\"Received data from POST request, new account has been stored.\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "\"changePublisherName\"",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ChangeUserReal (No Body)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Change publisher name\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"    // pm.expect(jsonData.changePublisherName.message).equals(\"Received data from POST request, new account has been stored.\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Wrong Values",
+			"item": [
+				{
+					"name": "setup",
+					"item": [
+						{
+							"name": "DB Delete",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Database deleted\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.deleteDB.message).equals(\"DB successfully deleted\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/postendpoint/deleteDB",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint",
+										"deleteDB"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AddUserReal",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request OK\", function () {\r",
+											"    pm.response.to.be.ok;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Added new User\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.createAccount.message).equals(\"Received data from POST request, new account has been stored.\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"createAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAr1faDzSg07x+5hvEDGzUzpSkedtQaq0CHJV8MZrRXXUVOQ21a0eBnoVMZLADuBISyW0gj6nJ9dtu+T+KFUxJKuDIIVfNPMqmehPqqWxv8qRsUQywaRBnWm4QIW2I8BdQINvvDULFO6nG3DknyzYku3HPA+TVt147opqWqTUPivkBuEJN/ANroAq1P9WlrjbyFSdqHtuPDavXaVwq8JZhxKqhE4w0aAGryE5HCDIT1hAq42G2CC5NNW3IaZVBBMqPn/tNCp0sQtUJiQZ19erolrcAxVIFd4Rv+YuMSpYKXuyFHPcUUjwLGyj7wq5mE9YRp+xnQ0RHLl3JSoyJeGAQCKD1M6d2mI1sBP/kqQS9xFWmvDbHG9XnGrYRAWFPlEln8gPF4WyhSqDyX7959gfhowGZJksZk9l9Ofbr9BWpOp65Aib4TQJXRgfeMkmDsYneF7e2p+4Watbbe7KBlvMgR6YIRq9OYbSGPAikdVet/j0A9SAKY0DZhq2FRlzG2RAiIV0GvI+j5aZs3d4ljjy6VVK/O3URKL4znOM6mRZUl0Fq7Jo5c0JDFgeXorGbqo8RHKeSmMHh8O37sj1V1p6AWgtJgu4cSkFPkxqUp7z9XHZo/KZaUAf8YfzTqQGThTS6MpqVczrKXYsdghwFAtBep+Ba+QKuYVVIpPbwgGRyCmsCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"075966285278f8dbc92b49342ede3869b1a75cec\",\r\n        \"publisherName\":\"real-factchecker\",\r\n        \"firstLogin\":\"2021-11-15T14:06:44+01:00\",\r\n        \"signatureOnPublicKeyPublisherName\":\"8e20534defb6844f12b5942f73dde15ebd5e1ddeb77ddddda57fbc700cc984112d74c516560eb21374c4eabdcd717190f5a128309f668c9ba070d6dbe7f8ffea6251f1ee9877783ad61565354a095acf83382654c4078ab70ccc88b8f75eefc7f98dd38505cb7b30d49852d0b313faf483aef9af2a5a492dd6cfa52c0e59518f2f2cccdf82193433c56b545a79b6dc5f452eec4b2de01cb0168306ea4e0431277940fb4e977caf458295afe01e34a65934066aebc984c599ff2a6fa4dadd72b846f27199ada09b5aef74a13cbdb48c0fd9a1427f5bba747939ab06e64b9d4f090a67e7a3966ce28ea68b2177005c7d379079ab326347970c121804997c25337eb4677850f7684662ab3b588cb48c250e7c9649f7407380bb5e82d43438dba51cc7755dd894f6d2c9b7a3c73133522505903e7efb4b9b437bd9da6388ef66ef4c81e3096b0c0beca1f4b15bfc8c3237e12f00a7b58647d935cbe2b9c2b32923d4c36d8e18489ada5ead380858009424559949b1943cbd18fa192422d44699622629ccab2ebb935831a8dc7b837ce5106854e4f7b9cecdb325a09a26b03eed5dc4b6f0d071df2610137cc13ef678f926fa370f6821f02c251c41c7bcbccf23e25cf2800497c2768f89963fa84ee8a85d30d1ffc3173d926b732937bc78c55ef6f14c60e1e8a7c0776a5750afed436122829309c23034c5fcdf12bba589f6ea1c32\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "publickey",
+					"item": [
+						{
+							"name": "ChangeUserReal (symbol add)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"renameAccount\":{\r\n        \"publicKey\":\"1MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAr1faDzSg07x+5hvEDGzUzpSkedtQaq0CHJV8MZrRXXUVOQ21a0eBnoVMZLADuBISyW0gj6nJ9dtu+T+KFUxJKuDIIVfNPMqmehPqqWxv8qRsUQywaRBnWm4QIW2I8BdQINvvDULFO6nG3DknyzYku3HPA+TVt147opqWqTUPivkBuEJN/ANroAq1P9WlrjbyFSdqHtuPDavXaVwq8JZhxKqhE4w0aAGryE5HCDIT1hAq42G2CC5NNW3IaZVBBMqPn/tNCp0sQtUJiQZ19erolrcAxVIFd4Rv+YuMSpYKXuyFHPcUUjwLGyj7wq5mE9YRp+xnQ0RHLl3JSoyJeGAQCKD1M6d2mI1sBP/kqQS9xFWmvDbHG9XnGrYRAWFPlEln8gPF4WyhSqDyX7959gfhowGZJksZk9l9Ofbr9BWpOp65Aib4TQJXRgfeMkmDsYneF7e2p+4Watbbe7KBlvMgR6YIRq9OYbSGPAikdVet/j0A9SAKY0DZhq2FRlzG2RAiIV0GvI+j5aZs3d4ljjy6VVK/O3URKL4znOM6mRZUl0Fq7Jo5c0JDFgeXorGbqo8RHKeSmMHh8O37sj1V1p6AWgtJgu4cSkFPkxqUp7z9XHZo/KZaUAf8YfzTqQGThTS6MpqVczrKXYsdghwFAtBep+Ba+QKuYVVIpPbwgGRyCmsCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"075966285278f8dbc92b49342ede3869b1a75cec\",\r\n        \"publisherName\":\"real-factchecker\",\r\n        \"newPublisherName\": \"checkey-factfredder\",\r\n        \"timestamp\":\"2021-11-15T14:06:44+01:00\",\r\n        \"signatureOnFingerPrintPublicKeyPublisherNameNewPublisherNameTimestampCHANGEFLAG\":\"675790cf3a0c8969ddee6dd7af8bc3a682ebe09b3ab3d2f2932855647e6b5c49294731e417ee0c2fcb75ce1263e9430a0679fe08167e7380088cd08858fcc8cf74a8e69a4b83689f6dba716e7b81292d1ecd76f7af0d29f7065fc32a0f52315d189cf3baffc71f620f0801a6a8cf1e4dc11d24e97e751eddbac3572222f86d65e7ef293d39cef301430010fb01dcc5a5b39ed300f06e544f2a16134297a6e752e4346d90a14d7ad88121422df3b593f62b23f4b6eb7a9518430221dbae339b2c23021a9b20198d679272a47ca9ab0263e535df316dd0bdd642ffaabff5711e48e42f3d3e84d0eb5330532344dad4fe662fab8cc31c82e48231d00e5a0cd0d820e1483f95085862d4ffda562f0ae154f61cb8d51a44ed261ff02638ae3d37ccb91687cd89eefae673f177d7a820c9c50d819b6664cae0d5e09e029e17cadadda82a9f65a354723a9ad334d94a33825147b6f7fd8872201d13b5bc513e7714e520e43195c0e733fd10eb29dada4a0dacdbc6c78ee220dd7a7fcc286ae3aee0fc95b68fd1c2ab0f6e7146d4a092d904ae693a4ef72a92e23b826adbc7675082426a78f832eb753af41a209d84a33173b3ba181c8488fc4baf781de0754974a9f65b0713862abaaec7a124692aebfbbd8ad73c2352bbff73043d70f9913df14c24c5c938e7308dd9c98966bc45765755474b43941820216a20b4efc7e03ef6546de7\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ChangeUserReal (symbol add multiple)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"renameAccount\":{\r\n        \"publicKey\":\"1111MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAr1faDzSg07x+5hvEDGzUzpSkedtQaq0CHJV8MZrRXXUVOQ21a0eBnoVMZLADuBISyW0gj6nJ9dtu+T+KFUxJKuDIIVfNPMqmehPqqWxv8qRsUQywaRBnWm4QIW2I8BdQINvvDULFO6nG3DknyzYku3HPA+TVt147opqWqTUPivkBuEJN/ANroAq1P9WlrjbyFSdqHtuPDavXaVwq8JZhxKqhE4w0aAGryE5HCDIT1hAq42G2CC5NNW3IaZVBBMqPn/tNCp0sQtUJiQZ19erolrcAxVIFd4Rv+YuMSpYKXuyFHPcUUjwLGyj7wq5mE9YRp+xnQ0RHLl3JSoyJeGAQCKD1M6d2mI1sBP/kqQS9xFWmvDbHG9XnGrYRAWFPlEln8gPF4WyhSqDyX7959gfhowGZJksZk9l9Ofbr9BWpOp65Aib4TQJXRgfeMkmDsYneF7e2p+4Watbbe7KBlvMgR6YIRq9OYbSGPAikdVet/j0A9SAKY0DZhq2FRlzG2RAiIV0GvI+j5aZs3d4ljjy6VVK/O3URKL4znOM6mRZUl0Fq7Jo5c0JDFgeXorGbqo8RHKeSmMHh8O37sj1V1p6AWgtJgu4cSkFPkxqUp7z9XHZo/KZaUAf8YfzTqQGThTS6MpqVczrKXYsdghwFAtBep+Ba+QKuYVVIpPbwgGRyCmsCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"075966285278f8dbc92b49342ede3869b1a75cec\",\r\n        \"publisherName\":\"real-factchecker\",\r\n        \"newPublisherName\": \"checkey-factfredder\",\r\n        \"timestamp\":\"2021-11-15T14:06:44+01:00\",\r\n        \"signatureOnFingerPrintPublicKeyPublisherNameNewPublisherNameTimestampCHANGEFLAG\":\"675790cf3a0c8969ddee6dd7af8bc3a682ebe09b3ab3d2f2932855647e6b5c49294731e417ee0c2fcb75ce1263e9430a0679fe08167e7380088cd08858fcc8cf74a8e69a4b83689f6dba716e7b81292d1ecd76f7af0d29f7065fc32a0f52315d189cf3baffc71f620f0801a6a8cf1e4dc11d24e97e751eddbac3572222f86d65e7ef293d39cef301430010fb01dcc5a5b39ed300f06e544f2a16134297a6e752e4346d90a14d7ad88121422df3b593f62b23f4b6eb7a9518430221dbae339b2c23021a9b20198d679272a47ca9ab0263e535df316dd0bdd642ffaabff5711e48e42f3d3e84d0eb5330532344dad4fe662fab8cc31c82e48231d00e5a0cd0d820e1483f95085862d4ffda562f0ae154f61cb8d51a44ed261ff02638ae3d37ccb91687cd89eefae673f177d7a820c9c50d819b6664cae0d5e09e029e17cadadda82a9f65a354723a9ad334d94a33825147b6f7fd8872201d13b5bc513e7714e520e43195c0e733fd10eb29dada4a0dacdbc6c78ee220dd7a7fcc286ae3aee0fc95b68fd1c2ab0f6e7146d4a092d904ae693a4ef72a92e23b826adbc7675082426a78f832eb753af41a209d84a33173b3ba181c8488fc4baf781de0754974a9f65b0713862abaaec7a124692aebfbbd8ad73c2352bbff73043d70f9913df14c24c5c938e7308dd9c98966bc45765755474b43941820216a20b4efc7e03ef6546de7\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ChangeUserReal (symbol remove)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"renameAccount\":{\r\n        \"publicKey\":\"IICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAr1faDzSg07x+5hvEDGzUzpSkedtQaq0CHJV8MZrRXXUVOQ21a0eBnoVMZLADuBISyW0gj6nJ9dtu+T+KFUxJKuDIIVfNPMqmehPqqWxv8qRsUQywaRBnWm4QIW2I8BdQINvvDULFO6nG3DknyzYku3HPA+TVt147opqWqTUPivkBuEJN/ANroAq1P9WlrjbyFSdqHtuPDavXaVwq8JZhxKqhE4w0aAGryE5HCDIT1hAq42G2CC5NNW3IaZVBBMqPn/tNCp0sQtUJiQZ19erolrcAxVIFd4Rv+YuMSpYKXuyFHPcUUjwLGyj7wq5mE9YRp+xnQ0RHLl3JSoyJeGAQCKD1M6d2mI1sBP/kqQS9xFWmvDbHG9XnGrYRAWFPlEln8gPF4WyhSqDyX7959gfhowGZJksZk9l9Ofbr9BWpOp65Aib4TQJXRgfeMkmDsYneF7e2p+4Watbbe7KBlvMgR6YIRq9OYbSGPAikdVet/j0A9SAKY0DZhq2FRlzG2RAiIV0GvI+j5aZs3d4ljjy6VVK/O3URKL4znOM6mRZUl0Fq7Jo5c0JDFgeXorGbqo8RHKeSmMHh8O37sj1V1p6AWgtJgu4cSkFPkxqUp7z9XHZo/KZaUAf8YfzTqQGThTS6MpqVczrKXYsdghwFAtBep+Ba+QKuYVVIpPbwgGRyCmsCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"075966285278f8dbc92b49342ede3869b1a75cec\",\r\n        \"publisherName\":\"real-factchecker\",\r\n        \"newPublisherName\": \"checkey-factfredder\",\r\n        \"timestamp\":\"2021-11-15T14:06:44+01:00\",\r\n        \"signatureOnFingerPrintPublicKeyPublisherNameNewPublisherNameTimestampCHANGEFLAG\":\"675790cf3a0c8969ddee6dd7af8bc3a682ebe09b3ab3d2f2932855647e6b5c49294731e417ee0c2fcb75ce1263e9430a0679fe08167e7380088cd08858fcc8cf74a8e69a4b83689f6dba716e7b81292d1ecd76f7af0d29f7065fc32a0f52315d189cf3baffc71f620f0801a6a8cf1e4dc11d24e97e751eddbac3572222f86d65e7ef293d39cef301430010fb01dcc5a5b39ed300f06e544f2a16134297a6e752e4346d90a14d7ad88121422df3b593f62b23f4b6eb7a9518430221dbae339b2c23021a9b20198d679272a47ca9ab0263e535df316dd0bdd642ffaabff5711e48e42f3d3e84d0eb5330532344dad4fe662fab8cc31c82e48231d00e5a0cd0d820e1483f95085862d4ffda562f0ae154f61cb8d51a44ed261ff02638ae3d37ccb91687cd89eefae673f177d7a820c9c50d819b6664cae0d5e09e029e17cadadda82a9f65a354723a9ad334d94a33825147b6f7fd8872201d13b5bc513e7714e520e43195c0e733fd10eb29dada4a0dacdbc6c78ee220dd7a7fcc286ae3aee0fc95b68fd1c2ab0f6e7146d4a092d904ae693a4ef72a92e23b826adbc7675082426a78f832eb753af41a209d84a33173b3ba181c8488fc4baf781de0754974a9f65b0713862abaaec7a124692aebfbbd8ad73c2352bbff73043d70f9913df14c24c5c938e7308dd9c98966bc45765755474b43941820216a20b4efc7e03ef6546de7\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ChangeUserReal (symbol remove multiple)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"renameAccount\":{\r\n        \"publicKey\":\"IjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAr1faDzSg07x+5hvEDGzUzpSkedtQaq0CHJV8MZrRXXUVOQ21a0eBnoVMZLADuBISyW0gj6nJ9dtu+T+KFUxJKuDIIVfNPMqmehPqqWxv8qRsUQywaRBnWm4QIW2I8BdQINvvDULFO6nG3DknyzYku3HPA+TVt147opqWqTUPivkBuEJN/ANroAq1P9WlrjbyFSdqHtuPDavXaVwq8JZhxKqhE4w0aAGryE5HCDIT1hAq42G2CC5NNW3IaZVBBMqPn/tNCp0sQtUJiQZ19erolrcAxVIFd4Rv+YuMSpYKXuyFHPcUUjwLGyj7wq5mE9YRp+xnQ0RHLl3JSoyJeGAQCKD1M6d2mI1sBP/kqQS9xFWmvDbHG9XnGrYRAWFPlEln8gPF4WyhSqDyX7959gfhowGZJksZk9l9Ofbr9BWpOp65Aib4TQJXRgfeMkmDsYneF7e2p+4Watbbe7KBlvMgR6YIRq9OYbSGPAikdVet/j0A9SAKY0DZhq2FRlzG2RAiIV0GvI+j5aZs3d4ljjy6VVK/O3URKL4znOM6mRZUl0Fq7Jo5c0JDFgeXorGbqo8RHKeSmMHh8O37sj1V1p6AWgtJgu4cSkFPkxqUp7z9XHZo/KZaUAf8YfzTqQGThTS6MpqVczrKXYsdghwFAtBep+Ba+QKuYVVIpPbwgGRyCmsCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"075966285278f8dbc92b49342ede3869b1a75cec\",\r\n        \"publisherName\":\"real-factchecker\",\r\n        \"newPublisherName\": \"checkey-factfredder\",\r\n        \"timestamp\":\"2021-11-15T14:06:44+01:00\",\r\n        \"signatureOnFingerPrintPublicKeyPublisherNameNewPublisherNameTimestampCHANGEFLAG\":\"675790cf3a0c8969ddee6dd7af8bc3a682ebe09b3ab3d2f2932855647e6b5c49294731e417ee0c2fcb75ce1263e9430a0679fe08167e7380088cd08858fcc8cf74a8e69a4b83689f6dba716e7b81292d1ecd76f7af0d29f7065fc32a0f52315d189cf3baffc71f620f0801a6a8cf1e4dc11d24e97e751eddbac3572222f86d65e7ef293d39cef301430010fb01dcc5a5b39ed300f06e544f2a16134297a6e752e4346d90a14d7ad88121422df3b593f62b23f4b6eb7a9518430221dbae339b2c23021a9b20198d679272a47ca9ab0263e535df316dd0bdd642ffaabff5711e48e42f3d3e84d0eb5330532344dad4fe662fab8cc31c82e48231d00e5a0cd0d820e1483f95085862d4ffda562f0ae154f61cb8d51a44ed261ff02638ae3d37ccb91687cd89eefae673f177d7a820c9c50d819b6664cae0d5e09e029e17cadadda82a9f65a354723a9ad334d94a33825147b6f7fd8872201d13b5bc513e7714e520e43195c0e733fd10eb29dada4a0dacdbc6c78ee220dd7a7fcc286ae3aee0fc95b68fd1c2ab0f6e7146d4a092d904ae693a4ef72a92e23b826adbc7675082426a78f832eb753af41a209d84a33173b3ba181c8488fc4baf781de0754974a9f65b0713862abaaec7a124692aebfbbd8ad73c2352bbff73043d70f9913df14c24c5c938e7308dd9c98966bc45765755474b43941820216a20b4efc7e03ef6546de7\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "fingerprint",
+					"item": [
+						{
+							"name": "ChangeUserReal (symbol add)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"renameAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAr1faDzSg07x+5hvEDGzUzpSkedtQaq0CHJV8MZrRXXUVOQ21a0eBnoVMZLADuBISyW0gj6nJ9dtu+T+KFUxJKuDIIVfNPMqmehPqqWxv8qRsUQywaRBnWm4QIW2I8BdQINvvDULFO6nG3DknyzYku3HPA+TVt147opqWqTUPivkBuEJN/ANroAq1P9WlrjbyFSdqHtuPDavXaVwq8JZhxKqhE4w0aAGryE5HCDIT1hAq42G2CC5NNW3IaZVBBMqPn/tNCp0sQtUJiQZ19erolrcAxVIFd4Rv+YuMSpYKXuyFHPcUUjwLGyj7wq5mE9YRp+xnQ0RHLl3JSoyJeGAQCKD1M6d2mI1sBP/kqQS9xFWmvDbHG9XnGrYRAWFPlEln8gPF4WyhSqDyX7959gfhowGZJksZk9l9Ofbr9BWpOp65Aib4TQJXRgfeMkmDsYneF7e2p+4Watbbe7KBlvMgR6YIRq9OYbSGPAikdVet/j0A9SAKY0DZhq2FRlzG2RAiIV0GvI+j5aZs3d4ljjy6VVK/O3URKL4znOM6mRZUl0Fq7Jo5c0JDFgeXorGbqo8RHKeSmMHh8O37sj1V1p6AWgtJgu4cSkFPkxqUp7z9XHZo/KZaUAf8YfzTqQGThTS6MpqVczrKXYsdghwFAtBep+Ba+QKuYVVIpPbwgGRyCmsCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"075966285278f8dbc92b49342ede3869b1a75cec1\",\r\n        \"publisherName\":\"real-factchecker\",\r\n        \"newPublisherName\": \"checkey-factfredder\",\r\n        \"timestamp\":\"2021-11-15T14:06:44+01:00\",\r\n        \"signatureOnFingerPrintPublicKeyPublisherNameNewPublisherNameTimestampCHANGEFLAG\":\"675790cf3a0c8969ddee6dd7af8bc3a682ebe09b3ab3d2f2932855647e6b5c49294731e417ee0c2fcb75ce1263e9430a0679fe08167e7380088cd08858fcc8cf74a8e69a4b83689f6dba716e7b81292d1ecd76f7af0d29f7065fc32a0f52315d189cf3baffc71f620f0801a6a8cf1e4dc11d24e97e751eddbac3572222f86d65e7ef293d39cef301430010fb01dcc5a5b39ed300f06e544f2a16134297a6e752e4346d90a14d7ad88121422df3b593f62b23f4b6eb7a9518430221dbae339b2c23021a9b20198d679272a47ca9ab0263e535df316dd0bdd642ffaabff5711e48e42f3d3e84d0eb5330532344dad4fe662fab8cc31c82e48231d00e5a0cd0d820e1483f95085862d4ffda562f0ae154f61cb8d51a44ed261ff02638ae3d37ccb91687cd89eefae673f177d7a820c9c50d819b6664cae0d5e09e029e17cadadda82a9f65a354723a9ad334d94a33825147b6f7fd8872201d13b5bc513e7714e520e43195c0e733fd10eb29dada4a0dacdbc6c78ee220dd7a7fcc286ae3aee0fc95b68fd1c2ab0f6e7146d4a092d904ae693a4ef72a92e23b826adbc7675082426a78f832eb753af41a209d84a33173b3ba181c8488fc4baf781de0754974a9f65b0713862abaaec7a124692aebfbbd8ad73c2352bbff73043d70f9913df14c24c5c938e7308dd9c98966bc45765755474b43941820216a20b4efc7e03ef6546de7\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ChangeUserReal (symbol remove)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"renameAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAr1faDzSg07x+5hvEDGzUzpSkedtQaq0CHJV8MZrRXXUVOQ21a0eBnoVMZLADuBISyW0gj6nJ9dtu+T+KFUxJKuDIIVfNPMqmehPqqWxv8qRsUQywaRBnWm4QIW2I8BdQINvvDULFO6nG3DknyzYku3HPA+TVt147opqWqTUPivkBuEJN/ANroAq1P9WlrjbyFSdqHtuPDavXaVwq8JZhxKqhE4w0aAGryE5HCDIT1hAq42G2CC5NNW3IaZVBBMqPn/tNCp0sQtUJiQZ19erolrcAxVIFd4Rv+YuMSpYKXuyFHPcUUjwLGyj7wq5mE9YRp+xnQ0RHLl3JSoyJeGAQCKD1M6d2mI1sBP/kqQS9xFWmvDbHG9XnGrYRAWFPlEln8gPF4WyhSqDyX7959gfhowGZJksZk9l9Ofbr9BWpOp65Aib4TQJXRgfeMkmDsYneF7e2p+4Watbbe7KBlvMgR6YIRq9OYbSGPAikdVet/j0A9SAKY0DZhq2FRlzG2RAiIV0GvI+j5aZs3d4ljjy6VVK/O3URKL4znOM6mRZUl0Fq7Jo5c0JDFgeXorGbqo8RHKeSmMHh8O37sj1V1p6AWgtJgu4cSkFPkxqUp7z9XHZo/KZaUAf8YfzTqQGThTS6MpqVczrKXYsdghwFAtBep+Ba+QKuYVVIpPbwgGRyCmsCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"075966285278f8dbc92b49342ede3869b1a75ce\",\r\n        \"publisherName\":\"real-factchecker\",\r\n        \"newPublisherName\": \"checkey-factfredder\",\r\n        \"timestamp\":\"2021-11-15T14:06:44+01:00\",\r\n        \"signatureOnFingerPrintPublicKeyPublisherNameNewPublisherNameTimestampCHANGEFLAG\":\"675790cf3a0c8969ddee6dd7af8bc3a682ebe09b3ab3d2f2932855647e6b5c49294731e417ee0c2fcb75ce1263e9430a0679fe08167e7380088cd08858fcc8cf74a8e69a4b83689f6dba716e7b81292d1ecd76f7af0d29f7065fc32a0f52315d189cf3baffc71f620f0801a6a8cf1e4dc11d24e97e751eddbac3572222f86d65e7ef293d39cef301430010fb01dcc5a5b39ed300f06e544f2a16134297a6e752e4346d90a14d7ad88121422df3b593f62b23f4b6eb7a9518430221dbae339b2c23021a9b20198d679272a47ca9ab0263e535df316dd0bdd642ffaabff5711e48e42f3d3e84d0eb5330532344dad4fe662fab8cc31c82e48231d00e5a0cd0d820e1483f95085862d4ffda562f0ae154f61cb8d51a44ed261ff02638ae3d37ccb91687cd89eefae673f177d7a820c9c50d819b6664cae0d5e09e029e17cadadda82a9f65a354723a9ad334d94a33825147b6f7fd8872201d13b5bc513e7714e520e43195c0e733fd10eb29dada4a0dacdbc6c78ee220dd7a7fcc286ae3aee0fc95b68fd1c2ab0f6e7146d4a092d904ae693a4ef72a92e23b826adbc7675082426a78f832eb753af41a209d84a33173b3ba181c8488fc4baf781de0754974a9f65b0713862abaaec7a124692aebfbbd8ad73c2352bbff73043d70f9913df14c24c5c938e7308dd9c98966bc45765755474b43941820216a20b4efc7e03ef6546de7\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "publishername",
+					"item": [
+						{
+							"name": "ChangeUserReal (symbol add)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"renameAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAr1faDzSg07x+5hvEDGzUzpSkedtQaq0CHJV8MZrRXXUVOQ21a0eBnoVMZLADuBISyW0gj6nJ9dtu+T+KFUxJKuDIIVfNPMqmehPqqWxv8qRsUQywaRBnWm4QIW2I8BdQINvvDULFO6nG3DknyzYku3HPA+TVt147opqWqTUPivkBuEJN/ANroAq1P9WlrjbyFSdqHtuPDavXaVwq8JZhxKqhE4w0aAGryE5HCDIT1hAq42G2CC5NNW3IaZVBBMqPn/tNCp0sQtUJiQZ19erolrcAxVIFd4Rv+YuMSpYKXuyFHPcUUjwLGyj7wq5mE9YRp+xnQ0RHLl3JSoyJeGAQCKD1M6d2mI1sBP/kqQS9xFWmvDbHG9XnGrYRAWFPlEln8gPF4WyhSqDyX7959gfhowGZJksZk9l9Ofbr9BWpOp65Aib4TQJXRgfeMkmDsYneF7e2p+4Watbbe7KBlvMgR6YIRq9OYbSGPAikdVet/j0A9SAKY0DZhq2FRlzG2RAiIV0GvI+j5aZs3d4ljjy6VVK/O3URKL4znOM6mRZUl0Fq7Jo5c0JDFgeXorGbqo8RHKeSmMHh8O37sj1V1p6AWgtJgu4cSkFPkxqUp7z9XHZo/KZaUAf8YfzTqQGThTS6MpqVczrKXYsdghwFAtBep+Ba+QKuYVVIpPbwgGRyCmsCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"075966285278f8dbc92b49342ede3869b1a75cec\",\r\n        \"publisherName\":\"real-factcheckers1\",\r\n        \"newPublisherName\": \"checkey-factfredder\",\r\n        \"timestamp\":\"2021-11-15T14:06:44+01:00\",\r\n        \"signatureOnFingerPrintPublicKeyPublisherNameNewPublisherNameTimestampCHANGEFLAG\":\"675790cf3a0c8969ddee6dd7af8bc3a682ebe09b3ab3d2f2932855647e6b5c49294731e417ee0c2fcb75ce1263e9430a0679fe08167e7380088cd08858fcc8cf74a8e69a4b83689f6dba716e7b81292d1ecd76f7af0d29f7065fc32a0f52315d189cf3baffc71f620f0801a6a8cf1e4dc11d24e97e751eddbac3572222f86d65e7ef293d39cef301430010fb01dcc5a5b39ed300f06e544f2a16134297a6e752e4346d90a14d7ad88121422df3b593f62b23f4b6eb7a9518430221dbae339b2c23021a9b20198d679272a47ca9ab0263e535df316dd0bdd642ffaabff5711e48e42f3d3e84d0eb5330532344dad4fe662fab8cc31c82e48231d00e5a0cd0d820e1483f95085862d4ffda562f0ae154f61cb8d51a44ed261ff02638ae3d37ccb91687cd89eefae673f177d7a820c9c50d819b6664cae0d5e09e029e17cadadda82a9f65a354723a9ad334d94a33825147b6f7fd8872201d13b5bc513e7714e520e43195c0e733fd10eb29dada4a0dacdbc6c78ee220dd7a7fcc286ae3aee0fc95b68fd1c2ab0f6e7146d4a092d904ae693a4ef72a92e23b826adbc7675082426a78f832eb753af41a209d84a33173b3ba181c8488fc4baf781de0754974a9f65b0713862abaaec7a124692aebfbbd8ad73c2352bbff73043d70f9913df14c24c5c938e7308dd9c98966bc45765755474b43941820216a20b4efc7e03ef6546de7\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ChangeUserReal (symbol remove)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"renameAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAr1faDzSg07x+5hvEDGzUzpSkedtQaq0CHJV8MZrRXXUVOQ21a0eBnoVMZLADuBISyW0gj6nJ9dtu+T+KFUxJKuDIIVfNPMqmehPqqWxv8qRsUQywaRBnWm4QIW2I8BdQINvvDULFO6nG3DknyzYku3HPA+TVt147opqWqTUPivkBuEJN/ANroAq1P9WlrjbyFSdqHtuPDavXaVwq8JZhxKqhE4w0aAGryE5HCDIT1hAq42G2CC5NNW3IaZVBBMqPn/tNCp0sQtUJiQZ19erolrcAxVIFd4Rv+YuMSpYKXuyFHPcUUjwLGyj7wq5mE9YRp+xnQ0RHLl3JSoyJeGAQCKD1M6d2mI1sBP/kqQS9xFWmvDbHG9XnGrYRAWFPlEln8gPF4WyhSqDyX7959gfhowGZJksZk9l9Ofbr9BWpOp65Aib4TQJXRgfeMkmDsYneF7e2p+4Watbbe7KBlvMgR6YIRq9OYbSGPAikdVet/j0A9SAKY0DZhq2FRlzG2RAiIV0GvI+j5aZs3d4ljjy6VVK/O3URKL4znOM6mRZUl0Fq7Jo5c0JDFgeXorGbqo8RHKeSmMHh8O37sj1V1p6AWgtJgu4cSkFPkxqUp7z9XHZo/KZaUAf8YfzTqQGThTS6MpqVczrKXYsdghwFAtBep+Ba+QKuYVVIpPbwgGRyCmsCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"075966285278f8dbc92b49342ede3869b1a75cec\",\r\n        \"publisherName\":\"real-factchecke\",\r\n        \"newPublisherName\": \"checkey-factfredder\",\r\n        \"timestamp\":\"2021-11-15T14:06:44+01:00\",\r\n        \"signatureOnFingerPrintPublicKeyPublisherNameNewPublisherNameTimestampCHANGEFLAG\":\"675790cf3a0c8969ddee6dd7af8bc3a682ebe09b3ab3d2f2932855647e6b5c49294731e417ee0c2fcb75ce1263e9430a0679fe08167e7380088cd08858fcc8cf74a8e69a4b83689f6dba716e7b81292d1ecd76f7af0d29f7065fc32a0f52315d189cf3baffc71f620f0801a6a8cf1e4dc11d24e97e751eddbac3572222f86d65e7ef293d39cef301430010fb01dcc5a5b39ed300f06e544f2a16134297a6e752e4346d90a14d7ad88121422df3b593f62b23f4b6eb7a9518430221dbae339b2c23021a9b20198d679272a47ca9ab0263e535df316dd0bdd642ffaabff5711e48e42f3d3e84d0eb5330532344dad4fe662fab8cc31c82e48231d00e5a0cd0d820e1483f95085862d4ffda562f0ae154f61cb8d51a44ed261ff02638ae3d37ccb91687cd89eefae673f177d7a820c9c50d819b6664cae0d5e09e029e17cadadda82a9f65a354723a9ad334d94a33825147b6f7fd8872201d13b5bc513e7714e520e43195c0e733fd10eb29dada4a0dacdbc6c78ee220dd7a7fcc286ae3aee0fc95b68fd1c2ab0f6e7146d4a092d904ae693a4ef72a92e23b826adbc7675082426a78f832eb753af41a209d84a33173b3ba181c8488fc4baf781de0754974a9f65b0713862abaaec7a124692aebfbbd8ad73c2352bbff73043d70f9913df14c24c5c938e7308dd9c98966bc45765755474b43941820216a20b4efc7e03ef6546de7\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "signature",
+					"item": [
+						{
+							"name": "ChangeUserReal (symbol add)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"changePublisherName\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAr1faDzSg07x+5hvEDGzUzpSkedtQaq0CHJV8MZrRXXUVOQ21a0eBnoVMZLADuBISyW0gj6nJ9dtu+T+KFUxJKuDIIVfNPMqmehPqqWxv8qRsUQywaRBnWm4QIW2I8BdQINvvDULFO6nG3DknyzYku3HPA+TVt147opqWqTUPivkBuEJN/ANroAq1P9WlrjbyFSdqHtuPDavXaVwq8JZhxKqhE4w0aAGryE5HCDIT1hAq42G2CC5NNW3IaZVBBMqPn/tNCp0sQtUJiQZ19erolrcAxVIFd4Rv+YuMSpYKXuyFHPcUUjwLGyj7wq5mE9YRp+xnQ0RHLl3JSoyJeGAQCKD1M6d2mI1sBP/kqQS9xFWmvDbHG9XnGrYRAWFPlEln8gPF4WyhSqDyX7959gfhowGZJksZk9l9Ofbr9BWpOp65Aib4TQJXRgfeMkmDsYneF7e2p+4Watbbe7KBlvMgR6YIRq9OYbSGPAikdVet/j0A9SAKY0DZhq2FRlzG2RAiIV0GvI+j5aZs3d4ljjy6VVK/O3URKL4znOM6mRZUl0Fq7Jo5c0JDFgeXorGbqo8RHKeSmMHh8O37sj1V1p6AWgtJgu4cSkFPkxqUp7z9XHZo/KZaUAf8YfzTqQGThTS6MpqVczrKXYsdghwFAtBep+Ba+QKuYVVIpPbwgGRyCmsCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"075966285278f8dbc92b49342ede3869b1a75cec\",\r\n        \"publisherName\":\"real-factchecker\",\r\n        \"newPublisherName\": \"checkey-factfredder\",\r\n        \"timestamp\":\"2021-11-15T14:06:44+01:00\",\r\n        \"signatureOnFingerPrintPublicKeyPublisherNameNewPublisherNameTimestampCHANGEFLAG\":\"675790cf3a0c8969ddee6dd7af8bc3a682ebe09b3ab3d2f2932855647e6b5c49294731e417ee0c2fcb75ce1263e9430a0679fe08167e7380088cd08858fcc8cf74a8e69a4b83689f6dba716e7b81292d1ecd76f7af0d29f7065fc32a0f52315d189cf3baffc71f620f0801a6a8cf1e4dc11d24e97e751eddbac3572222f86d65e7ef293d39cef301430010fb01dcc5a5b39ed300f06e544f2a16134297a6e752e4346d90a14d7ad88121422df3b593f62b23f4b6eb7a9518430221dbae339b2c23021a9b20198d679272a47ca9ab0263e535df316dd0bdd642ffaabff5711e48e42f3d3e84d0eb5330532344dad4fe662fab8cc31c82e48231d00e5a0cd0d820e1483f95085862d4ffda562f0ae154f61cb8d51a44ed261ff02638ae3d37ccb91687cd89eefae673f177d7a820c9c50d819b6664cae0d5e09e029e17cadadda82a9f65a354723a9ad334d94a33825147b6f7fd8872201d13b5bc513e7714e520e43195c0e733fd10eb29dada4a0dacdbc6c78ee220dd7a7fcc286ae3aee0fc95b68fd1c2ab0f6e7146d4a092d904ae693a4ef72a92e23b826adbc7675082426a78f832eb753af41a209d84a33173b3ba181c8488fc4baf781de0754974a9f65b0713862abaaec7a124692aebfbbd8ad73c2352bbff73043d70f9913df14c24c5c938e7308dd9c98966bc45765755474b43941820216a20b4efc7e03ef6546de71\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ChangeUserReal (symbol add multiple)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"changePublisherName\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAr1faDzSg07x+5hvEDGzUzpSkedtQaq0CHJV8MZrRXXUVOQ21a0eBnoVMZLADuBISyW0gj6nJ9dtu+T+KFUxJKuDIIVfNPMqmehPqqWxv8qRsUQywaRBnWm4QIW2I8BdQINvvDULFO6nG3DknyzYku3HPA+TVt147opqWqTUPivkBuEJN/ANroAq1P9WlrjbyFSdqHtuPDavXaVwq8JZhxKqhE4w0aAGryE5HCDIT1hAq42G2CC5NNW3IaZVBBMqPn/tNCp0sQtUJiQZ19erolrcAxVIFd4Rv+YuMSpYKXuyFHPcUUjwLGyj7wq5mE9YRp+xnQ0RHLl3JSoyJeGAQCKD1M6d2mI1sBP/kqQS9xFWmvDbHG9XnGrYRAWFPlEln8gPF4WyhSqDyX7959gfhowGZJksZk9l9Ofbr9BWpOp65Aib4TQJXRgfeMkmDsYneF7e2p+4Watbbe7KBlvMgR6YIRq9OYbSGPAikdVet/j0A9SAKY0DZhq2FRlzG2RAiIV0GvI+j5aZs3d4ljjy6VVK/O3URKL4znOM6mRZUl0Fq7Jo5c0JDFgeXorGbqo8RHKeSmMHh8O37sj1V1p6AWgtJgu4cSkFPkxqUp7z9XHZo/KZaUAf8YfzTqQGThTS6MpqVczrKXYsdghwFAtBep+Ba+QKuYVVIpPbwgGRyCmsCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"075966285278f8dbc92b49342ede3869b1a75cec\",\r\n        \"publisherName\":\"real-factchecker\",\r\n        \"newPublisherName\": \"checkey-factfredder\",\r\n        \"timestamp\":\"2021-11-15T14:06:44+01:00\",\r\n        \"signatureOnFingerPrintPublicKeyPublisherNameNewPublisherNameTimestampCHANGEFLAG\":\"675790cf3a0c8969ddee6dd7af8bc3a682ebe09b3ab3d2f2932855647e6b5c49294731e417ee0c2fcb75ce1263e9430a0679fe08167e7380088cd08858fcc8cf74a8e69a4b83689f6dba716e7b81292d1ecd76f7af0d29f7065fc32a0f52315d189cf3baffc71f620f0801a6a8cf1e4dc11d24e97e751eddbac3572222f86d65e7ef293d39cef301430010fb01dcc5a5b39ed300f06e544f2a16134297a6e752e4346d90a14d7ad88121422df3b593f62b23f4b6eb7a9518430221dbae339b2c23021a9b20198d679272a47ca9ab0263e535df316dd0bdd642ffaabff5711e48e42f3d3e84d0eb5330532344dad4fe662fab8cc31c82e48231d00e5a0cd0d820e1483f95085862d4ffda562f0ae154f61cb8d51a44ed261ff02638ae3d37ccb91687cd89eefae673f177d7a820c9c50d819b6664cae0d5e09e029e17cadadda82a9f65a354723a9ad334d94a33825147b6f7fd8872201d13b5bc513e7714e520e43195c0e733fd10eb29dada4a0dacdbc6c78ee220dd7a7fcc286ae3aee0fc95b68fd1c2ab0f6e7146d4a092d904ae693a4ef72a92e23b826adbc7675082426a78f832eb753af41a209d84a33173b3ba181c8488fc4baf781de0754974a9f65b0713862abaaec7a124692aebfbbd8ad73c2352bbff73043d70f9913df14c24c5c938e7308dd9c98966bc45765755474b43941820216a20b4efc7e03ef6546de71111\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ChangeUserReal (symbol remove)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"changePublisherName\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAr1faDzSg07x+5hvEDGzUzpSkedtQaq0CHJV8MZrRXXUVOQ21a0eBnoVMZLADuBISyW0gj6nJ9dtu+T+KFUxJKuDIIVfNPMqmehPqqWxv8qRsUQywaRBnWm4QIW2I8BdQINvvDULFO6nG3DknyzYku3HPA+TVt147opqWqTUPivkBuEJN/ANroAq1P9WlrjbyFSdqHtuPDavXaVwq8JZhxKqhE4w0aAGryE5HCDIT1hAq42G2CC5NNW3IaZVBBMqPn/tNCp0sQtUJiQZ19erolrcAxVIFd4Rv+YuMSpYKXuyFHPcUUjwLGyj7wq5mE9YRp+xnQ0RHLl3JSoyJeGAQCKD1M6d2mI1sBP/kqQS9xFWmvDbHG9XnGrYRAWFPlEln8gPF4WyhSqDyX7959gfhowGZJksZk9l9Ofbr9BWpOp65Aib4TQJXRgfeMkmDsYneF7e2p+4Watbbe7KBlvMgR6YIRq9OYbSGPAikdVet/j0A9SAKY0DZhq2FRlzG2RAiIV0GvI+j5aZs3d4ljjy6VVK/O3URKL4znOM6mRZUl0Fq7Jo5c0JDFgeXorGbqo8RHKeSmMHh8O37sj1V1p6AWgtJgu4cSkFPkxqUp7z9XHZo/KZaUAf8YfzTqQGThTS6MpqVczrKXYsdghwFAtBep+Ba+QKuYVVIpPbwgGRyCmsCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"075966285278f8dbc92b49342ede3869b1a75cec\",\r\n        \"publisherName\":\"real-factchecker\",\r\n        \"newPublisherName\": \"checkey-factfredder\",\r\n        \"timestamp\":\"2021-11-15T14:06:44+01:00\",\r\n        \"signatureOnFingerPrintPublicKeyPublisherNameNewPublisherNameTimestampCHANGEFLAG\":\"675790cf3a0c8969ddee6dd7af8bc3a682ebe09b3ab3d2f2932855647e6b5c49294731e417ee0c2fcb75ce1263e9430a0679fe08167e7380088cd08858fcc8cf74a8e69a4b83689f6dba716e7b81292d1ecd76f7af0d29f7065fc32a0f52315d189cf3baffc71f620f0801a6a8cf1e4dc11d24e97e751eddbac3572222f86d65e7ef293d39cef301430010fb01dcc5a5b39ed300f06e544f2a16134297a6e752e4346d90a14d7ad88121422df3b593f62b23f4b6eb7a9518430221dbae339b2c23021a9b20198d679272a47ca9ab0263e535df316dd0bdd642ffaabff5711e48e42f3d3e84d0eb5330532344dad4fe662fab8cc31c82e48231d00e5a0cd0d820e1483f95085862d4ffda562f0ae154f61cb8d51a44ed261ff02638ae3d37ccb91687cd89eefae673f177d7a820c9c50d819b6664cae0d5e09e029e17cadadda82a9f65a354723a9ad334d94a33825147b6f7fd8872201d13b5bc513e7714e520e43195c0e733fd10eb29dada4a0dacdbc6c78ee220dd7a7fcc286ae3aee0fc95b68fd1c2ab0f6e7146d4a092d904ae693a4ef72a92e23b826adbc7675082426a78f832eb753af41a209d84a33173b3ba181c8488fc4baf781de0754974a9f65b0713862abaaec7a124692aebfbbd8ad73c2352bbff73043d70f9913df14c24c5c938e7308dd9c98966bc45765755474b43941820216a20b4efc7e03ef6546de\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ChangeUserReal (symbol remove multiple)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"changePublisherName\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAr1faDzSg07x+5hvEDGzUzpSkedtQaq0CHJV8MZrRXXUVOQ21a0eBnoVMZLADuBISyW0gj6nJ9dtu+T+KFUxJKuDIIVfNPMqmehPqqWxv8qRsUQywaRBnWm4QIW2I8BdQINvvDULFO6nG3DknyzYku3HPA+TVt147opqWqTUPivkBuEJN/ANroAq1P9WlrjbyFSdqHtuPDavXaVwq8JZhxKqhE4w0aAGryE5HCDIT1hAq42G2CC5NNW3IaZVBBMqPn/tNCp0sQtUJiQZ19erolrcAxVIFd4Rv+YuMSpYKXuyFHPcUUjwLGyj7wq5mE9YRp+xnQ0RHLl3JSoyJeGAQCKD1M6d2mI1sBP/kqQS9xFWmvDbHG9XnGrYRAWFPlEln8gPF4WyhSqDyX7959gfhowGZJksZk9l9Ofbr9BWpOp65Aib4TQJXRgfeMkmDsYneF7e2p+4Watbbe7KBlvMgR6YIRq9OYbSGPAikdVet/j0A9SAKY0DZhq2FRlzG2RAiIV0GvI+j5aZs3d4ljjy6VVK/O3URKL4znOM6mRZUl0Fq7Jo5c0JDFgeXorGbqo8RHKeSmMHh8O37sj1V1p6AWgtJgu4cSkFPkxqUp7z9XHZo/KZaUAf8YfzTqQGThTS6MpqVczrKXYsdghwFAtBep+Ba+QKuYVVIpPbwgGRyCmsCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"075966285278f8dbc92b49342ede3869b1a75cec\",\r\n        \"publisherName\":\"real-factchecker\",\r\n        \"newPublisherName\": \"checkey-factfredder\",\r\n        \"timestamp\":\"2021-11-15T14:06:44+01:00\",\r\n        \"signatureOnFingerPrintPublicKeyPublisherNameNewPublisherNameTimestampCHANGEFLAG\":\"675790cf3a0c8969ddee6dd7af8bc3a682ebe09b3ab3d2f2932855647e6b5c49294731e417ee0c2fcb75ce1263e9430a0679fe08167e7380088cd08858fcc8cf74a8e69a4b83689f6dba716e7b81292d1ecd76f7af0d29f7065fc32a0f52315d189cf3baffc71f620f0801a6a8cf1e4dc11d24e97e751eddbac3572222f86d65e7ef293d39cef301430010fb01dcc5a5b39ed300f06e544f2a16134297a6e752e4346d90a14d7ad88121422df3b593f62b23f4b6eb7a9518430221dbae339b2c23021a9b20198d679272a47ca9ab0263e535df316dd0bdd642ffaabff5711e48e42f3d3e84d0eb5330532344dad4fe662fab8cc31c82e48231d00e5a0cd0d820e1483f95085862d4ffda562f0ae154f61cb8d51a44ed261ff02638ae3d37ccb91687cd89eefae673f177d7a820c9c50d819b6664cae0d5e09e029e17cadadda82a9f65a354723a9ad334d94a33825147b6f7fd8872201d13b5bc513e7714e520e43195c0e733fd10eb29dada4a0dacdbc6c78ee220dd7a7fcc286ae3aee0fc95b68fd1c2ab0f6e7146d4a092d904ae693a4ef72a92e23b826adbc7675082426a78f832eb753af41a209d84a33173b3ba181c8488fc4baf781de0754974a9f65b0713862abaaec7a124692aebfbbd8ad73c2352bbff73043d70f9913df14c24c5c938e7308dd9c98966bc45765755474b43941820216a20b4efc7e03ef654\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

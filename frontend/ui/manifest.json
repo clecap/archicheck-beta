@@ -1,0 +1,25 @@
+{
+    "name": "Archicheck",
+      "description": "An extension to fact-check every website in the WorldWideWeb.",
+      "version": "1.0",
+      "manifest_version": 3,
+      "icons": { 
+        "16": "16.png",
+        "48": "48.png",
+       "128": "128.png" },
+      
+      "background": {
+        "service_worker": "background.js"
+      },
+      "host_permissions": [
+        "http://localhost:8080/"
+      ],
+      "permissions": [
+        "activeTab", 
+        "scripting"
+      ],
+      "action": {
+        "default_popup": "home.html"
+      }
+
+    } 

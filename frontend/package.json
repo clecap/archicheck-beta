@@ -1,0 +1,30 @@
+{
+  "name": "archicheck",
+  "version": "1.0.0",
+  "description": "A browser extension to factCheck websites in the wwww.",
+  "main": "index.js",
+  "scripts": {
+    "build": "./node_modules/.bin/webpack --config webpack.prod.js",
+    "dev": "./node_modules/.bin/webpack --watch --config webpack.dev.js",
+    "build_windows": "webpack --config webpack.prod.js",
+    "dev_windows": "webpack --watch --config webpack.dev.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "copy-webpack-plugin": "^10.0.0",
+    "js-base64": "^3.7.2",
+    "jshashes": "^1.0.8",
+    "localbase": "^0.7.5",
+    "webpack": "^5.64.4",
+    "webpack-cli": "^4.9.1",
+    "webpack-merge": "^5.8.0"
+  },
+  "browser": {
+    "[module-name]": false
+  },
+  "dependencies": {
+    "npm": "^8.1.4"
+  }
+}

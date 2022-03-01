@@ -1,0 +1,5 @@
+# For Linux set your own credentials (only forbidden character is single quote "'") and rename this file to 'db.conf'.
+# For Windows, additionally follow orders in 'dbconf.tmp'.
+
+dbusername='USER-NAME-CHANGE-ME'
+dbpassword='PASSWORD-CHANGE-ME'

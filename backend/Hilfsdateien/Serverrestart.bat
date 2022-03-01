@@ -1,0 +1,3 @@
+cd..
+Serverstop.sh
+Serverstart

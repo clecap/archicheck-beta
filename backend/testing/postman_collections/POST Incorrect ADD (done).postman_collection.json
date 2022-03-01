@@ -1,0 +1,2259 @@
+{
+	"info": {
+		"_postman_id": "de699dff-ed3d-4cda-be41-7014507d3814",
+		"name": "X POST Incorrect ADD (done)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Duplicates",
+			"item": [
+				{
+					"name": "setup",
+					"item": [
+						{
+							"name": "DB Delete",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Database deleted\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.deleteDB.message).equals(\"DB successfully deleted\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/postendpoint/deleteDB",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint",
+										"deleteDB"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AddUserPower",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request OK\", function () {\r",
+											"    pm.response.to.be.ok;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Added new User\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.createAccount.message).equals(\"Received data from POST request, new account has been stored.\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"createAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAqrp9b+gh7PQXOAQVnHbnPswXAX6/dZ3UYkU+KQ7TTPzp+pRudifRvqn7/cqx4zbAfDwf1beZEtjxK6KR16zxqPAQ5m0hEeboVDQk7zTUU8BlFEs3TfhwubK/OJSROyRGhpH+Cx9oMIJNDA9p3Pn74RrgkKwqEpkXUOAx/ld6U39gVxC2uhUMwtmHG1h305tWc4THVpz/nElazuqKtpC7H8mAJmfQcHV5uGm1JoLivKiCQR1l6L8JVjB5x9rINepfljAWvLMZxIqjhEppC3TW6+Gv3/6dxvwSvPrfN525MQOYEW2Cz8nq6r4lTqs5XX8dVXZ3Dqa+P8Vdg3zpU6pUfo8zavHOeGkJHiexS37fdMWGC1A/XkqTCEat5ycM5o/Kms1ox/Nza/tVi+Z2/+cZgGa9YIplaqxrWdJjCwAwJ0xAsCqz3hPTgCmP2LXwRzTrBhvrky6+d48Xcbeqst6Ut9RCNe+Aj/6nDnNBQvNt7oFvVM6Lhw6Ux9d462Mt3uF75doXIJbwczjW3IAYDHnBHbVd9V+feZNDm0IRWo3p9yINu/fIQEQKaMsSHxtxm8oTdwi/BVULhyaSXS3+gcRDMjdrB+u71ictb+iffdSX86e6d/60ouX6M1t/mdh7qFDNdMV9n7eE59Gy0jp/u9NekMkbVnvTUH9bcRAuF4o30zMCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06f\",\r\n        \"publisherName\":\"power-factchecker\",\r\n        \"firstLogin\":\"Mon, 15 Nov 2021 14:06:44 GMT\",\r\n        \"signatureOnPublicKeyPublisherName\":\"08f5e87f9ee6db7c6767791c9006537e3d358c578acc7d790f2b83450bd00f55c4727e49d66fee0de7de4afc262553ce65064846a7dcba37648d0c68442b773ece10be2afa37f53c171f469305b01acdd6d448fd8aec48ec6346651dfe2ed9b62815b0cd976e9331979019df1c3ef2af36177f8cb145be3fd56438e90fc309e1b16418eef317bbfdf67072427a8d3d564d8c0e050e445de25588ab3f1f3aa32fdd64c122892ba2dca2e5fccc836048c37bae3d2528be41a8fbb013e4a9f1a8bedbc8121878658ddfe8fe168e6f9661401cdb2f503356c1c340616573b5fe711b346f6d3ce2438bd3d976df1887e2b753ad82b1f6073961a1c4634e5836757e0e3b37385d2f304949e287354cf6c61a07382b9e3277341561d29d0e50764c55130d48e378b34b43932e20e4cbf3cc8738d612d00064dfda3f0dd1d0600292c436f8b4d92f28687b61d806e75da399aea9b19daff9763e2c6a078dc1e7fc31f4d8cbe0fe53d36cb75f92abca898ba410775592639a2bdd8b3512874432578e3205fb5e6f797206d9b85a6433d969363a932a87a856433f47d5e92f695ecee1c4566db9c5f6b928cb60655a7fd7b339941eec86205c69c69794066fe11919ae9e7c33d08f8de24c60dd2ed09e244a89799cd593035934684df5dab3f53cbb497fcbecef22cf8997ba027d0fd3475c3f47386bec06bad097ca2d11a8726ceeb17b69\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AddFactCheck",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request OK\", function () {\r",
+											"    pm.response.to.be.ok;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Added new FactCheck\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"publishNewFactCheck\":{\r\n        \"URLToCheckHash\":\"f94c0f202a5029159b9c93f6470af36cf21982b2f11ccba4ea6538cb612cf9d7b9ccb6448ca491e2bf853360890d1463a6ac75e9858677a4641e134a10e56a93\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06f\",\r\n        \"URLwithFactCheck\":\"https://correctiv.org/faktencheck/2021/12/01/angebliches-tucholsky-gedicht-ueber-impfungen-stammt-von-satire-autor/\",\r\n        \"timestamp\":\"2021-12-18T13:10:44+01:00\",\r\n        \"signatureOnURLToCheckHashFingerPrintURLwithfactCheckTimestamp\":\"3b1c39953fe9f12bbc8d695f46cde1eb5745f48bd9d6bc2f41d679cae1e87992bd384abb019e398532012d0f5666038053b268971f391697c4764a3dab00df1c4f65dfda11329bead56f0db2da6c2025b99cb62bf2b336bc62182fe81f230666d2bfb0a6ca7bd1bd718f9b0444c5d5c564038e713328609bc62ef2199767ceb14a91a264e18f84f358eccac01802e5ce17e9aa8dfeefc7cd7be5eede212bb54a2ba2784600d9b9211ea24ed1a20674a5974319032179ee18557137d23be3322aa07f666a7e53c889ef5c7ec44a6d8535a2528b8a382145e94d2c5723e61a7f4cf319994cd4612ace7868f13d6241b79c405b29ee7605e4bd2bd1a81592527b3518893afc4719806a56f5adc2290b91ef7b988b5f5bdeec0dc21c86cd0000d0e6e3bb56b14ffa10191b3c678140c618d05f9b082a2436bab9b5b59881b700bdc413f27ed6bd50d4c0e7dd6ae887ce2f7ed322fbc65fe9b0296f33295f4cda6575b45be1f1395ec3093b7a1415879559c5656e404e170d41a502757ca1dba94a832c018dd5d9546b77c6a6b1af20f8f530c1b8e0eef2cd6655c206189aeca2ec92abde3a11b5c1e2b87645795aaf525d082fda610f060a00f02ab49f1e872908a8f52d6041f0bc1da38da195a2ce6e2ba1ddee98881587fbe90989b63d15eb915387d6f30042c906f2a5c16c5781b0c485f24a06b5219c3f6036f8140d313e6612\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "duplicates",
+					"item": [
+						{
+							"name": "AddUserPower (identical)",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Denied duplicate\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"    // pm.expect(jsonData.createAccount.message).equals(\"There is already a DB Entry for this account\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"createAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAqrp9b+gh7PQXOAQVnHbnPswXAX6/dZ3UYkU+KQ7TTPzp+pRudifRvqn7/cqx4zbAfDwf1beZEtjxK6KR16zxqPAQ5m0hEeboVDQk7zTUU8BlFEs3TfhwubK/OJSROyRGhpH+Cx9oMIJNDA9p3Pn74RrgkKwqEpkXUOAx/ld6U39gVxC2uhUMwtmHG1h305tWc4THVpz/nElazuqKtpC7H8mAJmfQcHV5uGm1JoLivKiCQR1l6L8JVjB5x9rINepfljAWvLMZxIqjhEppC3TW6+Gv3/6dxvwSvPrfN525MQOYEW2Cz8nq6r4lTqs5XX8dVXZ3Dqa+P8Vdg3zpU6pUfo8zavHOeGkJHiexS37fdMWGC1A/XkqTCEat5ycM5o/Kms1ox/Nza/tVi+Z2/+cZgGa9YIplaqxrWdJjCwAwJ0xAsCqz3hPTgCmP2LXwRzTrBhvrky6+d48Xcbeqst6Ut9RCNe+Aj/6nDnNBQvNt7oFvVM6Lhw6Ux9d462Mt3uF75doXIJbwczjW3IAYDHnBHbVd9V+feZNDm0IRWo3p9yINu/fIQEQKaMsSHxtxm8oTdwi/BVULhyaSXS3+gcRDMjdrB+u71ictb+iffdSX86e6d/60ouX6M1t/mdh7qFDNdMV9n7eE59Gy0jp/u9NekMkbVnvTUH9bcRAuF4o30zMCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06f\",\r\n        \"publisherName\":\"power-factchecker\",\r\n        \"firstLogin\":\"Mon, 15 Nov 2021 14:06:44 GMT\",\r\n        \"signatureOnPublicKeyPublisherName\":\"08f5e87f9ee6db7c6767791c9006537e3d358c578acc7d790f2b83450bd00f55c4727e49d66fee0de7de4afc262553ce65064846a7dcba37648d0c68442b773ece10be2afa37f53c171f469305b01acdd6d448fd8aec48ec6346651dfe2ed9b62815b0cd976e9331979019df1c3ef2af36177f8cb145be3fd56438e90fc309e1b16418eef317bbfdf67072427a8d3d564d8c0e050e445de25588ab3f1f3aa32fdd64c122892ba2dca2e5fccc836048c37bae3d2528be41a8fbb013e4a9f1a8bedbc8121878658ddfe8fe168e6f9661401cdb2f503356c1c340616573b5fe711b346f6d3ce2438bd3d976df1887e2b753ad82b1f6073961a1c4634e5836757e0e3b37385d2f304949e287354cf6c61a07382b9e3277341561d29d0e50764c55130d48e378b34b43932e20e4cbf3cc8738d612d00064dfda3f0dd1d0600292c436f8b4d92f28687b61d806e75da399aea9b19daff9763e2c6a078dc1e7fc31f4d8cbe0fe53d36cb75f92abca898ba410775592639a2bdd8b3512874432578e3205fb5e6f797206d9b85a6433d969363a932a87a856433f47d5e92f695ecee1c4566db9c5f6b928cb60655a7fd7b339941eec86205c69c69794066fe11919ae9e7c33d08f8de24c60dd2ed09e244a89799cd593035934684df5dab3f53cbb497fcbecef22cf8997ba027d0fd3475c3f47386bec06bad097ca2d11a8726ceeb17b69\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AddFactCheck (identical)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Denied duplicate\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"    // pm.expect(jsonData.publishNewFactCheck.message).equals(\"There is already a DB Entry with this FactCheck Url and publisher/url\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"publishNewFactCheck\":{\r\n        \"URLToCheckHash\":\"f94c0f202a5029159b9c93f6470af36cf21982b2f11ccba4ea6538cb612cf9d7b9ccb6448ca491e2bf853360890d1463a6ac75e9858677a4641e134a10e56a93\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06f\",\r\n        \"URLwithFactCheck\":\"https://correctiv.org/faktencheck/2021/12/01/angebliches-tucholsky-gedicht-ueber-impfungen-stammt-von-satire-autor/\",\r\n        \"timestamp\":\"2021-12-18T13:10:44+01:00\",\r\n        \"signatureOnURLToCheckHashFingerPrintURLwithfactCheckTimestamp\":\"3b1c39953fe9f12bbc8d695f46cde1eb5745f48bd9d6bc2f41d679cae1e87992bd384abb019e398532012d0f5666038053b268971f391697c4764a3dab00df1c4f65dfda11329bead56f0db2da6c2025b99cb62bf2b336bc62182fe81f230666d2bfb0a6ca7bd1bd718f9b0444c5d5c564038e713328609bc62ef2199767ceb14a91a264e18f84f358eccac01802e5ce17e9aa8dfeefc7cd7be5eede212bb54a2ba2784600d9b9211ea24ed1a20674a5974319032179ee18557137d23be3322aa07f666a7e53c889ef5c7ec44a6d8535a2528b8a382145e94d2c5723e61a7f4cf319994cd4612ace7868f13d6241b79c405b29ee7605e4bd2bd1a81592527b3518893afc4719806a56f5adc2290b91ef7b988b5f5bdeec0dc21c86cd0000d0e6e3bb56b14ffa10191b3c678140c618d05f9b082a2436bab9b5b59881b700bdc413f27ed6bd50d4c0e7dd6ae887ce2f7ed322fbc65fe9b0296f33295f4cda6575b45be1f1395ec3093b7a1415879559c5656e404e170d41a502757ca1dba94a832c018dd5d9546b77c6a6b1af20f8f530c1b8e0eef2cd6655c206189aeca2ec92abde3a11b5c1e2b87645795aaf525d082fda610f060a00f02ab49f1e872908a8f52d6041f0bc1da38da195a2ce6e2ba1ddee98881587fbe90989b63d15eb915387d6f30042c906f2a5c16c5781b0c485f24a06b5219c3f6036f8140d313e6612\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "JSON format",
+			"item": [
+				{
+					"name": "setup",
+					"item": [
+						{
+							"name": "DB Delete",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Database deleted\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.deleteDB.message).equals(\"DB successfully deleted\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/postendpoint/deleteDB",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint",
+										"deleteDB"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AddUserPower",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request OK\", function () {\r",
+											"    pm.response.to.be.ok;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Added new User\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.createAccount.message).equals(\"Received data from POST request, new account has been stored.\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"createAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAqrp9b+gh7PQXOAQVnHbnPswXAX6/dZ3UYkU+KQ7TTPzp+pRudifRvqn7/cqx4zbAfDwf1beZEtjxK6KR16zxqPAQ5m0hEeboVDQk7zTUU8BlFEs3TfhwubK/OJSROyRGhpH+Cx9oMIJNDA9p3Pn74RrgkKwqEpkXUOAx/ld6U39gVxC2uhUMwtmHG1h305tWc4THVpz/nElazuqKtpC7H8mAJmfQcHV5uGm1JoLivKiCQR1l6L8JVjB5x9rINepfljAWvLMZxIqjhEppC3TW6+Gv3/6dxvwSvPrfN525MQOYEW2Cz8nq6r4lTqs5XX8dVXZ3Dqa+P8Vdg3zpU6pUfo8zavHOeGkJHiexS37fdMWGC1A/XkqTCEat5ycM5o/Kms1ox/Nza/tVi+Z2/+cZgGa9YIplaqxrWdJjCwAwJ0xAsCqz3hPTgCmP2LXwRzTrBhvrky6+d48Xcbeqst6Ut9RCNe+Aj/6nDnNBQvNt7oFvVM6Lhw6Ux9d462Mt3uF75doXIJbwczjW3IAYDHnBHbVd9V+feZNDm0IRWo3p9yINu/fIQEQKaMsSHxtxm8oTdwi/BVULhyaSXS3+gcRDMjdrB+u71ictb+iffdSX86e6d/60ouX6M1t/mdh7qFDNdMV9n7eE59Gy0jp/u9NekMkbVnvTUH9bcRAuF4o30zMCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06f\",\r\n        \"publisherName\":\"power-factchecker\",\r\n        \"firstLogin\":\"Mon, 15 Nov 2021 14:06:44 GMT\",\r\n        \"signatureOnPublicKeyPublisherName\":\"08f5e87f9ee6db7c6767791c9006537e3d358c578acc7d790f2b83450bd00f55c4727e49d66fee0de7de4afc262553ce65064846a7dcba37648d0c68442b773ece10be2afa37f53c171f469305b01acdd6d448fd8aec48ec6346651dfe2ed9b62815b0cd976e9331979019df1c3ef2af36177f8cb145be3fd56438e90fc309e1b16418eef317bbfdf67072427a8d3d564d8c0e050e445de25588ab3f1f3aa32fdd64c122892ba2dca2e5fccc836048c37bae3d2528be41a8fbb013e4a9f1a8bedbc8121878658ddfe8fe168e6f9661401cdb2f503356c1c340616573b5fe711b346f6d3ce2438bd3d976df1887e2b753ad82b1f6073961a1c4634e5836757e0e3b37385d2f304949e287354cf6c61a07382b9e3277341561d29d0e50764c55130d48e378b34b43932e20e4cbf3cc8738d612d00064dfda3f0dd1d0600292c436f8b4d92f28687b61d806e75da399aea9b19daff9763e2c6a078dc1e7fc31f4d8cbe0fe53d36cb75f92abca898ba410775592639a2bdd8b3512874432578e3205fb5e6f797206d9b85a6433d969363a932a87a856433f47d5e92f695ecee1c4566db9c5f6b928cb60655a7fd7b339941eec86205c69c69794066fe11919ae9e7c33d08f8de24c60dd2ed09e244a89799cd593035934684df5dab3f53cbb497fcbecef22cf8997ba027d0fd3475c3f47386bec06bad097ca2d11a8726ceeb17b69\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "user",
+					"item": [
+						{
+							"name": "AddUserPower2 (Typo Attribute)",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Request WITH BODY\", function () {\r",
+											"    pm.response.to.be.withBody;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Request WITH JSON\", function () {\r",
+											"    pm.response.to.be.json;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Added new User\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.createAccount.message).equals(\"JSON is not wellformed.\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"createAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAqrp9b+gh7PQXOAQVnHbnPswXAX6/dZ3UYkU+KQ7TTPzp+pRudifRvqn7/cqx4zbAfDwf1beZEtjxK6KR16zxqPAQ5m0hEeboVDQk7zTUU8BlFEs3TfhwubK/OJSROyRGhpH+Cx9oMIJNDA9p3Pn74RrgkKwqEpkXUOAx/ld6U39gVxC2uhUMwtmHG1h305tWc4THVpz/nElazuqKtpC7H8mAJmfQcHV5uGm1JoLivKiCQR1l6L8JVjB5x9rINepfljAWvLMZxIqjhEppC3TW6+Gv3/6dxvwSvPrfN525MQOYEW2Cz8nq6r4lTqs5XX8dVXZ3Dqa+P8Vdg3zpU6pUfo8zavHOeGkJHiexS37fdMWGC1A/XkqTCEat5ycM5o/Kms1ox/Nza/tVi+Z2/+cZgGa9YIplaqxrWdJjCwAwJ0xAsCqz3hPTgCmP2LXwRzTrBhvrky6+d48Xcbeqst6Ut9RCNe+Aj/6nDnNBQvNt7oFvVM6Lhw6Ux9d462Mt3uF75doXIJbwczjW3IAYDHnBHbVd9V+feZNDm0IRWo3p9yINu/fIQEQKaMsSHxtxm8oTdwi/BVULhyaSXS3+gcRDMjdrB+u71ictb+iffdSX86e6d/60ouX6M1t/mdh7qFDNdMV9n7eE59Gy0jp/u9NekMkbVnvTUH9bcRAuF4o30zMCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06f\",\r\n        \"publisherName1\":\"power-factchecker\",\r\n        \"firstLogin\":\"Mon, 15 Nov 2021 14:06:44 GMT\",\r\n        \"signatureOnPublicKeyPublisherName\":\"08f5e87f9ee6db7c6767791c9006537e3d358c578acc7d790f2b83450bd00f55c4727e49d66fee0de7de4afc262553ce65064846a7dcba37648d0c68442b773ece10be2afa37f53c171f469305b01acdd6d448fd8aec48ec6346651dfe2ed9b62815b0cd976e9331979019df1c3ef2af36177f8cb145be3fd56438e90fc309e1b16418eef317bbfdf67072427a8d3d564d8c0e050e445de25588ab3f1f3aa32fdd64c122892ba2dca2e5fccc836048c37bae3d2528be41a8fbb013e4a9f1a8bedbc8121878658ddfe8fe168e6f9661401cdb2f503356c1c340616573b5fe711b346f6d3ce2438bd3d976df1887e2b753ad82b1f6073961a1c4634e5836757e0e3b37385d2f304949e287354cf6c61a07382b9e3277341561d29d0e50764c55130d48e378b34b43932e20e4cbf3cc8738d612d00064dfda3f0dd1d0600292c436f8b4d92f28687b61d806e75da399aea9b19daff9763e2c6a078dc1e7fc31f4d8cbe0fe53d36cb75f92abca898ba410775592639a2bdd8b3512874432578e3205fb5e6f797206d9b85a6433d969363a932a87a856433f47d5e92f695ecee1c4566db9c5f6b928cb60655a7fd7b339941eec86205c69c69794066fe11919ae9e7c33d08f8de24c60dd2ed09e244a89799cd593035934684df5dab3f53cbb497fcbecef22cf8997ba027d0fd3475c3f47386bec06bad097ca2d11a8726ceeb17b69\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AddUserPower3 (MAttribute Field)",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Request WITH BODY\", function () {\r",
+											"    pm.response.to.be.withBody;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Request WITH JSON\", function () {\r",
+											"    pm.response.to.be.json;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Added new User\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"    // pm.expect(jsonData.createAccount.message).equals(\"JSON is not wellformed.\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"createAccount1\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAqrp9b+gh7PQXOAQVnHbnPswXAX6/dZ3UYkU+KQ7TTPzp+pRudifRvqn7/cqx4zbAfDwf1beZEtjxK6KR16zxqPAQ5m0hEeboVDQk7zTUU8BlFEs3TfhwubK/OJSROyRGhpH+Cx9oMIJNDA9p3Pn74RrgkKwqEpkXUOAx/ld6U39gVxC2uhUMwtmHG1h305tWc4THVpz/nElazuqKtpC7H8mAJmfQcHV5uGm1JoLivKiCQR1l6L8JVjB5x9rINepfljAWvLMZxIqjhEppC3TW6+Gv3/6dxvwSvPrfN525MQOYEW2Cz8nq6r4lTqs5XX8dVXZ3Dqa+P8Vdg3zpU6pUfo8zavHOeGkJHiexS37fdMWGC1A/XkqTCEat5ycM5o/Kms1ox/Nza/tVi+Z2/+cZgGa9YIplaqxrWdJjCwAwJ0xAsCqz3hPTgCmP2LXwRzTrBhvrky6+d48Xcbeqst6Ut9RCNe+Aj/6nDnNBQvNt7oFvVM6Lhw6Ux9d462Mt3uF75doXIJbwczjW3IAYDHnBHbVd9V+feZNDm0IRWo3p9yINu/fIQEQKaMsSHxtxm8oTdwi/BVULhyaSXS3+gcRDMjdrB+u71ictb+iffdSX86e6d/60ouX6M1t/mdh7qFDNdMV9n7eE59Gy0jp/u9NekMkbVnvTUH9bcRAuF4o30zMCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06f\",\r\n        \"publisherName\":\"power-factchecker\",\r\n        \"firstLogin\":\"Mon, 15 Nov 2021 14:06:44 GMT\",\r\n        \"signatureOnPublicKeyPublisherName\":\"08f5e87f9ee6db7c6767791c9006537e3d358c578acc7d790f2b83450bd00f55c4727e49d66fee0de7de4afc262553ce65064846a7dcba37648d0c68442b773ece10be2afa37f53c171f469305b01acdd6d448fd8aec48ec6346651dfe2ed9b62815b0cd976e9331979019df1c3ef2af36177f8cb145be3fd56438e90fc309e1b16418eef317bbfdf67072427a8d3d564d8c0e050e445de25588ab3f1f3aa32fdd64c122892ba2dca2e5fccc836048c37bae3d2528be41a8fbb013e4a9f1a8bedbc8121878658ddfe8fe168e6f9661401cdb2f503356c1c340616573b5fe711b346f6d3ce2438bd3d976df1887e2b753ad82b1f6073961a1c4634e5836757e0e3b37385d2f304949e287354cf6c61a07382b9e3277341561d29d0e50764c55130d48e378b34b43932e20e4cbf3cc8738d612d00064dfda3f0dd1d0600292c436f8b4d92f28687b61d806e75da399aea9b19daff9763e2c6a078dc1e7fc31f4d8cbe0fe53d36cb75f92abca898ba410775592639a2bdd8b3512874432578e3205fb5e6f797206d9b85a6433d969363a932a87a856433f47d5e92f695ecee1c4566db9c5f6b928cb60655a7fd7b339941eec86205c69c69794066fe11919ae9e7c33d08f8de24c60dd2ed09e244a89799cd593035934684df5dab3f53cbb497fcbecef22cf8997ba027d0fd3475c3f47386bec06bad097ca2d11a8726ceeb17b69\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AddUserPower4 (Missing Field)",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Request WITH BODY\", function () {\r",
+											"    pm.response.to.be.withBody;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Request WITH JSON\", function () {\r",
+											"    pm.response.to.be.json;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Added new User\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.createAccount.message).equals(\"JSON is not wellformed.\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"createAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAqrp9b+gh7PQXOAQVnHbnPswXAX6/dZ3UYkU+KQ7TTPzp+pRudifRvqn7/cqx4zbAfDwf1beZEtjxK6KR16zxqPAQ5m0hEeboVDQk7zTUU8BlFEs3TfhwubK/OJSROyRGhpH+Cx9oMIJNDA9p3Pn74RrgkKwqEpkXUOAx/ld6U39gVxC2uhUMwtmHG1h305tWc4THVpz/nElazuqKtpC7H8mAJmfQcHV5uGm1JoLivKiCQR1l6L8JVjB5x9rINepfljAWvLMZxIqjhEppC3TW6+Gv3/6dxvwSvPrfN525MQOYEW2Cz8nq6r4lTqs5XX8dVXZ3Dqa+P8Vdg3zpU6pUfo8zavHOeGkJHiexS37fdMWGC1A/XkqTCEat5ycM5o/Kms1ox/Nza/tVi+Z2/+cZgGa9YIplaqxrWdJjCwAwJ0xAsCqz3hPTgCmP2LXwRzTrBhvrky6+d48Xcbeqst6Ut9RCNe+Aj/6nDnNBQvNt7oFvVM6Lhw6Ux9d462Mt3uF75doXIJbwczjW3IAYDHnBHbVd9V+feZNDm0IRWo3p9yINu/fIQEQKaMsSHxtxm8oTdwi/BVULhyaSXS3+gcRDMjdrB+u71ictb+iffdSX86e6d/60ouX6M1t/mdh7qFDNdMV9n7eE59Gy0jp/u9NekMkbVnvTUH9bcRAuF4o30zMCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06f\",\r\n        \"publisherName\":\"power-factchecker\",\r\n        \"signatureOnPublicKeyPublisherName\":\"08f5e87f9ee6db7c6767791c9006537e3d358c578acc7d790f2b83450bd00f55c4727e49d66fee0de7de4afc262553ce65064846a7dcba37648d0c68442b773ece10be2afa37f53c171f469305b01acdd6d448fd8aec48ec6346651dfe2ed9b62815b0cd976e9331979019df1c3ef2af36177f8cb145be3fd56438e90fc309e1b16418eef317bbfdf67072427a8d3d564d8c0e050e445de25588ab3f1f3aa32fdd64c122892ba2dca2e5fccc836048c37bae3d2528be41a8fbb013e4a9f1a8bedbc8121878658ddfe8fe168e6f9661401cdb2f503356c1c340616573b5fe711b346f6d3ce2438bd3d976df1887e2b753ad82b1f6073961a1c4634e5836757e0e3b37385d2f304949e287354cf6c61a07382b9e3277341561d29d0e50764c55130d48e378b34b43932e20e4cbf3cc8738d612d00064dfda3f0dd1d0600292c436f8b4d92f28687b61d806e75da399aea9b19daff9763e2c6a078dc1e7fc31f4d8cbe0fe53d36cb75f92abca898ba410775592639a2bdd8b3512874432578e3205fb5e6f797206d9b85a6433d969363a932a87a856433f47d5e92f695ecee1c4566db9c5f6b928cb60655a7fd7b339941eec86205c69c69794066fe11919ae9e7c33d08f8de24c60dd2ed09e244a89799cd593035934684df5dab3f53cbb497fcbecef22cf8997ba027d0fd3475c3f47386bec06bad097ca2d11a8726ceeb17b69\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AddUserPower5 (Missing All Field)",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Request WITH BODY\", function () {\r",
+											"    pm.response.to.be.withBody;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Request WITH JSON\", function () {\r",
+											"    pm.response.to.be.json;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Added new User\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.createAccount.message).equals(\"JSON is not wellformed.\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"createAccount\":{\r\n        \r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "fact check",
+					"item": [
+						{
+							"name": "AddFactCheck2 (Typo Attribute)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Request WITH BODY\", function () {\r",
+											"    pm.response.to.be.withBody;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Request WITH JSON\", function () {\r",
+											"    pm.response.to.be.json;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"JSON not well formed\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.publishNewFactCheck.message).equals(\"JSON is not wellformed.\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"publishNewFactCheck\":{\r\n        \"URLToCheckHash\":\"f94c0f202a5029159b9c93f6470af36cf21982b2f11ccba4ea6538cb612cf9d7b9ccb6448ca491e2bf853360890d1463a6ac75e9858677a4641e134a10e56a93\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06f\",\r\n        \"URLwithFactCheck1\":\"https://correctiv.org/faktencheck/2021/12/01/angebliches-tucholsky-gedicht-ueber-impfungen-stammt-von-satire-autor/\",\r\n        \"timestamp\":\"2021-12-18T13:10:44+01:00\",\r\n        \"signatureOnURLToCheckHashFingerPrintURLwithfactCheckTimestamp\":\"3b1c39953fe9f12bbc8d695f46cde1eb5745f48bd9d6bc2f41d679cae1e87992bd384abb019e398532012d0f5666038053b268971f391697c4764a3dab00df1c4f65dfda11329bead56f0db2da6c2025b99cb62bf2b336bc62182fe81f230666d2bfb0a6ca7bd1bd718f9b0444c5d5c564038e713328609bc62ef2199767ceb14a91a264e18f84f358eccac01802e5ce17e9aa8dfeefc7cd7be5eede212bb54a2ba2784600d9b9211ea24ed1a20674a5974319032179ee18557137d23be3322aa07f666a7e53c889ef5c7ec44a6d8535a2528b8a382145e94d2c5723e61a7f4cf319994cd4612ace7868f13d6241b79c405b29ee7605e4bd2bd1a81592527b3518893afc4719806a56f5adc2290b91ef7b988b5f5bdeec0dc21c86cd0000d0e6e3bb56b14ffa10191b3c678140c618d05f9b082a2436bab9b5b59881b700bdc413f27ed6bd50d4c0e7dd6ae887ce2f7ed322fbc65fe9b0296f33295f4cda6575b45be1f1395ec3093b7a1415879559c5656e404e170d41a502757ca1dba94a832c018dd5d9546b77c6a6b1af20f8f530c1b8e0eef2cd6655c206189aeca2ec92abde3a11b5c1e2b87645795aaf525d082fda610f060a00f02ab49f1e872908a8f52d6041f0bc1da38da195a2ce6e2ba1ddee98881587fbe90989b63d15eb915387d6f30042c906f2a5c16c5781b0c485f24a06b5219c3f6036f8140d313e6612\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AddFactCheck3  (Typo MAttribute)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Request WITH BODY\", function () {\r",
+											"    pm.response.to.be.withBody;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Request WITH JSON\", function () {\r",
+											"    pm.response.to.be.json;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"JSON is not wellformed.\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"    // pm.expect(jsonData.publishNewFactCheck.message).equals(\"JSON is not wellformed.\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"publishNewFactCheck1\":{\r\n        \"URLToCheckHash\":\"f94c0f202a5029159b9c93f6470af36cf21982b2f11ccba4ea6538cb612cf9d7b9ccb6448ca491e2bf853360890d1463a6ac75e9858677a4641e134a10e56a93\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06f\",\r\n        \"URLwithFactCheck\":\"https://correctiv.org/faktencheck/2021/12/01/angebliches-tucholsky-gedicht-ueber-impfungen-stammt-von-satire-autor/\",\r\n        \"timestamp\":\"2021-12-18T13:10:44+01:00\",\r\n        \"signatureOnURLToCheckHashFingerPrintURLwithfactCheckTimestamp\":\"3b1c39953fe9f12bbc8d695f46cde1eb5745f48bd9d6bc2f41d679cae1e87992bd384abb019e398532012d0f5666038053b268971f391697c4764a3dab00df1c4f65dfda11329bead56f0db2da6c2025b99cb62bf2b336bc62182fe81f230666d2bfb0a6ca7bd1bd718f9b0444c5d5c564038e713328609bc62ef2199767ceb14a91a264e18f84f358eccac01802e5ce17e9aa8dfeefc7cd7be5eede212bb54a2ba2784600d9b9211ea24ed1a20674a5974319032179ee18557137d23be3322aa07f666a7e53c889ef5c7ec44a6d8535a2528b8a382145e94d2c5723e61a7f4cf319994cd4612ace7868f13d6241b79c405b29ee7605e4bd2bd1a81592527b3518893afc4719806a56f5adc2290b91ef7b988b5f5bdeec0dc21c86cd0000d0e6e3bb56b14ffa10191b3c678140c618d05f9b082a2436bab9b5b59881b700bdc413f27ed6bd50d4c0e7dd6ae887ce2f7ed322fbc65fe9b0296f33295f4cda6575b45be1f1395ec3093b7a1415879559c5656e404e170d41a502757ca1dba94a832c018dd5d9546b77c6a6b1af20f8f530c1b8e0eef2cd6655c206189aeca2ec92abde3a11b5c1e2b87645795aaf525d082fda610f060a00f02ab49f1e872908a8f52d6041f0bc1da38da195a2ce6e2ba1ddee98881587fbe90989b63d15eb915387d6f30042c906f2a5c16c5781b0c485f24a06b5219c3f6036f8140d313e6612\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AddFactCheck4  (Missing Field)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Request WITH BODY\", function () {\r",
+											"    pm.response.to.be.withBody;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Request WITH JSON\", function () {\r",
+											"    pm.response.to.be.json;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"JSON is not wellformed.\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.publishNewFactCheck.message).equals(\"JSON is not wellformed.\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"publishNewFactCheck\":{\r\n        \"URLToCheckHash\":\"f94c0f202a5029159b9c93f6470af36cf21982b2f11ccba4ea6538cb612cf9d7b9ccb6448ca491e2bf853360890d1463a6ac75e9858677a4641e134a10e56a93\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06f\",\r\n        \"timestamp\":\"2021-12-18T13:10:44+01:00\",\r\n        \"signatureOnURLToCheckHashFingerPrintURLwithfactCheckTimestamp\":\"3b1c39953fe9f12bbc8d695f46cde1eb5745f48bd9d6bc2f41d679cae1e87992bd384abb019e398532012d0f5666038053b268971f391697c4764a3dab00df1c4f65dfda11329bead56f0db2da6c2025b99cb62bf2b336bc62182fe81f230666d2bfb0a6ca7bd1bd718f9b0444c5d5c564038e713328609bc62ef2199767ceb14a91a264e18f84f358eccac01802e5ce17e9aa8dfeefc7cd7be5eede212bb54a2ba2784600d9b9211ea24ed1a20674a5974319032179ee18557137d23be3322aa07f666a7e53c889ef5c7ec44a6d8535a2528b8a382145e94d2c5723e61a7f4cf319994cd4612ace7868f13d6241b79c405b29ee7605e4bd2bd1a81592527b3518893afc4719806a56f5adc2290b91ef7b988b5f5bdeec0dc21c86cd0000d0e6e3bb56b14ffa10191b3c678140c618d05f9b082a2436bab9b5b59881b700bdc413f27ed6bd50d4c0e7dd6ae887ce2f7ed322fbc65fe9b0296f33295f4cda6575b45be1f1395ec3093b7a1415879559c5656e404e170d41a502757ca1dba94a832c018dd5d9546b77c6a6b1af20f8f530c1b8e0eef2cd6655c206189aeca2ec92abde3a11b5c1e2b87645795aaf525d082fda610f060a00f02ab49f1e872908a8f52d6041f0bc1da38da195a2ce6e2ba1ddee98881587fbe90989b63d15eb915387d6f30042c906f2a5c16c5781b0c485f24a06b5219c3f6036f8140d313e6612\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AddFactCheck5 (Missing All Fields)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Request ERROR\", function () {\r",
+											"    pm.response.to.be.error;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Request WITH BODY\", function () {\r",
+											"    pm.response.to.be.withBody;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Request WITH JSON\", function () {\r",
+											"    pm.response.to.be.json;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"JSON not well formed\", function () {\r",
+											"    let jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.publishNewFactCheck.message).equals(\"JSON is not wellformed.\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"publishNewFactCheck\":{}}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/postendpoint",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"postendpoint"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Wrong Values",
+			"item": [
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "setup",
+							"item": [
+								{
+									"name": "DB Delete",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Database deleted\", function () {\r",
+													"    let jsonData = pm.response.json();\r",
+													"    pm.expect(jsonData.deleteDB.message).equals(\"DB successfully deleted\")\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "localhost:8080/postendpoint/deleteDB",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"postendpoint",
+												"deleteDB"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "AddUserPower",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successfully prepared user\", function () {\r",
+													"    let jsonData = pm.response.json();\r",
+													"    pm.expect(jsonData.createAccount.message).equals(\"Received data from POST request, new account has been stored.\")\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"createAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAqrp9b+gh7PQXOAQVnHbnPswXAX6/dZ3UYkU+KQ7TTPzp+pRudifRvqn7/cqx4zbAfDwf1beZEtjxK6KR16zxqPAQ5m0hEeboVDQk7zTUU8BlFEs3TfhwubK/OJSROyRGhpH+Cx9oMIJNDA9p3Pn74RrgkKwqEpkXUOAx/ld6U39gVxC2uhUMwtmHG1h305tWc4THVpz/nElazuqKtpC7H8mAJmfQcHV5uGm1JoLivKiCQR1l6L8JVjB5x9rINepfljAWvLMZxIqjhEppC3TW6+Gv3/6dxvwSvPrfN525MQOYEW2Cz8nq6r4lTqs5XX8dVXZ3Dqa+P8Vdg3zpU6pUfo8zavHOeGkJHiexS37fdMWGC1A/XkqTCEat5ycM5o/Kms1ox/Nza/tVi+Z2/+cZgGa9YIplaqxrWdJjCwAwJ0xAsCqz3hPTgCmP2LXwRzTrBhvrky6+d48Xcbeqst6Ut9RCNe+Aj/6nDnNBQvNt7oFvVM6Lhw6Ux9d462Mt3uF75doXIJbwczjW3IAYDHnBHbVd9V+feZNDm0IRWo3p9yINu/fIQEQKaMsSHxtxm8oTdwi/BVULhyaSXS3+gcRDMjdrB+u71ictb+iffdSX86e6d/60ouX6M1t/mdh7qFDNdMV9n7eE59Gy0jp/u9NekMkbVnvTUH9bcRAuF4o30zMCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06f\",\r\n        \"publisherName\":\"power-factchecker\",\r\n        \"firstLogin\":\"Mon, 15 Nov 2021 14:06:44 GMT\",\r\n        \"signatureOnPublicKeyPublisherName\":\"08f5e87f9ee6db7c6767791c9006537e3d358c578acc7d790f2b83450bd00f55c4727e49d66fee0de7de4afc262553ce65064846a7dcba37648d0c68442b773ece10be2afa37f53c171f469305b01acdd6d448fd8aec48ec6346651dfe2ed9b62815b0cd976e9331979019df1c3ef2af36177f8cb145be3fd56438e90fc309e1b16418eef317bbfdf67072427a8d3d564d8c0e050e445de25588ab3f1f3aa32fdd64c122892ba2dca2e5fccc836048c37bae3d2528be41a8fbb013e4a9f1a8bedbc8121878658ddfe8fe168e6f9661401cdb2f503356c1c340616573b5fe711b346f6d3ce2438bd3d976df1887e2b753ad82b1f6073961a1c4634e5836757e0e3b37385d2f304949e287354cf6c61a07382b9e3277341561d29d0e50764c55130d48e378b34b43932e20e4cbf3cc8738d612d00064dfda3f0dd1d0600292c436f8b4d92f28687b61d806e75da399aea9b19daff9763e2c6a078dc1e7fc31f4d8cbe0fe53d36cb75f92abca898ba410775592639a2bdd8b3512874432578e3205fb5e6f797206d9b85a6433d969363a932a87a856433f47d5e92f695ecee1c4566db9c5f6b928cb60655a7fd7b339941eec86205c69c69794066fe11919ae9e7c33d08f8de24c60dd2ed09e244a89799cd593035934684df5dab3f53cbb497fcbecef22cf8997ba027d0fd3475c3f47386bec06bad097ca2d11a8726ceeb17b69\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8080/postendpoint",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"postendpoint"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "publickey",
+							"item": [
+								{
+									"name": "AddUserPower (symbol add)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Request ERROR\", function () {\r",
+													"    pm.response.to.be.error;\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"createAccount\":{\r\n        \"publicKey\":\"000MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAqrp9b+gh7PQXOAQVnHbnPswXAX6/dZ3UYkU+KQ7TTPzp+pRudifRvqn7/cqx4zbAfDwf1beZEtjxK6KR16zxqPAQ5m0hEeboVDQk7zTUU8BlFEs3TfhwubK/OJSROyRGhpH+Cx9oMIJNDA9p3Pn74RrgkKwqEpkXUOAx/ld6U39gVxC2uhUMwtmHG1h305tWc4THVpz/nElazuqKtpC7H8mAJmfQcHV5uGm1JoLivKiCQR1l6L8JVjB5x9rINepfljAWvLMZxIqjhEppC3TW6+Gv3/6dxvwSvPrfN525MQOYEW2Cz8nq6r4lTqs5XX8dVXZ3Dqa+P8Vdg3zpU6pUfo8zavHOeGkJHiexS37fdMWGC1A/XkqTCEat5ycM5o/Kms1ox/Nza/tVi+Z2/+cZgGa9YIplaqxrWdJjCwAwJ0xAsCqz3hPTgCmP2LXwRzTrBhvrky6+d48Xcbeqst6Ut9RCNe+Aj/6nDnNBQvNt7oFvVM6Lhw6Ux9d462Mt3uF75doXIJbwczjW3IAYDHnBHbVd9V+feZNDm0IRWo3p9yINu/fIQEQKaMsSHxtxm8oTdwi/BVULhyaSXS3+gcRDMjdrB+u71ictb+iffdSX86e6d/60ouX6M1t/mdh7qFDNdMV9n7eE59Gy0jp/u9NekMkbVnvTUH9bcRAuF4o30zMCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06f\",\r\n        \"publisherName\":\"power-factchecker\",\r\n        \"firstLogin\":\"Mon, 15 Nov 2021 14:06:44 GMT\",\r\n        \"signatureOnPublicKeyPublisherName\":\"08f5e87f9ee6db7c6767791c9006537e3d358c578acc7d790f2b83450bd00f55c4727e49d66fee0de7de4afc262553ce65064846a7dcba37648d0c68442b773ece10be2afa37f53c171f469305b01acdd6d448fd8aec48ec6346651dfe2ed9b62815b0cd976e9331979019df1c3ef2af36177f8cb145be3fd56438e90fc309e1b16418eef317bbfdf67072427a8d3d564d8c0e050e445de25588ab3f1f3aa32fdd64c122892ba2dca2e5fccc836048c37bae3d2528be41a8fbb013e4a9f1a8bedbc8121878658ddfe8fe168e6f9661401cdb2f503356c1c340616573b5fe711b346f6d3ce2438bd3d976df1887e2b753ad82b1f6073961a1c4634e5836757e0e3b37385d2f304949e287354cf6c61a07382b9e3277341561d29d0e50764c55130d48e378b34b43932e20e4cbf3cc8738d612d00064dfda3f0dd1d0600292c436f8b4d92f28687b61d806e75da399aea9b19daff9763e2c6a078dc1e7fc31f4d8cbe0fe53d36cb75f92abca898ba410775592639a2bdd8b3512874432578e3205fb5e6f797206d9b85a6433d969363a932a87a856433f47d5e92f695ecee1c4566db9c5f6b928cb60655a7fd7b339941eec86205c69c69794066fe11919ae9e7c33d08f8de24c60dd2ed09e244a89799cd593035934684df5dab3f53cbb497fcbecef22cf8997ba027d0fd3475c3f47386bec06bad097ca2d11a8726ceeb17b69\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8080/postendpoint",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"postendpoint"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "AddUserPower (symbol add multiple)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Request ERROR\", function () {\r",
+													"    pm.response.to.be.error;\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"createAccount\":{\r\n        \"publicKey\":\"0MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAqrp9b+gh7PQXOAQVnHbnPswXAX6/dZ3UYkU+KQ7TTPzp+pRudifRvqn7/cqx4zbAfDwf1beZEtjxK6KR16zxqPAQ5m0hEeboVDQk7zTUU8BlFEs3TfhwubK/OJSROyRGhpH+Cx9oMIJNDA9p3Pn74RrgkKwqEpkXUOAx/ld6U39gVxC2uhUMwtmHG1h305tWc4THVpz/nElazuqKtpC7H8mAJmfQcHV5uGm1JoLivKiCQR1l6L8JVjB5x9rINepfljAWvLMZxIqjhEppC3TW6+Gv3/6dxvwSvPrfN525MQOYEW2Cz8nq6r4lTqs5XX8dVXZ3Dqa+P8Vdg3zpU6pUfo8zavHOeGkJHiexS37fdMWGC1A/XkqTCEat5ycM5o/Kms1ox/Nza/tVi+Z2/+cZgGa9YIplaqxrWdJjCwAwJ0xAsCqz3hPTgCmP2LXwRzTrBhvrky6+d48Xcbeqst6Ut9RCNe+Aj/6nDnNBQvNt7oFvVM6Lhw6Ux9d462Mt3uF75doXIJbwczjW3IAYDHnBHbVd9V+feZNDm0IRWo3p9yINu/fIQEQKaMsSHxtxm8oTdwi/BVULhyaSXS3+gcRDMjdrB+u71ictb+iffdSX86e6d/60ouX6M1t/mdh7qFDNdMV9n7eE59Gy0jp/u9NekMkbVnvTUH9bcRAuF4o30zMCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06f\",\r\n        \"publisherName\":\"power-factchecker\",\r\n        \"firstLogin\":\"Mon, 15 Nov 2021 14:06:44 GMT\",\r\n        \"signatureOnPublicKeyPublisherName\":\"08f5e87f9ee6db7c6767791c9006537e3d358c578acc7d790f2b83450bd00f55c4727e49d66fee0de7de4afc262553ce65064846a7dcba37648d0c68442b773ece10be2afa37f53c171f469305b01acdd6d448fd8aec48ec6346651dfe2ed9b62815b0cd976e9331979019df1c3ef2af36177f8cb145be3fd56438e90fc309e1b16418eef317bbfdf67072427a8d3d564d8c0e050e445de25588ab3f1f3aa32fdd64c122892ba2dca2e5fccc836048c37bae3d2528be41a8fbb013e4a9f1a8bedbc8121878658ddfe8fe168e6f9661401cdb2f503356c1c340616573b5fe711b346f6d3ce2438bd3d976df1887e2b753ad82b1f6073961a1c4634e5836757e0e3b37385d2f304949e287354cf6c61a07382b9e3277341561d29d0e50764c55130d48e378b34b43932e20e4cbf3cc8738d612d00064dfda3f0dd1d0600292c436f8b4d92f28687b61d806e75da399aea9b19daff9763e2c6a078dc1e7fc31f4d8cbe0fe53d36cb75f92abca898ba410775592639a2bdd8b3512874432578e3205fb5e6f797206d9b85a6433d969363a932a87a856433f47d5e92f695ecee1c4566db9c5f6b928cb60655a7fd7b339941eec86205c69c69794066fe11919ae9e7c33d08f8de24c60dd2ed09e244a89799cd593035934684df5dab3f53cbb497fcbecef22cf8997ba027d0fd3475c3f47386bec06bad097ca2d11a8726ceeb17b69\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8080/postendpoint",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"postendpoint"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "AddUserPower (symbol remove)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Request ERROR\", function () {\r",
+													"    pm.response.to.be.error;\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"createAccount\":{\r\n        \"publicKey\":\"IjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAqrp9b+gh7PQXOAQVnHbnPswXAX6/dZ3UYkU+KQ7TTPzp+pRudifRvqn7/cqx4zbAfDwf1beZEtjxK6KR16zxqPAQ5m0hEeboVDQk7zTUU8BlFEs3TfhwubK/OJSROyRGhpH+Cx9oMIJNDA9p3Pn74RrgkKwqEpkXUOAx/ld6U39gVxC2uhUMwtmHG1h305tWc4THVpz/nElazuqKtpC7H8mAJmfQcHV5uGm1JoLivKiCQR1l6L8JVjB5x9rINepfljAWvLMZxIqjhEppC3TW6+Gv3/6dxvwSvPrfN525MQOYEW2Cz8nq6r4lTqs5XX8dVXZ3Dqa+P8Vdg3zpU6pUfo8zavHOeGkJHiexS37fdMWGC1A/XkqTCEat5ycM5o/Kms1ox/Nza/tVi+Z2/+cZgGa9YIplaqxrWdJjCwAwJ0xAsCqz3hPTgCmP2LXwRzTrBhvrky6+d48Xcbeqst6Ut9RCNe+Aj/6nDnNBQvNt7oFvVM6Lhw6Ux9d462Mt3uF75doXIJbwczjW3IAYDHnBHbVd9V+feZNDm0IRWo3p9yINu/fIQEQKaMsSHxtxm8oTdwi/BVULhyaSXS3+gcRDMjdrB+u71ictb+iffdSX86e6d/60ouX6M1t/mdh7qFDNdMV9n7eE59Gy0jp/u9NekMkbVnvTUH9bcRAuF4o30zMCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06f\",\r\n        \"publisherName\":\"power-factchecker\",\r\n        \"firstLogin\":\"Mon, 15 Nov 2021 14:06:44 GMT\",\r\n        \"signatureOnPublicKeyPublisherName\":\"08f5e87f9ee6db7c6767791c9006537e3d358c578acc7d790f2b83450bd00f55c4727e49d66fee0de7de4afc262553ce65064846a7dcba37648d0c68442b773ece10be2afa37f53c171f469305b01acdd6d448fd8aec48ec6346651dfe2ed9b62815b0cd976e9331979019df1c3ef2af36177f8cb145be3fd56438e90fc309e1b16418eef317bbfdf67072427a8d3d564d8c0e050e445de25588ab3f1f3aa32fdd64c122892ba2dca2e5fccc836048c37bae3d2528be41a8fbb013e4a9f1a8bedbc8121878658ddfe8fe168e6f9661401cdb2f503356c1c340616573b5fe711b346f6d3ce2438bd3d976df1887e2b753ad82b1f6073961a1c4634e5836757e0e3b37385d2f304949e287354cf6c61a07382b9e3277341561d29d0e50764c55130d48e378b34b43932e20e4cbf3cc8738d612d00064dfda3f0dd1d0600292c436f8b4d92f28687b61d806e75da399aea9b19daff9763e2c6a078dc1e7fc31f4d8cbe0fe53d36cb75f92abca898ba410775592639a2bdd8b3512874432578e3205fb5e6f797206d9b85a6433d969363a932a87a856433f47d5e92f695ecee1c4566db9c5f6b928cb60655a7fd7b339941eec86205c69c69794066fe11919ae9e7c33d08f8de24c60dd2ed09e244a89799cd593035934684df5dab3f53cbb497fcbecef22cf8997ba027d0fd3475c3f47386bec06bad097ca2d11a8726ceeb17b69\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8080/postendpoint",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"postendpoint"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "AddUserPower (symbol remove multiple of 4)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Request ERROR\", function () {\r",
+													"    pm.response.to.be.error;\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"createAccount\":{\r\n        \"publicKey\":\"IjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAqrp9b+gh7PQXOAQVnHbnPswXAX6/dZ3UYkU+KQ7TTPzp+pRudifRvqn7/cqx4zbAfDwf1beZEtjxK6KR16zxqPAQ5m0hEeboVDQk7zTUU8BlFEs3TfhwubK/OJSROyRGhpH+Cx9oMIJNDA9p3Pn74RrgkKwqEpkXUOAx/ld6U39gVxC2uhUMwtmHG1h305tWc4THVpz/nElazuqKtpC7H8mAJmfQcHV5uGm1JoLivKiCQR1l6L8JVjB5x9rINepfljAWvLMZxIqjhEppC3TW6+Gv3/6dxvwSvPrfN525MQOYEW2Cz8nq6r4lTqs5XX8dVXZ3Dqa+P8Vdg3zpU6pUfo8zavHOeGkJHiexS37fdMWGC1A/XkqTCEat5ycM5o/Kms1ox/Nza/tVi+Z2/+cZgGa9YIplaqxrWdJjCwAwJ0xAsCqz3hPTgCmP2LXwRzTrBhvrky6+d48Xcbeqst6Ut9RCNe+Aj/6nDnNBQvNt7oFvVM6Lhw6Ux9d462Mt3uF75doXIJbwczjW3IAYDHnBHbVd9V+feZNDm0IRWo3p9yINu/fIQEQKaMsSHxtxm8oTdwi/BVULhyaSXS3+gcRDMjdrB+u71ictb+iffdSX86e6d/60ouX6M1t/mdh7qFDNdMV9n7eE59Gy0jp/u9NekMkbVnvTUH9bcRAuF4o30zMCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06f\",\r\n        \"publisherName\":\"power-factchecker\",\r\n        \"firstLogin\":\"Mon, 15 Nov 2021 14:06:44 GMT\",\r\n        \"signatureOnPublicKeyPublisherName\":\"08f5e87f9ee6db7c6767791c9006537e3d358c578acc7d790f2b83450bd00f55c4727e49d66fee0de7de4afc262553ce65064846a7dcba37648d0c68442b773ece10be2afa37f53c171f469305b01acdd6d448fd8aec48ec6346651dfe2ed9b62815b0cd976e9331979019df1c3ef2af36177f8cb145be3fd56438e90fc309e1b16418eef317bbfdf67072427a8d3d564d8c0e050e445de25588ab3f1f3aa32fdd64c122892ba2dca2e5fccc836048c37bae3d2528be41a8fbb013e4a9f1a8bedbc8121878658ddfe8fe168e6f9661401cdb2f503356c1c340616573b5fe711b346f6d3ce2438bd3d976df1887e2b753ad82b1f6073961a1c4634e5836757e0e3b37385d2f304949e287354cf6c61a07382b9e3277341561d29d0e50764c55130d48e378b34b43932e20e4cbf3cc8738d612d00064dfda3f0dd1d0600292c436f8b4d92f28687b61d806e75da399aea9b19daff9763e2c6a078dc1e7fc31f4d8cbe0fe53d36cb75f92abca898ba410775592639a2bdd8b3512874432578e3205fb5e6f797206d9b85a6433d969363a932a87a856433f47d5e92f695ecee1c4566db9c5f6b928cb60655a7fd7b339941eec86205c69c69794066fe11919ae9e7c33d08f8de24c60dd2ed09e244a89799cd593035934684df5dab3f53cbb497fcbecef22cf8997ba027d0fd3475c3f47386bec06bad097ca2d11a8726ceeb17b69\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8080/postendpoint",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"postendpoint"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "fingerprint",
+							"item": [
+								{
+									"name": "AddUserPower (symbol remove)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Request ERROR\", function () {\r",
+													"    pm.response.to.be.error;\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"createAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAqrp9b+gh7PQXOAQVnHbnPswXAX6/dZ3UYkU+KQ7TTPzp+pRudifRvqn7/cqx4zbAfDwf1beZEtjxK6KR16zxqPAQ5m0hEeboVDQk7zTUU8BlFEs3TfhwubK/OJSROyRGhpH+Cx9oMIJNDA9p3Pn74RrgkKwqEpkXUOAx/ld6U39gVxC2uhUMwtmHG1h305tWc4THVpz/nElazuqKtpC7H8mAJmfQcHV5uGm1JoLivKiCQR1l6L8JVjB5x9rINepfljAWvLMZxIqjhEppC3TW6+Gv3/6dxvwSvPrfN525MQOYEW2Cz8nq6r4lTqs5XX8dVXZ3Dqa+P8Vdg3zpU6pUfo8zavHOeGkJHiexS37fdMWGC1A/XkqTCEat5ycM5o/Kms1ox/Nza/tVi+Z2/+cZgGa9YIplaqxrWdJjCwAwJ0xAsCqz3hPTgCmP2LXwRzTrBhvrky6+d48Xcbeqst6Ut9RCNe+Aj/6nDnNBQvNt7oFvVM6Lhw6Ux9d462Mt3uF75doXIJbwczjW3IAYDHnBHbVd9V+feZNDm0IRWo3p9yINu/fIQEQKaMsSHxtxm8oTdwi/BVULhyaSXS3+gcRDMjdrB+u71ictb+iffdSX86e6d/60ouX6M1t/mdh7qFDNdMV9n7eE59Gy0jp/u9NekMkbVnvTUH9bcRAuF4o30zMCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06\",\r\n        \"publisherName\":\"power-factchecker\",\r\n        \"firstLogin\":\"Mon, 15 Nov 2021 14:06:44 GMT\",\r\n        \"signatureOnPublicKeyPublisherName\":\"08f5e87f9ee6db7c6767791c9006537e3d358c578acc7d790f2b83450bd00f55c4727e49d66fee0de7de4afc262553ce65064846a7dcba37648d0c68442b773ece10be2afa37f53c171f469305b01acdd6d448fd8aec48ec6346651dfe2ed9b62815b0cd976e9331979019df1c3ef2af36177f8cb145be3fd56438e90fc309e1b16418eef317bbfdf67072427a8d3d564d8c0e050e445de25588ab3f1f3aa32fdd64c122892ba2dca2e5fccc836048c37bae3d2528be41a8fbb013e4a9f1a8bedbc8121878658ddfe8fe168e6f9661401cdb2f503356c1c340616573b5fe711b346f6d3ce2438bd3d976df1887e2b753ad82b1f6073961a1c4634e5836757e0e3b37385d2f304949e287354cf6c61a07382b9e3277341561d29d0e50764c55130d48e378b34b43932e20e4cbf3cc8738d612d00064dfda3f0dd1d0600292c436f8b4d92f28687b61d806e75da399aea9b19daff9763e2c6a078dc1e7fc31f4d8cbe0fe53d36cb75f92abca898ba410775592639a2bdd8b3512874432578e3205fb5e6f797206d9b85a6433d969363a932a87a856433f47d5e92f695ecee1c4566db9c5f6b928cb60655a7fd7b339941eec86205c69c69794066fe11919ae9e7c33d08f8de24c60dd2ed09e244a89799cd593035934684df5dab3f53cbb497fcbecef22cf8997ba027d0fd3475c3f47386bec06bad097ca2d11a8726ceeb17b69\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8080/postendpoint",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"postendpoint"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "AddUserPower (symbol add)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Request ERROR\", function () {\r",
+													"    pm.response.to.be.error;\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"createAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAqrp9b+gh7PQXOAQVnHbnPswXAX6/dZ3UYkU+KQ7TTPzp+pRudifRvqn7/cqx4zbAfDwf1beZEtjxK6KR16zxqPAQ5m0hEeboVDQk7zTUU8BlFEs3TfhwubK/OJSROyRGhpH+Cx9oMIJNDA9p3Pn74RrgkKwqEpkXUOAx/ld6U39gVxC2uhUMwtmHG1h305tWc4THVpz/nElazuqKtpC7H8mAJmfQcHV5uGm1JoLivKiCQR1l6L8JVjB5x9rINepfljAWvLMZxIqjhEppC3TW6+Gv3/6dxvwSvPrfN525MQOYEW2Cz8nq6r4lTqs5XX8dVXZ3Dqa+P8Vdg3zpU6pUfo8zavHOeGkJHiexS37fdMWGC1A/XkqTCEat5ycM5o/Kms1ox/Nza/tVi+Z2/+cZgGa9YIplaqxrWdJjCwAwJ0xAsCqz3hPTgCmP2LXwRzTrBhvrky6+d48Xcbeqst6Ut9RCNe+Aj/6nDnNBQvNt7oFvVM6Lhw6Ux9d462Mt3uF75doXIJbwczjW3IAYDHnBHbVd9V+feZNDm0IRWo3p9yINu/fIQEQKaMsSHxtxm8oTdwi/BVULhyaSXS3+gcRDMjdrB+u71ictb+iffdSX86e6d/60ouX6M1t/mdh7qFDNdMV9n7eE59Gy0jp/u9NekMkbVnvTUH9bcRAuF4o30zMCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06ff\",\r\n        \"publisherName\":\"power-factchecker\",\r\n        \"firstLogin\":\"Mon, 15 Nov 2021 14:06:44 GMT\",\r\n        \"signatureOnPublicKeyPublisherName\":\"08f5e87f9ee6db7c6767791c9006537e3d358c578acc7d790f2b83450bd00f55c4727e49d66fee0de7de4afc262553ce65064846a7dcba37648d0c68442b773ece10be2afa37f53c171f469305b01acdd6d448fd8aec48ec6346651dfe2ed9b62815b0cd976e9331979019df1c3ef2af36177f8cb145be3fd56438e90fc309e1b16418eef317bbfdf67072427a8d3d564d8c0e050e445de25588ab3f1f3aa32fdd64c122892ba2dca2e5fccc836048c37bae3d2528be41a8fbb013e4a9f1a8bedbc8121878658ddfe8fe168e6f9661401cdb2f503356c1c340616573b5fe711b346f6d3ce2438bd3d976df1887e2b753ad82b1f6073961a1c4634e5836757e0e3b37385d2f304949e287354cf6c61a07382b9e3277341561d29d0e50764c55130d48e378b34b43932e20e4cbf3cc8738d612d00064dfda3f0dd1d0600292c436f8b4d92f28687b61d806e75da399aea9b19daff9763e2c6a078dc1e7fc31f4d8cbe0fe53d36cb75f92abca898ba410775592639a2bdd8b3512874432578e3205fb5e6f797206d9b85a6433d969363a932a87a856433f47d5e92f695ecee1c4566db9c5f6b928cb60655a7fd7b339941eec86205c69c69794066fe11919ae9e7c33d08f8de24c60dd2ed09e244a89799cd593035934684df5dab3f53cbb497fcbecef22cf8997ba027d0fd3475c3f47386bec06bad097ca2d11a8726ceeb17b69\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8080/postendpoint",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"postendpoint"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "publishername",
+							"item": [
+								{
+									"name": "AddUserPower (symbol remove)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Request ERROR\", function () {\r",
+													"    pm.response.to.be.error;\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"createAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAqrp9b+gh7PQXOAQVnHbnPswXAX6/dZ3UYkU+KQ7TTPzp+pRudifRvqn7/cqx4zbAfDwf1beZEtjxK6KR16zxqPAQ5m0hEeboVDQk7zTUU8BlFEs3TfhwubK/OJSROyRGhpH+Cx9oMIJNDA9p3Pn74RrgkKwqEpkXUOAx/ld6U39gVxC2uhUMwtmHG1h305tWc4THVpz/nElazuqKtpC7H8mAJmfQcHV5uGm1JoLivKiCQR1l6L8JVjB5x9rINepfljAWvLMZxIqjhEppC3TW6+Gv3/6dxvwSvPrfN525MQOYEW2Cz8nq6r4lTqs5XX8dVXZ3Dqa+P8Vdg3zpU6pUfo8zavHOeGkJHiexS37fdMWGC1A/XkqTCEat5ycM5o/Kms1ox/Nza/tVi+Z2/+cZgGa9YIplaqxrWdJjCwAwJ0xAsCqz3hPTgCmP2LXwRzTrBhvrky6+d48Xcbeqst6Ut9RCNe+Aj/6nDnNBQvNt7oFvVM6Lhw6Ux9d462Mt3uF75doXIJbwczjW3IAYDHnBHbVd9V+feZNDm0IRWo3p9yINu/fIQEQKaMsSHxtxm8oTdwi/BVULhyaSXS3+gcRDMjdrB+u71ictb+iffdSX86e6d/60ouX6M1t/mdh7qFDNdMV9n7eE59Gy0jp/u9NekMkbVnvTUH9bcRAuF4o30zMCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06f\",\r\n        \"publisherName\":\"power-factchecker\",\r\n        \"firstLogin\":\"Mon, 15 Nov 2021 14:06:44 GMT\",\r\n        \"signatureOnPublicKeyPublisherName\":\"08f5e87f9ee6db7c6767791c9006537e3d358c578acc7d790f2b83450bd00f55c4727e49d66fee0de7de4afc262553ce65064846a7dcba37648d0c68442b773ece10be2afa37f53c171f469305b01acdd6d448fd8aec48ec6346651dfe2ed9b62815b0cd976e9331979019df1c3ef2af36177f8cb145be3fd56438e90fc309e1b16418eef317bbfdf67072427a8d3d564d8c0e050e445de25588ab3f1f3aa32fdd64c122892ba2dca2e5fccc836048c37bae3d2528be41a8fbb013e4a9f1a8bedbc8121878658ddfe8fe168e6f9661401cdb2f503356c1c340616573b5fe711b346f6d3ce2438bd3d976df1887e2b753ad82b1f6073961a1c4634e5836757e0e3b37385d2f304949e287354cf6c61a07382b9e3277341561d29d0e50764c55130d48e378b34b43932e20e4cbf3cc8738d612d00064dfda3f0dd1d0600292c436f8b4d92f28687b61d806e75da399aea9b19daff9763e2c6a078dc1e7fc31f4d8cbe0fe53d36cb75f92abca898ba410775592639a2bdd8b3512874432578e3205fb5e6f797206d9b85a6433d969363a932a87a856433f47d5e92f695ecee1c4566db9c5f6b928cb60655a7fd7b339941eec86205c69c69794066fe11919ae9e7c33d08f8de24c60dd2ed09e244a89799cd593035934684df5dab3f53cbb497fcbecef22cf8997ba027d0fd3475c3f47386bec06bad097ca2d11a8726ceeb17b69\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8080/postendpoint",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"postendpoint"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "AddUserPower (symbol add)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Request ERROR\", function () {\r",
+													"    pm.response.to.be.error;\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"createAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAqrp9b+gh7PQXOAQVnHbnPswXAX6/dZ3UYkU+KQ7TTPzp+pRudifRvqn7/cqx4zbAfDwf1beZEtjxK6KR16zxqPAQ5m0hEeboVDQk7zTUU8BlFEs3TfhwubK/OJSROyRGhpH+Cx9oMIJNDA9p3Pn74RrgkKwqEpkXUOAx/ld6U39gVxC2uhUMwtmHG1h305tWc4THVpz/nElazuqKtpC7H8mAJmfQcHV5uGm1JoLivKiCQR1l6L8JVjB5x9rINepfljAWvLMZxIqjhEppC3TW6+Gv3/6dxvwSvPrfN525MQOYEW2Cz8nq6r4lTqs5XX8dVXZ3Dqa+P8Vdg3zpU6pUfo8zavHOeGkJHiexS37fdMWGC1A/XkqTCEat5ycM5o/Kms1ox/Nza/tVi+Z2/+cZgGa9YIplaqxrWdJjCwAwJ0xAsCqz3hPTgCmP2LXwRzTrBhvrky6+d48Xcbeqst6Ut9RCNe+Aj/6nDnNBQvNt7oFvVM6Lhw6Ux9d462Mt3uF75doXIJbwczjW3IAYDHnBHbVd9V+feZNDm0IRWo3p9yINu/fIQEQKaMsSHxtxm8oTdwi/BVULhyaSXS3+gcRDMjdrB+u71ictb+iffdSX86e6d/60ouX6M1t/mdh7qFDNdMV9n7eE59Gy0jp/u9NekMkbVnvTUH9bcRAuF4o30zMCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06f\",\r\n        \"publisherName\":\"power-factcheckerr\",\r\n        \"firstLogin\":\"Mon, 15 Nov 2021 14:06:44 GMT\",\r\n        \"signatureOnPublicKeyPublisherName\":\"08f5e87f9ee6db7c6767791c9006537e3d358c578acc7d790f2b83450bd00f55c4727e49d66fee0de7de4afc262553ce65064846a7dcba37648d0c68442b773ece10be2afa37f53c171f469305b01acdd6d448fd8aec48ec6346651dfe2ed9b62815b0cd976e9331979019df1c3ef2af36177f8cb145be3fd56438e90fc309e1b16418eef317bbfdf67072427a8d3d564d8c0e050e445de25588ab3f1f3aa32fdd64c122892ba2dca2e5fccc836048c37bae3d2528be41a8fbb013e4a9f1a8bedbc8121878658ddfe8fe168e6f9661401cdb2f503356c1c340616573b5fe711b346f6d3ce2438bd3d976df1887e2b753ad82b1f6073961a1c4634e5836757e0e3b37385d2f304949e287354cf6c61a07382b9e3277341561d29d0e50764c55130d48e378b34b43932e20e4cbf3cc8738d612d00064dfda3f0dd1d0600292c436f8b4d92f28687b61d806e75da399aea9b19daff9763e2c6a078dc1e7fc31f4d8cbe0fe53d36cb75f92abca898ba410775592639a2bdd8b3512874432578e3205fb5e6f797206d9b85a6433d969363a932a87a856433f47d5e92f695ecee1c4566db9c5f6b928cb60655a7fd7b339941eec86205c69c69794066fe11919ae9e7c33d08f8de24c60dd2ed09e244a89799cd593035934684df5dab3f53cbb497fcbecef22cf8997ba027d0fd3475c3f47386bec06bad097ca2d11a8726ceeb17b69\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8080/postendpoint",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"postendpoint"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "firstlogin",
+							"item": [
+								{
+									"name": "AddUserPower (changed)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Request ERROR\", function () {\r",
+													"    pm.response.to.be.error;\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"createAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAqrp9b+gh7PQXOAQVnHbnPswXAX6/dZ3UYkU+KQ7TTPzp+pRudifRvqn7/cqx4zbAfDwf1beZEtjxK6KR16zxqPAQ5m0hEeboVDQk7zTUU8BlFEs3TfhwubK/OJSROyRGhpH+Cx9oMIJNDA9p3Pn74RrgkKwqEpkXUOAx/ld6U39gVxC2uhUMwtmHG1h305tWc4THVpz/nElazuqKtpC7H8mAJmfQcHV5uGm1JoLivKiCQR1l6L8JVjB5x9rINepfljAWvLMZxIqjhEppC3TW6+Gv3/6dxvwSvPrfN525MQOYEW2Cz8nq6r4lTqs5XX8dVXZ3Dqa+P8Vdg3zpU6pUfo8zavHOeGkJHiexS37fdMWGC1A/XkqTCEat5ycM5o/Kms1ox/Nza/tVi+Z2/+cZgGa9YIplaqxrWdJjCwAwJ0xAsCqz3hPTgCmP2LXwRzTrBhvrky6+d48Xcbeqst6Ut9RCNe+Aj/6nDnNBQvNt7oFvVM6Lhw6Ux9d462Mt3uF75doXIJbwczjW3IAYDHnBHbVd9V+feZNDm0IRWo3p9yINu/fIQEQKaMsSHxtxm8oTdwi/BVULhyaSXS3+gcRDMjdrB+u71ictb+iffdSX86e6d/60ouX6M1t/mdh7qFDNdMV9n7eE59Gy0jp/u9NekMkbVnvTUH9bcRAuF4o30zMCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06f\",\r\n        \"publisherName\":\"power-factchecker\",\r\n        \"firstLogin\":\"Mon, 14 Nov 2021 14:06:44 GMT\",\r\n        \"signatureOnPublicKeyPublisherName\":\"08f5e87f9ee6db7c6767791c9006537e3d358c578acc7d790f2b83450bd00f55c4727e49d66fee0de7de4afc262553ce65064846a7dcba37648d0c68442b773ece10be2afa37f53c171f469305b01acdd6d448fd8aec48ec6346651dfe2ed9b62815b0cd976e9331979019df1c3ef2af36177f8cb145be3fd56438e90fc309e1b16418eef317bbfdf67072427a8d3d564d8c0e050e445de25588ab3f1f3aa32fdd64c122892ba2dca2e5fccc836048c37bae3d2528be41a8fbb013e4a9f1a8bedbc8121878658ddfe8fe168e6f9661401cdb2f503356c1c340616573b5fe711b346f6d3ce2438bd3d976df1887e2b753ad82b1f6073961a1c4634e5836757e0e3b37385d2f304949e287354cf6c61a07382b9e3277341561d29d0e50764c55130d48e378b34b43932e20e4cbf3cc8738d612d00064dfda3f0dd1d0600292c436f8b4d92f28687b61d806e75da399aea9b19daff9763e2c6a078dc1e7fc31f4d8cbe0fe53d36cb75f92abca898ba410775592639a2bdd8b3512874432578e3205fb5e6f797206d9b85a6433d969363a932a87a856433f47d5e92f695ecee1c4566db9c5f6b928cb60655a7fd7b339941eec86205c69c69794066fe11919ae9e7c33d08f8de24c60dd2ed09e244a89799cd593035934684df5dab3f53cbb497fcbecef22cf8997ba027d0fd3475c3f47386bec06bad097ca2d11a8726ceeb17b69\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8080/postendpoint",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"postendpoint"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "signature",
+							"item": [
+								{
+									"name": "AddUserPower (symbol remove)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Request ERROR\", function () {\r",
+													"    pm.response.to.be.error;\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"createAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAqrp9b+gh7PQXOAQVnHbnPswXAX6/dZ3UYkU+KQ7TTPzp+pRudifRvqn7/cqx4zbAfDwf1beZEtjxK6KR16zxqPAQ5m0hEeboVDQk7zTUU8BlFEs3TfhwubK/OJSROyRGhpH+Cx9oMIJNDA9p3Pn74RrgkKwqEpkXUOAx/ld6U39gVxC2uhUMwtmHG1h305tWc4THVpz/nElazuqKtpC7H8mAJmfQcHV5uGm1JoLivKiCQR1l6L8JVjB5x9rINepfljAWvLMZxIqjhEppC3TW6+Gv3/6dxvwSvPrfN525MQOYEW2Cz8nq6r4lTqs5XX8dVXZ3Dqa+P8Vdg3zpU6pUfo8zavHOeGkJHiexS37fdMWGC1A/XkqTCEat5ycM5o/Kms1ox/Nza/tVi+Z2/+cZgGa9YIplaqxrWdJjCwAwJ0xAsCqz3hPTgCmP2LXwRzTrBhvrky6+d48Xcbeqst6Ut9RCNe+Aj/6nDnNBQvNt7oFvVM6Lhw6Ux9d462Mt3uF75doXIJbwczjW3IAYDHnBHbVd9V+feZNDm0IRWo3p9yINu/fIQEQKaMsSHxtxm8oTdwi/BVULhyaSXS3+gcRDMjdrB+u71ictb+iffdSX86e6d/60ouX6M1t/mdh7qFDNdMV9n7eE59Gy0jp/u9NekMkbVnvTUH9bcRAuF4o30zMCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06f\",\r\n        \"publisherName\":\"power-factchecker\",\r\n        \"firstLogin\":\"Mon, 15 Nov 2021 14:06:44 GMT\",\r\n        \"signatureOnPublicKeyPublisherName\":\"08f5e87f9ee6db7c6767791c9006537e3d358c578acc7d790f2b83450bd00f55c4727e49d66fee0de7de4afc262553ce65064846a7dcba37648d0c68442b773ece10be2afa37f53c171f469305b01acdd6d448fd8aec48ec6346651dfe2ed9b62815b0cd976e9331979019df1c3ef2af36177f8cb145be3fd56438e90fc309e1b16418eef317bbfdf67072427a8d3d564d8c0e050e445de25588ab3f1f3aa32fdd64c122892ba2dca2e5fccc836048c37bae3d2528be41a8fbb013e4a9f1a8bedbc8121878658ddfe8fe168e6f9661401cdb2f503356c1c340616573b5fe711b346f6d3ce2438bd3d976df1887e2b753ad82b1f6073961a1c4634e5836757e0e3b37385d2f304949e287354cf6c61a07382b9e3277341561d29d0e50764c55130d48e378b34b43932e20e4cbf3cc8738d612d00064dfda3f0dd1d0600292c436f8b4d92f28687b61d806e75da399aea9b19daff9763e2c6a078dc1e7fc31f4d8cbe0fe53d36cb75f92abca898ba410775592639a2bdd8b3512874432578e3205fb5e6f797206d9b85a6433d969363a932a87a856433f47d5e92f695ecee1c4566db9c5f6b928cb60655a7fd7b339941eec86205c69c69794066fe11919ae9e7c33d08f8de24c60dd2ed09e244a89799cd593035934684df5dab3f53cbb497fcbecef22cf8997ba027d0fd3475c3f47386bec06bad097ca2d11a8726ceeb17b6\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8080/postendpoint",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"postendpoint"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "AddUserPower (symbol remove multiple)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Request ERROR\", function () {\r",
+													"    pm.response.to.be.error;\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"createAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAqrp9b+gh7PQXOAQVnHbnPswXAX6/dZ3UYkU+KQ7TTPzp+pRudifRvqn7/cqx4zbAfDwf1beZEtjxK6KR16zxqPAQ5m0hEeboVDQk7zTUU8BlFEs3TfhwubK/OJSROyRGhpH+Cx9oMIJNDA9p3Pn74RrgkKwqEpkXUOAx/ld6U39gVxC2uhUMwtmHG1h305tWc4THVpz/nElazuqKtpC7H8mAJmfQcHV5uGm1JoLivKiCQR1l6L8JVjB5x9rINepfljAWvLMZxIqjhEppC3TW6+Gv3/6dxvwSvPrfN525MQOYEW2Cz8nq6r4lTqs5XX8dVXZ3Dqa+P8Vdg3zpU6pUfo8zavHOeGkJHiexS37fdMWGC1A/XkqTCEat5ycM5o/Kms1ox/Nza/tVi+Z2/+cZgGa9YIplaqxrWdJjCwAwJ0xAsCqz3hPTgCmP2LXwRzTrBhvrky6+d48Xcbeqst6Ut9RCNe+Aj/6nDnNBQvNt7oFvVM6Lhw6Ux9d462Mt3uF75doXIJbwczjW3IAYDHnBHbVd9V+feZNDm0IRWo3p9yINu/fIQEQKaMsSHxtxm8oTdwi/BVULhyaSXS3+gcRDMjdrB+u71ictb+iffdSX86e6d/60ouX6M1t/mdh7qFDNdMV9n7eE59Gy0jp/u9NekMkbVnvTUH9bcRAuF4o30zMCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06f\",\r\n        \"publisherName\":\"power-factchecker\",\r\n        \"firstLogin\":\"Mon, 15 Nov 2021 14:06:44 GMT\",\r\n        \"signatureOnPublicKeyPublisherName\":\"08f5e87f9ee6db7c6767791c9006537e3d358c578acc7d790f2b83450bd00f55c4727e49d66fee0de7de4afc262553ce65064846a7dcba37648d0c68442b773ece10be2afa37f53c171f469305b01acdd6d448fd8aec48ec6346651dfe2ed9b62815b0cd976e9331979019df1c3ef2af36177f8cb145be3fd56438e90fc309e1b16418eef317bbfdf67072427a8d3d564d8c0e050e445de25588ab3f1f3aa32fdd64c122892ba2dca2e5fccc836048c37bae3d2528be41a8fbb013e4a9f1a8bedbc8121878658ddfe8fe168e6f9661401cdb2f503356c1c340616573b5fe711b346f6d3ce2438bd3d976df1887e2b753ad82b1f6073961a1c4634e5836757e0e3b37385d2f304949e287354cf6c61a07382b9e3277341561d29d0e50764c55130d48e378b34b43932e20e4cbf3cc8738d612d00064dfda3f0dd1d0600292c436f8b4d92f28687b61d806e75da399aea9b19daff9763e2c6a078dc1e7fc31f4d8cbe0fe53d36cb75f92abca898ba410775592639a2bdd8b3512874432578e3205fb5e6f797206d9b85a6433d969363a932a87a856433f47d5e92f695ecee1c4566db9c5f6b928cb60655a7fd7b339941eec86205c69c69794066fe11919ae9e7c33d08f8de24c60dd2ed09e244a89799cd593035934684df5dab3f53cbb497fcbecef22cf8997ba027d0fd3475c3f47386bec06bad097ca2d11a8726ceeb1\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8080/postendpoint",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"postendpoint"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "AddUserPower (symbol add)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Request ERROR\", function () {\r",
+													"    pm.response.to.be.error;\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"createAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAqrp9b+gh7PQXOAQVnHbnPswXAX6/dZ3UYkU+KQ7TTPzp+pRudifRvqn7/cqx4zbAfDwf1beZEtjxK6KR16zxqPAQ5m0hEeboVDQk7zTUU8BlFEs3TfhwubK/OJSROyRGhpH+Cx9oMIJNDA9p3Pn74RrgkKwqEpkXUOAx/ld6U39gVxC2uhUMwtmHG1h305tWc4THVpz/nElazuqKtpC7H8mAJmfQcHV5uGm1JoLivKiCQR1l6L8JVjB5x9rINepfljAWvLMZxIqjhEppC3TW6+Gv3/6dxvwSvPrfN525MQOYEW2Cz8nq6r4lTqs5XX8dVXZ3Dqa+P8Vdg3zpU6pUfo8zavHOeGkJHiexS37fdMWGC1A/XkqTCEat5ycM5o/Kms1ox/Nza/tVi+Z2/+cZgGa9YIplaqxrWdJjCwAwJ0xAsCqz3hPTgCmP2LXwRzTrBhvrky6+d48Xcbeqst6Ut9RCNe+Aj/6nDnNBQvNt7oFvVM6Lhw6Ux9d462Mt3uF75doXIJbwczjW3IAYDHnBHbVd9V+feZNDm0IRWo3p9yINu/fIQEQKaMsSHxtxm8oTdwi/BVULhyaSXS3+gcRDMjdrB+u71ictb+iffdSX86e6d/60ouX6M1t/mdh7qFDNdMV9n7eE59Gy0jp/u9NekMkbVnvTUH9bcRAuF4o30zMCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06f\",\r\n        \"publisherName\":\"power-factchecker\",\r\n        \"firstLogin\":\"Mon, 15 Nov 2021 14:06:44 GMT\",\r\n        \"signatureOnPublicKeyPublisherName\":\"08f5e87f9ee6db7c6767791c9006537e3d358c578acc7d790f2b83450bd00f55c4727e49d66fee0de7de4afc262553ce65064846a7dcba37648d0c68442b773ece10be2afa37f53c171f469305b01acdd6d448fd8aec48ec6346651dfe2ed9b62815b0cd976e9331979019df1c3ef2af36177f8cb145be3fd56438e90fc309e1b16418eef317bbfdf67072427a8d3d564d8c0e050e445de25588ab3f1f3aa32fdd64c122892ba2dca2e5fccc836048c37bae3d2528be41a8fbb013e4a9f1a8bedbc8121878658ddfe8fe168e6f9661401cdb2f503356c1c340616573b5fe711b346f6d3ce2438bd3d976df1887e2b753ad82b1f6073961a1c4634e5836757e0e3b37385d2f304949e287354cf6c61a07382b9e3277341561d29d0e50764c55130d48e378b34b43932e20e4cbf3cc8738d612d00064dfda3f0dd1d0600292c436f8b4d92f28687b61d806e75da399aea9b19daff9763e2c6a078dc1e7fc31f4d8cbe0fe53d36cb75f92abca898ba410775592639a2bdd8b3512874432578e3205fb5e6f797206d9b85a6433d969363a932a87a856433f47d5e92f695ecee1c4566db9c5f6b928cb60655a7fd7b339941eec86205c69c69794066fe11919ae9e7c33d08f8de24c60dd2ed09e244a89799cd593035934684df5dab3f53cbb497fcbecef22cf8997ba027d0fd3475c3f47386bec06bad097ca2d11a8726ceeb17b691\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8080/postendpoint",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"postendpoint"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "AddUserPower (symbol add multiple)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Request ERROR\", function () {\r",
+													"    pm.response.to.be.error;\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"createAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAqrp9b+gh7PQXOAQVnHbnPswXAX6/dZ3UYkU+KQ7TTPzp+pRudifRvqn7/cqx4zbAfDwf1beZEtjxK6KR16zxqPAQ5m0hEeboVDQk7zTUU8BlFEs3TfhwubK/OJSROyRGhpH+Cx9oMIJNDA9p3Pn74RrgkKwqEpkXUOAx/ld6U39gVxC2uhUMwtmHG1h305tWc4THVpz/nElazuqKtpC7H8mAJmfQcHV5uGm1JoLivKiCQR1l6L8JVjB5x9rINepfljAWvLMZxIqjhEppC3TW6+Gv3/6dxvwSvPrfN525MQOYEW2Cz8nq6r4lTqs5XX8dVXZ3Dqa+P8Vdg3zpU6pUfo8zavHOeGkJHiexS37fdMWGC1A/XkqTCEat5ycM5o/Kms1ox/Nza/tVi+Z2/+cZgGa9YIplaqxrWdJjCwAwJ0xAsCqz3hPTgCmP2LXwRzTrBhvrky6+d48Xcbeqst6Ut9RCNe+Aj/6nDnNBQvNt7oFvVM6Lhw6Ux9d462Mt3uF75doXIJbwczjW3IAYDHnBHbVd9V+feZNDm0IRWo3p9yINu/fIQEQKaMsSHxtxm8oTdwi/BVULhyaSXS3+gcRDMjdrB+u71ictb+iffdSX86e6d/60ouX6M1t/mdh7qFDNdMV9n7eE59Gy0jp/u9NekMkbVnvTUH9bcRAuF4o30zMCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06f\",\r\n        \"publisherName\":\"power-factchecker\",\r\n        \"firstLogin\":\"Mon, 15 Nov 2021 14:06:44 GMT\",\r\n        \"signatureOnPublicKeyPublisherName\":\"08f5e87f9ee6db7c6767791c9006537e3d358c578acc7d790f2b83450bd00f55c4727e49d66fee0de7de4afc262553ce65064846a7dcba37648d0c68442b773ece10be2afa37f53c171f469305b01acdd6d448fd8aec48ec6346651dfe2ed9b62815b0cd976e9331979019df1c3ef2af36177f8cb145be3fd56438e90fc309e1b16418eef317bbfdf67072427a8d3d564d8c0e050e445de25588ab3f1f3aa32fdd64c122892ba2dca2e5fccc836048c37bae3d2528be41a8fbb013e4a9f1a8bedbc8121878658ddfe8fe168e6f9661401cdb2f503356c1c340616573b5fe711b346f6d3ce2438bd3d976df1887e2b753ad82b1f6073961a1c4634e5836757e0e3b37385d2f304949e287354cf6c61a07382b9e3277341561d29d0e50764c55130d48e378b34b43932e20e4cbf3cc8738d612d00064dfda3f0dd1d0600292c436f8b4d92f28687b61d806e75da399aea9b19daff9763e2c6a078dc1e7fc31f4d8cbe0fe53d36cb75f92abca898ba410775592639a2bdd8b3512874432578e3205fb5e6f797206d9b85a6433d969363a932a87a856433f47d5e92f695ecee1c4566db9c5f6b928cb60655a7fd7b339941eec86205c69c69794066fe11919ae9e7c33d08f8de24c60dd2ed09e244a89799cd593035934684df5dab3f53cbb497fcbecef22cf8997ba027d0fd3475c3f47386bec06bad097ca2d11a8726ceeb17b6911\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8080/postendpoint",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"postendpoint"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Fact Check",
+					"item": [
+						{
+							"name": "setup",
+							"item": [
+								{
+									"name": "DB Delete",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Database deleted\", function () {\r",
+													"    let jsonData = pm.response.json();\r",
+													"    pm.expect(jsonData.deleteDB.message).equals(\"DB successfully deleted\")\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "localhost:8080/postendpoint/deleteDB",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"postendpoint",
+												"deleteDB"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "AddUserPower",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successfully prepared user\", function () {\r",
+													"    let jsonData = pm.response.json();\r",
+													"    pm.expect(jsonData.createAccount.message).equals(\"Received data from POST request, new account has been stored.\")\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"createAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAqrp9b+gh7PQXOAQVnHbnPswXAX6/dZ3UYkU+KQ7TTPzp+pRudifRvqn7/cqx4zbAfDwf1beZEtjxK6KR16zxqPAQ5m0hEeboVDQk7zTUU8BlFEs3TfhwubK/OJSROyRGhpH+Cx9oMIJNDA9p3Pn74RrgkKwqEpkXUOAx/ld6U39gVxC2uhUMwtmHG1h305tWc4THVpz/nElazuqKtpC7H8mAJmfQcHV5uGm1JoLivKiCQR1l6L8JVjB5x9rINepfljAWvLMZxIqjhEppC3TW6+Gv3/6dxvwSvPrfN525MQOYEW2Cz8nq6r4lTqs5XX8dVXZ3Dqa+P8Vdg3zpU6pUfo8zavHOeGkJHiexS37fdMWGC1A/XkqTCEat5ycM5o/Kms1ox/Nza/tVi+Z2/+cZgGa9YIplaqxrWdJjCwAwJ0xAsCqz3hPTgCmP2LXwRzTrBhvrky6+d48Xcbeqst6Ut9RCNe+Aj/6nDnNBQvNt7oFvVM6Lhw6Ux9d462Mt3uF75doXIJbwczjW3IAYDHnBHbVd9V+feZNDm0IRWo3p9yINu/fIQEQKaMsSHxtxm8oTdwi/BVULhyaSXS3+gcRDMjdrB+u71ictb+iffdSX86e6d/60ouX6M1t/mdh7qFDNdMV9n7eE59Gy0jp/u9NekMkbVnvTUH9bcRAuF4o30zMCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06f\",\r\n        \"publisherName\":\"power-factchecker\",\r\n        \"firstLogin\":\"Mon, 15 Nov 2021 14:06:44 GMT\",\r\n        \"signatureOnPublicKeyPublisherName\":\"08f5e87f9ee6db7c6767791c9006537e3d358c578acc7d790f2b83450bd00f55c4727e49d66fee0de7de4afc262553ce65064846a7dcba37648d0c68442b773ece10be2afa37f53c171f469305b01acdd6d448fd8aec48ec6346651dfe2ed9b62815b0cd976e9331979019df1c3ef2af36177f8cb145be3fd56438e90fc309e1b16418eef317bbfdf67072427a8d3d564d8c0e050e445de25588ab3f1f3aa32fdd64c122892ba2dca2e5fccc836048c37bae3d2528be41a8fbb013e4a9f1a8bedbc8121878658ddfe8fe168e6f9661401cdb2f503356c1c340616573b5fe711b346f6d3ce2438bd3d976df1887e2b753ad82b1f6073961a1c4634e5836757e0e3b37385d2f304949e287354cf6c61a07382b9e3277341561d29d0e50764c55130d48e378b34b43932e20e4cbf3cc8738d612d00064dfda3f0dd1d0600292c436f8b4d92f28687b61d806e75da399aea9b19daff9763e2c6a078dc1e7fc31f4d8cbe0fe53d36cb75f92abca898ba410775592639a2bdd8b3512874432578e3205fb5e6f797206d9b85a6433d969363a932a87a856433f47d5e92f695ecee1c4566db9c5f6b928cb60655a7fd7b339941eec86205c69c69794066fe11919ae9e7c33d08f8de24c60dd2ed09e244a89799cd593035934684df5dab3f53cbb497fcbecef22cf8997ba027d0fd3475c3f47386bec06bad097ca2d11a8726ceeb17b69\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8080/postendpoint",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"postendpoint"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "urltocheckhash",
+							"item": [
+								{
+									"name": "AddFactCheck (symbol remove)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Request ERROR\", function () {\r",
+													"    pm.response.to.be.error;\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"publishNewFactCheck\":{\r\n        \"URLToCheckHash\":\"f94c0f202a5029159b9c93f6470af36cf21982b2f11ccba4ea6538cb612cf9d7b9ccb6448ca491e2bf853360890d1463a6ac75e9858677a4641e134a10e56a9\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06f\",\r\n        \"URLwithFactCheck\":\"https://correctiv.org/faktencheck/2021/12/01/angebliches-tucholsky-gedicht-ueber-impfungen-stammt-von-satire-autor/\",\r\n        \"timestamp\":\"2021-12-18T13:10:44+01:00\",\r\n        \"signatureOnURLToCheckHashFingerPrintURLwithfactCheckTimestamp\":\"3b1c39953fe9f12bbc8d695f46cde1eb5745f48bd9d6bc2f41d679cae1e87992bd384abb019e398532012d0f5666038053b268971f391697c4764a3dab00df1c4f65dfda11329bead56f0db2da6c2025b99cb62bf2b336bc62182fe81f230666d2bfb0a6ca7bd1bd718f9b0444c5d5c564038e713328609bc62ef2199767ceb14a91a264e18f84f358eccac01802e5ce17e9aa8dfeefc7cd7be5eede212bb54a2ba2784600d9b9211ea24ed1a20674a5974319032179ee18557137d23be3322aa07f666a7e53c889ef5c7ec44a6d8535a2528b8a382145e94d2c5723e61a7f4cf319994cd4612ace7868f13d6241b79c405b29ee7605e4bd2bd1a81592527b3518893afc4719806a56f5adc2290b91ef7b988b5f5bdeec0dc21c86cd0000d0e6e3bb56b14ffa10191b3c678140c618d05f9b082a2436bab9b5b59881b700bdc413f27ed6bd50d4c0e7dd6ae887ce2f7ed322fbc65fe9b0296f33295f4cda6575b45be1f1395ec3093b7a1415879559c5656e404e170d41a502757ca1dba94a832c018dd5d9546b77c6a6b1af20f8f530c1b8e0eef2cd6655c206189aeca2ec92abde3a11b5c1e2b87645795aaf525d082fda610f060a00f02ab49f1e872908a8f52d6041f0bc1da38da195a2ce6e2ba1ddee98881587fbe90989b63d15eb915387d6f30042c906f2a5c16c5781b0c485f24a06b5219c3f6036f8140d313e6612\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8080/postendpoint",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"postendpoint"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "AddFactCheck (symbol add)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Request ERROR\", function () {\r",
+													"    pm.response.to.be.error;\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"publishNewFactCheck\":{\r\n        \"URLToCheckHash\":\"f94c0f202a5029159b9c93f6470af36cf21982b2f11ccba4ea6538cb612cf9d7b9ccb6448ca491e2bf853360890d1463a6ac75e9858677a4641e134a10e56a93a\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06f\",\r\n        \"URLwithFactCheck\":\"https://correctiv.org/faktencheck/2021/12/01/angebliches-tucholsky-gedicht-ueber-impfungen-stammt-von-satire-autor/\",\r\n        \"timestamp\":\"2021-12-18T13:10:44+01:00\",\r\n        \"signatureOnURLToCheckHashFingerPrintURLwithfactCheckTimestamp\":\"3b1c39953fe9f12bbc8d695f46cde1eb5745f48bd9d6bc2f41d679cae1e87992bd384abb019e398532012d0f5666038053b268971f391697c4764a3dab00df1c4f65dfda11329bead56f0db2da6c2025b99cb62bf2b336bc62182fe81f230666d2bfb0a6ca7bd1bd718f9b0444c5d5c564038e713328609bc62ef2199767ceb14a91a264e18f84f358eccac01802e5ce17e9aa8dfeefc7cd7be5eede212bb54a2ba2784600d9b9211ea24ed1a20674a5974319032179ee18557137d23be3322aa07f666a7e53c889ef5c7ec44a6d8535a2528b8a382145e94d2c5723e61a7f4cf319994cd4612ace7868f13d6241b79c405b29ee7605e4bd2bd1a81592527b3518893afc4719806a56f5adc2290b91ef7b988b5f5bdeec0dc21c86cd0000d0e6e3bb56b14ffa10191b3c678140c618d05f9b082a2436bab9b5b59881b700bdc413f27ed6bd50d4c0e7dd6ae887ce2f7ed322fbc65fe9b0296f33295f4cda6575b45be1f1395ec3093b7a1415879559c5656e404e170d41a502757ca1dba94a832c018dd5d9546b77c6a6b1af20f8f530c1b8e0eef2cd6655c206189aeca2ec92abde3a11b5c1e2b87645795aaf525d082fda610f060a00f02ab49f1e872908a8f52d6041f0bc1da38da195a2ce6e2ba1ddee98881587fbe90989b63d15eb915387d6f30042c906f2a5c16c5781b0c485f24a06b5219c3f6036f8140d313e6612\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8080/postendpoint",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"postendpoint"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "fingerprintpubkey",
+							"item": [
+								{
+									"name": "AddFactCheck (symbol remove)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Request ERROR\", function () {\r",
+													"    pm.response.to.be.error;\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"publishNewFactCheck\":{\r\n        \"URLToCheckHash\":\"f94c0f202a5029159b9c93f6470af36cf21982b2f11ccba4ea6538cb612cf9d7b9ccb6448ca491e2bf853360890d1463a6ac75e9858677a4641e134a10e56a93\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06\",\r\n        \"URLwithFactCheck\":\"https://correctiv.org/faktencheck/2021/12/01/angebliches-tucholsky-gedicht-ueber-impfungen-stammt-von-satire-autor/\",\r\n        \"timestamp\":\"2021-12-18T13:10:44+01:00\",\r\n        \"signatureOnURLToCheckHashFingerPrintURLwithfactCheckTimestamp\":\"3b1c39953fe9f12bbc8d695f46cde1eb5745f48bd9d6bc2f41d679cae1e87992bd384abb019e398532012d0f5666038053b268971f391697c4764a3dab00df1c4f65dfda11329bead56f0db2da6c2025b99cb62bf2b336bc62182fe81f230666d2bfb0a6ca7bd1bd718f9b0444c5d5c564038e713328609bc62ef2199767ceb14a91a264e18f84f358eccac01802e5ce17e9aa8dfeefc7cd7be5eede212bb54a2ba2784600d9b9211ea24ed1a20674a5974319032179ee18557137d23be3322aa07f666a7e53c889ef5c7ec44a6d8535a2528b8a382145e94d2c5723e61a7f4cf319994cd4612ace7868f13d6241b79c405b29ee7605e4bd2bd1a81592527b3518893afc4719806a56f5adc2290b91ef7b988b5f5bdeec0dc21c86cd0000d0e6e3bb56b14ffa10191b3c678140c618d05f9b082a2436bab9b5b59881b700bdc413f27ed6bd50d4c0e7dd6ae887ce2f7ed322fbc65fe9b0296f33295f4cda6575b45be1f1395ec3093b7a1415879559c5656e404e170d41a502757ca1dba94a832c018dd5d9546b77c6a6b1af20f8f530c1b8e0eef2cd6655c206189aeca2ec92abde3a11b5c1e2b87645795aaf525d082fda610f060a00f02ab49f1e872908a8f52d6041f0bc1da38da195a2ce6e2ba1ddee98881587fbe90989b63d15eb915387d6f30042c906f2a5c16c5781b0c485f24a06b5219c3f6036f8140d313e6612\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8080/postendpoint",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"postendpoint"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "AddFactCheck (symbol add)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Request ERROR\", function () {\r",
+													"    pm.response.to.be.error;\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"publishNewFactCheck\":{\r\n        \"URLToCheckHash\":\"f94c0f202a5029159b9c93f6470af36cf21982b2f11ccba4ea6538cb612cf9d7b9ccb6448ca491e2bf853360890d1463a6ac75e9858677a4641e134a10e56a93\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06f1\",\r\n        \"URLwithFactCheck\":\"https://correctiv.org/faktencheck/2021/12/01/angebliches-tucholsky-gedicht-ueber-impfungen-stammt-von-satire-autor/\",\r\n        \"timestamp\":\"2021-12-18T13:10:44+01:00\",\r\n        \"signatureOnURLToCheckHashFingerPrintURLwithfactCheckTimestamp\":\"3b1c39953fe9f12bbc8d695f46cde1eb5745f48bd9d6bc2f41d679cae1e87992bd384abb019e398532012d0f5666038053b268971f391697c4764a3dab00df1c4f65dfda11329bead56f0db2da6c2025b99cb62bf2b336bc62182fe81f230666d2bfb0a6ca7bd1bd718f9b0444c5d5c564038e713328609bc62ef2199767ceb14a91a264e18f84f358eccac01802e5ce17e9aa8dfeefc7cd7be5eede212bb54a2ba2784600d9b9211ea24ed1a20674a5974319032179ee18557137d23be3322aa07f666a7e53c889ef5c7ec44a6d8535a2528b8a382145e94d2c5723e61a7f4cf319994cd4612ace7868f13d6241b79c405b29ee7605e4bd2bd1a81592527b3518893afc4719806a56f5adc2290b91ef7b988b5f5bdeec0dc21c86cd0000d0e6e3bb56b14ffa10191b3c678140c618d05f9b082a2436bab9b5b59881b700bdc413f27ed6bd50d4c0e7dd6ae887ce2f7ed322fbc65fe9b0296f33295f4cda6575b45be1f1395ec3093b7a1415879559c5656e404e170d41a502757ca1dba94a832c018dd5d9546b77c6a6b1af20f8f530c1b8e0eef2cd6655c206189aeca2ec92abde3a11b5c1e2b87645795aaf525d082fda610f060a00f02ab49f1e872908a8f52d6041f0bc1da38da195a2ce6e2ba1ddee98881587fbe90989b63d15eb915387d6f30042c906f2a5c16c5781b0c485f24a06b5219c3f6036f8140d313e6612\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8080/postendpoint",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"postendpoint"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "url",
+							"item": [
+								{
+									"name": "AddFactCheck (url empty)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Request ERROR\", function () {\r",
+													"    pm.response.to.be.error;\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"publishNewFactCheck\":{\r\n        \"URLToCheckHash\":\"f94c0f202a5029159b9c93f6470af36cf21982b2f11ccba4ea6538cb612cf9d7b9ccb6448ca491e2bf853360890d1463a6ac75e9858677a4641e134a10e56a93\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06f\",\r\n        \"URLwithFactCheck\":\"\",\r\n        \"timestamp\":\"2021-12-18T13:10:44+01:00\",\r\n        \"signatureOnURLToCheckHashFingerPrintURLwithfactCheckTimestamp\":\"3b1c39953fe9f12bbc8d695f46cde1eb5745f48bd9d6bc2f41d679cae1e87992bd384abb019e398532012d0f5666038053b268971f391697c4764a3dab00df1c4f65dfda11329bead56f0db2da6c2025b99cb62bf2b336bc62182fe81f230666d2bfb0a6ca7bd1bd718f9b0444c5d5c564038e713328609bc62ef2199767ceb14a91a264e18f84f358eccac01802e5ce17e9aa8dfeefc7cd7be5eede212bb54a2ba2784600d9b9211ea24ed1a20674a5974319032179ee18557137d23be3322aa07f666a7e53c889ef5c7ec44a6d8535a2528b8a382145e94d2c5723e61a7f4cf319994cd4612ace7868f13d6241b79c405b29ee7605e4bd2bd1a81592527b3518893afc4719806a56f5adc2290b91ef7b988b5f5bdeec0dc21c86cd0000d0e6e3bb56b14ffa10191b3c678140c618d05f9b082a2436bab9b5b59881b700bdc413f27ed6bd50d4c0e7dd6ae887ce2f7ed322fbc65fe9b0296f33295f4cda6575b45be1f1395ec3093b7a1415879559c5656e404e170d41a502757ca1dba94a832c018dd5d9546b77c6a6b1af20f8f530c1b8e0eef2cd6655c206189aeca2ec92abde3a11b5c1e2b87645795aaf525d082fda610f060a00f02ab49f1e872908a8f52d6041f0bc1da38da195a2ce6e2ba1ddee98881587fbe90989b63d15eb915387d6f30042c906f2a5c16c5781b0c485f24a06b5219c3f6036f8140d313e6612\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8080/postendpoint",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"postendpoint"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "AddFactCheck (https missing)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Request ERROR\", function () {\r",
+													"    pm.response.to.be.error;\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"publishNewFactCheck\":{\r\n        \"URLToCheckHash\":\"f94c0f202a5029159b9c93f6470af36cf21982b2f11ccba4ea6538cb612cf9d7b9ccb6448ca491e2bf853360890d1463a6ac75e9858677a4641e134a10e56a93\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06f\",\r\n        \"URLwithFactCheck\":\"://correctiv.org/faktencheck/2021/12/01/angebliches-tucholsky-gedicht-ueber-impfungen-stammt-von-satire-autor/\",\r\n        \"timestamp\":\"2021-12-18T13:10:44+01:00\",\r\n        \"signatureOnURLToCheckHashFingerPrintURLwithfactCheckTimestamp\":\"3b1c39953fe9f12bbc8d695f46cde1eb5745f48bd9d6bc2f41d679cae1e87992bd384abb019e398532012d0f5666038053b268971f391697c4764a3dab00df1c4f65dfda11329bead56f0db2da6c2025b99cb62bf2b336bc62182fe81f230666d2bfb0a6ca7bd1bd718f9b0444c5d5c564038e713328609bc62ef2199767ceb14a91a264e18f84f358eccac01802e5ce17e9aa8dfeefc7cd7be5eede212bb54a2ba2784600d9b9211ea24ed1a20674a5974319032179ee18557137d23be3322aa07f666a7e53c889ef5c7ec44a6d8535a2528b8a382145e94d2c5723e61a7f4cf319994cd4612ace7868f13d6241b79c405b29ee7605e4bd2bd1a81592527b3518893afc4719806a56f5adc2290b91ef7b988b5f5bdeec0dc21c86cd0000d0e6e3bb56b14ffa10191b3c678140c618d05f9b082a2436bab9b5b59881b700bdc413f27ed6bd50d4c0e7dd6ae887ce2f7ed322fbc65fe9b0296f33295f4cda6575b45be1f1395ec3093b7a1415879559c5656e404e170d41a502757ca1dba94a832c018dd5d9546b77c6a6b1af20f8f530c1b8e0eef2cd6655c206189aeca2ec92abde3a11b5c1e2b87645795aaf525d082fda610f060a00f02ab49f1e872908a8f52d6041f0bc1da38da195a2ce6e2ba1ddee98881587fbe90989b63d15eb915387d6f30042c906f2a5c16c5781b0c485f24a06b5219c3f6036f8140d313e6612\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8080/postendpoint",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"postendpoint"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "AddFactCheck (no entry after https)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Request ERROR\", function () {\r",
+													"    pm.response.to.be.error;\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"publishNewFactCheck\":{\r\n        \"URLToCheckHash\":\"f94c0f202a5029159b9c93f6470af36cf21982b2f11ccba4ea6538cb612cf9d7b9ccb6448ca491e2bf853360890d1463a6ac75e9858677a4641e134a10e56a93\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06f\",\r\n        \"URLwithFactCheck\":\"htsdsdtps://correctiv.org/faktencheck/2021/12/01/angebliches-tucholsky-gedicht-ueber-impfungen-stammt-von-satire-autor/\",\r\n        \"timestamp\":\"2021-12-18T13:10:44+01:00\",\r\n        \"signatureOnURLToCheckHashFingerPrintURLwithfactCheckTimestamp\":\"3b1c39953fe9f12bbc8d695f46cde1eb5745f48bd9d6bc2f41d679cae1e87992bd384abb019e398532012d0f5666038053b268971f391697c4764a3dab00df1c4f65dfda11329bead56f0db2da6c2025b99cb62bf2b336bc62182fe81f230666d2bfb0a6ca7bd1bd718f9b0444c5d5c564038e713328609bc62ef2199767ceb14a91a264e18f84f358eccac01802e5ce17e9aa8dfeefc7cd7be5eede212bb54a2ba2784600d9b9211ea24ed1a20674a5974319032179ee18557137d23be3322aa07f666a7e53c889ef5c7ec44a6d8535a2528b8a382145e94d2c5723e61a7f4cf319994cd4612ace7868f13d6241b79c405b29ee7605e4bd2bd1a81592527b3518893afc4719806a56f5adc2290b91ef7b988b5f5bdeec0dc21c86cd0000d0e6e3bb56b14ffa10191b3c678140c618d05f9b082a2436bab9b5b59881b700bdc413f27ed6bd50d4c0e7dd6ae887ce2f7ed322fbc65fe9b0296f33295f4cda6575b45be1f1395ec3093b7a1415879559c5656e404e170d41a502757ca1dba94a832c018dd5d9546b77c6a6b1af20f8f530c1b8e0eef2cd6655c206189aeca2ec92abde3a11b5c1e2b87645795aaf525d082fda610f060a00f02ab49f1e872908a8f52d6041f0bc1da38da195a2ce6e2ba1ddee98881587fbe90989b63d15eb915387d6f30042c906f2a5c16c5781b0c485f24a06b5219c3f6036f8140d313e6612\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8080/postendpoint",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"postendpoint"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "AddFactCheck (https missspelled)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Request ERROR\", function () {\r",
+													"    pm.response.to.be.error;\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"publishNewFactCheck\":{\r\n        \"URLToCheckHash\":\"f94c0f202a5029159b9c93f6470af36cf21982b2f11ccba4ea6538cb612cf9d7b9ccb6448ca491e2bf853360890d1463a6ac75e9858677a4641e134a10e56a93\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06f\",\r\n        \"URLwithFactCheck\":\"\",\r\n        \"timestamp\":\"2021-12-18T13:10:44+01:00\",\r\n        \"signatureOnURLToCheckHashFingerPrintURLwithfactCheckTimestamp\":\"3b1c39953fe9f12bbc8d695f46cde1eb5745f48bd9d6bc2f41d679cae1e87992bd384abb019e398532012d0f5666038053b268971f391697c4764a3dab00df1c4f65dfda11329bead56f0db2da6c2025b99cb62bf2b336bc62182fe81f230666d2bfb0a6ca7bd1bd718f9b0444c5d5c564038e713328609bc62ef2199767ceb14a91a264e18f84f358eccac01802e5ce17e9aa8dfeefc7cd7be5eede212bb54a2ba2784600d9b9211ea24ed1a20674a5974319032179ee18557137d23be3322aa07f666a7e53c889ef5c7ec44a6d8535a2528b8a382145e94d2c5723e61a7f4cf319994cd4612ace7868f13d6241b79c405b29ee7605e4bd2bd1a81592527b3518893afc4719806a56f5adc2290b91ef7b988b5f5bdeec0dc21c86cd0000d0e6e3bb56b14ffa10191b3c678140c618d05f9b082a2436bab9b5b59881b700bdc413f27ed6bd50d4c0e7dd6ae887ce2f7ed322fbc65fe9b0296f33295f4cda6575b45be1f1395ec3093b7a1415879559c5656e404e170d41a502757ca1dba94a832c018dd5d9546b77c6a6b1af20f8f530c1b8e0eef2cd6655c206189aeca2ec92abde3a11b5c1e2b87645795aaf525d082fda610f060a00f02ab49f1e872908a8f52d6041f0bc1da38da195a2ce6e2ba1ddee98881587fbe90989b63d15eb915387d6f30042c906f2a5c16c5781b0c485f24a06b5219c3f6036f8140d313e6612\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8080/postendpoint",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"postendpoint"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "timestamp",
+							"item": [
+								{
+									"name": "AddFactCheck (symbol remove)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Request ERROR\", function () {\r",
+													"    pm.response.to.be.error;\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"publishNewFactCheck\":{\r\n        \"URLToCheckHash\":\"f94c0f202a5029159b9c93f6470af36cf21982b2f11ccba4ea6538cb612cf9d7b9ccb6448ca491e2bf853360890d1463a6ac75e9858677a4641e134a10e56a93\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06f\",\r\n        \"URLwithFactCheck\":\"https://correctiv.org/faktencheck/2021/12/01/angebliches-tucholsky-gedicht-ueber-impfungen-stammt-von-satire-autor/\",\r\n        \"timestamp\":\"2021-12-18T13:10:44+01:0\",\r\n        \"signatureOnURLToCheckHashFingerPrintURLwithfactCheckTimestamp\":\"3b1c39953fe9f12bbc8d695f46cde1eb5745f48bd9d6bc2f41d679cae1e87992bd384abb019e398532012d0f5666038053b268971f391697c4764a3dab00df1c4f65dfda11329bead56f0db2da6c2025b99cb62bf2b336bc62182fe81f230666d2bfb0a6ca7bd1bd718f9b0444c5d5c564038e713328609bc62ef2199767ceb14a91a264e18f84f358eccac01802e5ce17e9aa8dfeefc7cd7be5eede212bb54a2ba2784600d9b9211ea24ed1a20674a5974319032179ee18557137d23be3322aa07f666a7e53c889ef5c7ec44a6d8535a2528b8a382145e94d2c5723e61a7f4cf319994cd4612ace7868f13d6241b79c405b29ee7605e4bd2bd1a81592527b3518893afc4719806a56f5adc2290b91ef7b988b5f5bdeec0dc21c86cd0000d0e6e3bb56b14ffa10191b3c678140c618d05f9b082a2436bab9b5b59881b700bdc413f27ed6bd50d4c0e7dd6ae887ce2f7ed322fbc65fe9b0296f33295f4cda6575b45be1f1395ec3093b7a1415879559c5656e404e170d41a502757ca1dba94a832c018dd5d9546b77c6a6b1af20f8f530c1b8e0eef2cd6655c206189aeca2ec92abde3a11b5c1e2b87645795aaf525d082fda610f060a00f02ab49f1e872908a8f52d6041f0bc1da38da195a2ce6e2ba1ddee98881587fbe90989b63d15eb915387d6f30042c906f2a5c16c5781b0c485f24a06b5219c3f6036f8140d313e6612\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8080/postendpoint",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"postendpoint"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "AddFactCheck (symbol add)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Request ERROR\", function () {\r",
+													"    pm.response.to.be.error;\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"publishNewFactCheck\":{\r\n        \"URLToCheckHash\":\"f94c0f202a5029159b9c93f6470af36cf21982b2f11ccba4ea6538cb612cf9d7b9ccb6448ca491e2bf853360890d1463a6ac75e9858677a4641e134a10e56a93\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06f\",\r\n        \"URLwithFactCheck\":\"https://correctiv.org/faktencheck/2021/12/01/angebliches-tucholsky-gedicht-ueber-impfungen-stammt-von-satire-autor/\",\r\n        \"timestamp\":\"2021-12-18T13:10:44+01:00e\",\r\n        \"signatureOnURLToCheckHashFingerPrintURLwithfactCheckTimestamp\":\"3b1c39953fe9f12bbc8d695f46cde1eb5745f48bd9d6bc2f41d679cae1e87992bd384abb019e398532012d0f5666038053b268971f391697c4764a3dab00df1c4f65dfda11329bead56f0db2da6c2025b99cb62bf2b336bc62182fe81f230666d2bfb0a6ca7bd1bd718f9b0444c5d5c564038e713328609bc62ef2199767ceb14a91a264e18f84f358eccac01802e5ce17e9aa8dfeefc7cd7be5eede212bb54a2ba2784600d9b9211ea24ed1a20674a5974319032179ee18557137d23be3322aa07f666a7e53c889ef5c7ec44a6d8535a2528b8a382145e94d2c5723e61a7f4cf319994cd4612ace7868f13d6241b79c405b29ee7605e4bd2bd1a81592527b3518893afc4719806a56f5adc2290b91ef7b988b5f5bdeec0dc21c86cd0000d0e6e3bb56b14ffa10191b3c678140c618d05f9b082a2436bab9b5b59881b700bdc413f27ed6bd50d4c0e7dd6ae887ce2f7ed322fbc65fe9b0296f33295f4cda6575b45be1f1395ec3093b7a1415879559c5656e404e170d41a502757ca1dba94a832c018dd5d9546b77c6a6b1af20f8f530c1b8e0eef2cd6655c206189aeca2ec92abde3a11b5c1e2b87645795aaf525d082fda610f060a00f02ab49f1e872908a8f52d6041f0bc1da38da195a2ce6e2ba1ddee98881587fbe90989b63d15eb915387d6f30042c906f2a5c16c5781b0c485f24a06b5219c3f6036f8140d313e6612\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8080/postendpoint",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"postendpoint"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "signature",
+							"item": [
+								{
+									"name": "AddFactCheck (symbol remove)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Request ERROR\", function () {\r",
+													"    pm.response.to.be.error;\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"publishNewFactCheck\":{\r\n        \"URLToCheckHash\":\"f94c0f202a5029159b9c93f6470af36cf21982b2f11ccba4ea6538cb612cf9d7b9ccb6448ca491e2bf853360890d1463a6ac75e9858677a4641e134a10e56a93\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06f\",\r\n        \"URLwithFactCheck\":\"https://correctiv.org/faktencheck/2021/12/01/angebliches-tucholsky-gedicht-ueber-impfungen-stammt-von-satire-autor/\",\r\n        \"timestamp\":\"2021-12-18T13:10:44+01:00\",\r\n        \"signatureOnURLToCheckHashFingerPrintURLwithfactCheckTimestamp\":\"3b1c39953fe9f12bbc8d695f46cde1eb5745f48bd9d6bc2f41d679cae1e87992bd384abb019e398532012d0f5666038053b268971f391697c4764a3dab00df1c4f65dfda11329bead56f0db2da6c2025b99cb62bf2b336bc62182fe81f230666d2bfb0a6ca7bd1bd718f9b0444c5d5c564038e713328609bc62ef2199767ceb14a91a264e18f84f358eccac01802e5ce17e9aa8dfeefc7cd7be5eede212bb54a2ba2784600d9b9211ea24ed1a20674a5974319032179ee18557137d23be3322aa07f666a7e53c889ef5c7ec44a6d8535a2528b8a382145e94d2c5723e61a7f4cf319994cd4612ace7868f13d6241b79c405b29ee7605e4bd2bd1a81592527b3518893afc4719806a56f5adc2290b91ef7b988b5f5bdeec0dc21c86cd0000d0e6e3bb56b14ffa10191b3c678140c618d05f9b082a2436bab9b5b59881b700bdc413f27ed6bd50d4c0e7dd6ae887ce2f7ed322fbc65fe9b0296f33295f4cda6575b45be1f1395ec3093b7a1415879559c5656e404e170d41a502757ca1dba94a832c018dd5d9546b77c6a6b1af20f8f530c1b8e0eef2cd6655c206189aeca2ec92abde3a11b5c1e2b87645795aaf525d082fda610f060a00f02ab49f1e872908a8f52d6041f0bc1da38da195a2ce6e2ba1ddee98881587fbe90989b63d15eb915387d6f30042c906f2a5c16c5781b0c485f24a06b5219c3f6036f8140d313e661\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8080/postendpoint",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"postendpoint"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "AddFactCheck (symbol remove multiple)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Request ERROR\", function () {\r",
+													"    pm.response.to.be.error;\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"publishNewFactCheck\":{\r\n        \"URLToCheckHash\":\"f94c0f202a5029159b9c93f6470af36cf21982b2f11ccba4ea6538cb612cf9d7b9ccb6448ca491e2bf853360890d1463a6ac75e9858677a4641e134a10e56a93\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06f\",\r\n        \"URLwithFactCheck\":\"https://correctiv.org/faktencheck/2021/12/01/angebliches-tucholsky-gedicht-ueber-impfungen-stammt-von-satire-autor/\",\r\n        \"timestamp\":\"2021-12-18T13:10:44+01:00\",\r\n        \"signatureOnURLToCheckHashFingerPrintURLwithfactCheckTimestamp\":\"3b1c39953fe9f12bbc8d695f46cde1eb5745f48bd9d6bc2f41d679cae1e87992bd384abb019e398532012d0f5666038053b268971f391697c4764a3dab00df1c4f65dfda11329bead56f0db2da6c2025b99cb62bf2b336bc62182fe81f230666d2bfb0a6ca7bd1bd718f9b0444c5d5c564038e713328609bc62ef2199767ceb14a91a264e18f84f358eccac01802e5ce17e9aa8dfeefc7cd7be5eede212bb54a2ba2784600d9b9211ea24ed1a20674a5974319032179ee18557137d23be3322aa07f666a7e53c889ef5c7ec44a6d8535a2528b8a382145e94d2c5723e61a7f4cf319994cd4612ace7868f13d6241b79c405b29ee7605e4bd2bd1a81592527b3518893afc4719806a56f5adc2290b91ef7b988b5f5bdeec0dc21c86cd0000d0e6e3bb56b14ffa10191b3c678140c618d05f9b082a2436bab9b5b59881b700bdc413f27ed6bd50d4c0e7dd6ae887ce2f7ed322fbc65fe9b0296f33295f4cda6575b45be1f1395ec3093b7a1415879559c5656e404e170d41a502757ca1dba94a832c018dd5d9546b77c6a6b1af20f8f530c1b8e0eef2cd6655c206189aeca2ec92abde3a11b5c1e2b87645795aaf525d082fda610f060a00f02ab49f1e872908a8f52d6041f0bc1da38da195a2ce6e2ba1ddee98881587fbe90989b63d15eb915387d6f30042c906f2a5c16c5781b0c485f24a06b5219c3f6036f8140d313e66\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8080/postendpoint",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"postendpoint"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "AddFactCheck (smybol add)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Request ERROR\", function () {\r",
+													"    pm.response.to.be.error;\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"publishNewFactCheck\":{\r\n        \"URLToCheckHash\":\"f94c0f202a5029159b9c93f6470af36cf21982b2f11ccba4ea6538cb612cf9d7b9ccb6448ca491e2bf853360890d1463a6ac75e9858677a4641e134a10e56a93\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06f\",\r\n        \"URLwithFactCheck\":\"https://correctiv.org/faktencheck/2021/12/01/angebliches-tucholsky-gedicht-ueber-impfungen-stammt-von-satire-autor/\",\r\n        \"timestamp\":\"2021-12-18T13:10:44+01:00\",\r\n        \"signatureOnURLToCheckHashFingerPrintURLwithfactCheckTimestamp\":\"3b1c39953fe9f12bbc8d695f46cde1eb5745f48bd9d6bc2f41d679cae1e87992bd384abb019e398532012d0f5666038053b268971f391697c4764a3dab00df1c4f65dfda11329bead56f0db2da6c2025b99cb62bf2b336bc62182fe81f230666d2bfb0a6ca7bd1bd718f9b0444c5d5c564038e713328609bc62ef2199767ceb14a91a264e18f84f358eccac01802e5ce17e9aa8dfeefc7cd7be5eede212bb54a2ba2784600d9b9211ea24ed1a20674a5974319032179ee18557137d23be3322aa07f666a7e53c889ef5c7ec44a6d8535a2528b8a382145e94d2c5723e61a7f4cf319994cd4612ace7868f13d6241b79c405b29ee7605e4bd2bd1a81592527b3518893afc4719806a56f5adc2290b91ef7b988b5f5bdeec0dc21c86cd0000d0e6e3bb56b14ffa10191b3c678140c618d05f9b082a2436bab9b5b59881b700bdc413f27ed6bd50d4c0e7dd6ae887ce2f7ed322fbc65fe9b0296f33295f4cda6575b45be1f1395ec3093b7a1415879559c5656e404e170d41a502757ca1dba94a832c018dd5d9546b77c6a6b1af20f8f530c1b8e0eef2cd6655c206189aeca2ec92abde3a11b5c1e2b87645795aaf525d082fda610f060a00f02ab49f1e872908a8f52d6041f0bc1da38da195a2ce6e2ba1ddee98881587fbe90989b63d15eb915387d6f30042c906f2a5c16c5781b0c485f24a06b5219c3f6036f8140d313e66121\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8080/postendpoint",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"postendpoint"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "AddFactCheck (smybol add multiple)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Request ERROR\", function () {\r",
+													"    pm.response.to.be.error;\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"publishNewFactCheck\":{\r\n        \"URLToCheckHash\":\"f94c0f202a5029159b9c93f6470af36cf21982b2f11ccba4ea6538cb612cf9d7b9ccb6448ca491e2bf853360890d1463a6ac75e9858677a4641e134a10e56a93\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06f\",\r\n        \"URLwithFactCheck\":\"https://correctiv.org/faktencheck/2021/12/01/angebliches-tucholsky-gedicht-ueber-impfungen-stammt-von-satire-autor/\",\r\n        \"timestamp\":\"Sat, 18 Dec 2021 13:10:44 GMT\",\r\n        \"signatureOnURLToCheckHashFingerPrintURLwithfactCheckTimestamp\":\"3b1c39953fe9f12bbc8d695f46cde1eb5745f48bd9d6bc2f41d679cae1e87992bd384abb019e398532012d0f5666038053b268971f391697c4764a3dab00df1c4f65dfda11329bead56f0db2da6c2025b99cb62bf2b336bc62182fe81f230666d2bfb0a6ca7bd1bd718f9b0444c5d5c564038e713328609bc62ef2199767ceb14a91a264e18f84f358eccac01802e5ce17e9aa8dfeefc7cd7be5eede212bb54a2ba2784600d9b9211ea24ed1a20674a5974319032179ee18557137d23be3322aa07f666a7e53c889ef5c7ec44a6d8535a2528b8a382145e94d2c5723e61a7f4cf319994cd4612ace7868f13d6241b79c405b29ee7605e4bd2bd1a81592527b3518893afc4719806a56f5adc2290b91ef7b988b5f5bdeec0dc21c86cd0000d0e6e3bb56b14ffa10191b3c678140c618d05f9b082a2436bab9b5b59881b700bdc413f27ed6bd50d4c0e7dd6ae887ce2f7ed322fbc65fe9b0296f33295f4cda6575b45be1f1395ec3093b7a1415879559c5656e404e170d41a502757ca1dba94a832c018dd5d9546b77c6a6b1af20f8f530c1b8e0eef2cd6655c206189aeca2ec92abde3a11b5c1e2b87645795aaf525d082fda610f060a00f02ab49f1e872908a8f52d6041f0bc1da38da195a2ce6e2ba1ddee98881587fbe90989b63d15eb915387d6f30042c906f2a5c16c5781b0c485f24a06b5219c3f6036f8140d313e661211\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8080/postendpoint",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"postendpoint"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

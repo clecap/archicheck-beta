@@ -1,0 +1,397 @@
+{
+	"info": {
+		"_postman_id": "d7f561af-e53e-476e-816d-c7845fef3689",
+		"name": "X GET Correct REVOKE (done)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "setup",
+			"item": [
+				{
+					"name": "DB Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Database deleted\", function () {\r",
+									"    let jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.deleteDB.message).equals(\"DB successfully deleted\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/postendpoint/deleteDB",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"postendpoint",
+								"deleteDB"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddUserPower",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request OK\", function () {\r",
+									"    pm.response.to.be.ok;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"createAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAqrp9b+gh7PQXOAQVnHbnPswXAX6/dZ3UYkU+KQ7TTPzp+pRudifRvqn7/cqx4zbAfDwf1beZEtjxK6KR16zxqPAQ5m0hEeboVDQk7zTUU8BlFEs3TfhwubK/OJSROyRGhpH+Cx9oMIJNDA9p3Pn74RrgkKwqEpkXUOAx/ld6U39gVxC2uhUMwtmHG1h305tWc4THVpz/nElazuqKtpC7H8mAJmfQcHV5uGm1JoLivKiCQR1l6L8JVjB5x9rINepfljAWvLMZxIqjhEppC3TW6+Gv3/6dxvwSvPrfN525MQOYEW2Cz8nq6r4lTqs5XX8dVXZ3Dqa+P8Vdg3zpU6pUfo8zavHOeGkJHiexS37fdMWGC1A/XkqTCEat5ycM5o/Kms1ox/Nza/tVi+Z2/+cZgGa9YIplaqxrWdJjCwAwJ0xAsCqz3hPTgCmP2LXwRzTrBhvrky6+d48Xcbeqst6Ut9RCNe+Aj/6nDnNBQvNt7oFvVM6Lhw6Ux9d462Mt3uF75doXIJbwczjW3IAYDHnBHbVd9V+feZNDm0IRWo3p9yINu/fIQEQKaMsSHxtxm8oTdwi/BVULhyaSXS3+gcRDMjdrB+u71ictb+iffdSX86e6d/60ouX6M1t/mdh7qFDNdMV9n7eE59Gy0jp/u9NekMkbVnvTUH9bcRAuF4o30zMCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06f\",\r\n        \"publisherName\":\"power-factchecker\",\r\n        \"firstLogin\":\"Mon, 15 Nov 2021 14:06:44 GMT\",\r\n        \"signatureOnPublicKeyPublisherName\":\"08f5e87f9ee6db7c6767791c9006537e3d358c578acc7d790f2b83450bd00f55c4727e49d66fee0de7de4afc262553ce65064846a7dcba37648d0c68442b773ece10be2afa37f53c171f469305b01acdd6d448fd8aec48ec6346651dfe2ed9b62815b0cd976e9331979019df1c3ef2af36177f8cb145be3fd56438e90fc309e1b16418eef317bbfdf67072427a8d3d564d8c0e050e445de25588ab3f1f3aa32fdd64c122892ba2dca2e5fccc836048c37bae3d2528be41a8fbb013e4a9f1a8bedbc8121878658ddfe8fe168e6f9661401cdb2f503356c1c340616573b5fe711b346f6d3ce2438bd3d976df1887e2b753ad82b1f6073961a1c4634e5836757e0e3b37385d2f304949e287354cf6c61a07382b9e3277341561d29d0e50764c55130d48e378b34b43932e20e4cbf3cc8738d612d00064dfda3f0dd1d0600292c436f8b4d92f28687b61d806e75da399aea9b19daff9763e2c6a078dc1e7fc31f4d8cbe0fe53d36cb75f92abca898ba410775592639a2bdd8b3512874432578e3205fb5e6f797206d9b85a6433d969363a932a87a856433f47d5e92f695ecee1c4566db9c5f6b928cb60655a7fd7b339941eec86205c69c69794066fe11919ae9e7c33d08f8de24c60dd2ed09e244a89799cd593035934684df5dab3f53cbb497fcbecef22cf8997ba027d0fd3475c3f47386bec06bad097ca2d11a8726ceeb17b69\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/postendpoint",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"postendpoint"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddUserReal",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request OK\", function () {\r",
+									"    pm.response.to.be.ok;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"createAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAr1faDzSg07x+5hvEDGzUzpSkedtQaq0CHJV8MZrRXXUVOQ21a0eBnoVMZLADuBISyW0gj6nJ9dtu+T+KFUxJKuDIIVfNPMqmehPqqWxv8qRsUQywaRBnWm4QIW2I8BdQINvvDULFO6nG3DknyzYku3HPA+TVt147opqWqTUPivkBuEJN/ANroAq1P9WlrjbyFSdqHtuPDavXaVwq8JZhxKqhE4w0aAGryE5HCDIT1hAq42G2CC5NNW3IaZVBBMqPn/tNCp0sQtUJiQZ19erolrcAxVIFd4Rv+YuMSpYKXuyFHPcUUjwLGyj7wq5mE9YRp+xnQ0RHLl3JSoyJeGAQCKD1M6d2mI1sBP/kqQS9xFWmvDbHG9XnGrYRAWFPlEln8gPF4WyhSqDyX7959gfhowGZJksZk9l9Ofbr9BWpOp65Aib4TQJXRgfeMkmDsYneF7e2p+4Watbbe7KBlvMgR6YIRq9OYbSGPAikdVet/j0A9SAKY0DZhq2FRlzG2RAiIV0GvI+j5aZs3d4ljjy6VVK/O3URKL4znOM6mRZUl0Fq7Jo5c0JDFgeXorGbqo8RHKeSmMHh8O37sj1V1p6AWgtJgu4cSkFPkxqUp7z9XHZo/KZaUAf8YfzTqQGThTS6MpqVczrKXYsdghwFAtBep+Ba+QKuYVVIpPbwgGRyCmsCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"075966285278f8dbc92b49342ede3869b1a75cec\",\r\n        \"publisherName\":\"real-factchecker\",\r\n        \"firstLogin\":\"Mon, 22 Nov 2021 14:06:44 GMT\",\r\n        \"signatureOnPublicKeyPublisherName\":\"8e20534defb6844f12b5942f73dde15ebd5e1ddeb77ddddda57fbc700cc984112d74c516560eb21374c4eabdcd717190f5a128309f668c9ba070d6dbe7f8ffea6251f1ee9877783ad61565354a095acf83382654c4078ab70ccc88b8f75eefc7f98dd38505cb7b30d49852d0b313faf483aef9af2a5a492dd6cfa52c0e59518f2f2cccdf82193433c56b545a79b6dc5f452eec4b2de01cb0168306ea4e0431277940fb4e977caf458295afe01e34a65934066aebc984c599ff2a6fa4dadd72b846f27199ada09b5aef74a13cbdb48c0fd9a1427f5bba747939ab06e64b9d4f090a67e7a3966ce28ea68b2177005c7d379079ab326347970c121804997c25337eb4677850f7684662ab3b588cb48c250e7c9649f7407380bb5e82d43438dba51cc7755dd894f6d2c9b7a3c73133522505903e7efb4b9b437bd9da6388ef66ef4c81e3096b0c0beca1f4b15bfc8c3237e12f00a7b58647d935cbe2b9c2b32923d4c36d8e18489ada5ead380858009424559949b1943cbd18fa192422d44699622629ccab2ebb935831a8dc7b837ce5106854e4f7b9cecdb325a09a26b03eed5dc4b6f0d071df2610137cc13ef678f926fa370f6821f02c251c41c7bcbccf23e25cf2800497c2768f89963fa84ee8a85d30d1ffc3173d926b732937bc78c55ef6f14c60e1e8a7c0776a5750afed436122829309c23034c5fcdf12bba589f6ea1c32\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/postendpoint",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"postendpoint"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddUserFreddy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request OK\", function () {\r",
+									"    pm.response.to.be.ok;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"createAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEArVVVa3jkDi5cz1i5YliyWlU7Q62BWvX4Ifi7z9lvmhUpGKh9WJMSIrmdlBYrxPNc3kr2tABDMULpFyqY5ac1p98Utsz3F4n6oyZ0eHJVSUmsVJut124tQXFgMmFt7axgBtBFubirBoJFlqzTEUUuu+dMqocpmicE2ZWZkw1iX4iM671LULvn4z0c5w1WI65cnzvi/po/nqv9OxKrbjDOECB/CBL5aLKc6NoEbptOt2ZQrcMkkJq9aS7T/R90hMSN+8CHKjOdmPcDehNkFeT8MuSFM7twcivSmJnDRIkNHmhJ++ttOJ04EzO++2GGFDqAhqYXcx+RJ/vcdRLawXiA+fKfboxTIYfFsrAXQ8RZA4xGVYd2ZaB/vO880TZgCm3euQFQpzwSVr/k6z7jr+r21QV1jiCwOy+A7imU/v62SMhp8jsBwK786LPXeLmZ/VGw2oquInrNTzdDgs/PcI65YOs886xYlCeg5nzsxrawZwHj+251SAuzuWLWg7ONkBX6fmYSnDJmPryJwjjyu5C3aaUerijmB42DYgHCH/9394Bmw4JJ9qempYmLmSl34zDB2DgNCkgx52QxH19QWfglxiOlupGLmSPiNOtVWiuhPuYZcqGKM4qIWMeYK6Lp2onu3a2YSNqQw0a5Ckh2QBsQ0uQMuc1SP5BXEJQdfji+8wUCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"f146dfff8ba2cc60aec546a4b0ab6ac66f53fb50\",\r\n        \"publisherName\":\"freddy-factchecker\",\r\n        \"firstLogin\":\"Fri, 17 Dec 2021 12:10:44 GMT\",\r\n        \"signatureOnPublicKeyPublisherName\":\"4b6b68e2c2faa393cf35267e89ab50e135dc811d6f432cd925bed1331d4ecd009742fe8556fbb76c9e3929468bebaa563f993c34deb6ec5e144cb082b48bad870c49d3ecb236013fab276fd23692d865508cbd77c25feec801fbfa949e70c334d12d93daeca5053ac815924d034a1179b44c160bde68f2a6c9a38b2756539e7a19c7b41b969c2e6188f6ea36563ccff9bbe01fca8c0bb1e5b5d7b80f14490ba32a54abae66008cc0a3719a99c7e858f531f5db005f9f87494710625395e4a33b0fd139a54d2c6967e9ef3290f0db5b526c65365021767fd5de7f486f11127582d5a9349fa7a04c264a30caf06af9c14ff5aa4865028e5276e4a1604d9565724ff2a99c8d43b19df95e5859aea203bc9e56552a11db96794a0786200cb9b7870a9d180954ee77e689b23c4fa53b252ed5fc9c63ce38ba89429a236c0c28cda5b55d2709ef5b858c6b0a1543fbe7ca44c21517485386edac864f6f5353820a0dd6939fe253f42f19c0ccf9547404224707cf8611a79284a70d98ac8e5d3d2e9bcf39c291ea38c5025baff976e8ab6cd47d9ab2e00dd6ae89f4e29014131a9e10c348cecf1e7d9ac66e67d90c492862191b28c7245d049ae48268a274e889b68ad2ac395b68d3f62516eb32142569f914588f7c2f7f8405d711a045068e6570114a0e1cfc537a61303950c8cbf19529800f824658b92b26ee9b68e858c5470cc19b\"\r\n    }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/postendpoint",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"postendpoint"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddUserNew",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request OK\", function () {\r",
+									"    pm.response.to.be.ok;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"createAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAiD6Bs9oGSvUXecXDKldwoHyfynDelNvxyc1Ui5TGhajWp4IMskqV8SnQyfhbErIGWgStAivKbMOGja9ecciKTS6/VDZOno048zMsZRzzKo9UeqoOqKluRwPcoiQnQlABYUvKu7IMapU9aBsMGxUWMlirhjvEkDrdg3B+w5PClLMr2XE5txriW7tmyu4fLTILxYN9IeJtN5EAoWPhxqq05ksOAS0USwdAHgbvThOkGiaoKvOQsbj+kG3+ND9C+SYuipT5glQYrMzlhvlGvHK0QAaDq/c7GI+eTNyBb5TZm7A4anW2p8MPExKHrtbbzDs2nfFvBYWKJIH3iiLuyGg7uzv+r/9FrNgjQizu7wI3cl5WDmyXxgh9DUPUdezVaV4D0JGG4DjNXLdXAaV11lbdXhlCHDPUw3g3MbDsy1mLDVnzBJNxgUv945Xp6DjxLlWDcFGnbDfmJrksd7aOoP9kGY3KtvAuOyw1TsK/burWyKeFhvaDoOyaoHEroP6THp5E017YsT2AjXmDIeHYCd0/R7COi1hGazInYoZDbfbJMTtmzHD6Dp+f2QaY9gsOfL/+H6q4+a/sVQg9vnolZZq53rz9oteRzdpvtmRNHjXN/nxY39TjcN6fO6YibSE4EaSRQX0AjznLIENvt3+YWWsmVScNW8BMen3cyAerdOuPrLcCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"9d34adfa62df83e03988fa3ee69163e74809b37e\",\r\n        \"publisherName\":\"new-factchecker\",\r\n        \"firstLogin\":\"Mon, 22 Nov 2021 14:06:44 GMT\",\r\n        \"signatureOnPublicKeyPublisherName\":\"445dfc2b8345227425a4b5b52fe76d7b82ae213e04210b52778e4eb414d49fa80524bb195897427ccb596941496dbc212ca52618e016f24452c2e1e38e88e20423821841d76d4148bfc11add7c8e01d884f6353e64045e2675a4b96367febd59cd7ffe7a8ad99882e3fba679a4c85807709cd855d7ab98487d7aa1792ab311e32082b3578b2f4ff7789c665b18282c9e4f219c520625c48e7ab504c0f1c95c7fdd25855d784d0496d684be1ba1ad96394532099c1f17fe4a62576ae6ee6e04dc621f29957e6ff65d044b902135ac428171f9adaf54d6698cefbce3e13ddc5729c287716d8bb7d89b9f556c81fd852687fd1f7ec3ed128263e046d36591287481b31fcb0af9e43d73b1690b057bd8531290dd2442d1dea7b168fe674516001a09a1a9f118641b4c1b302c0efd638554e852174cfd99801365fc6cf4c049df0bca2dbfdec8e1c95fc651735f4923a3ff632d5da1bc225e9886536602a438e40bd3aea1b1981afb8e2651e3f382721cf22019e48484ee6139d1372d04936a0cbe73bf762a277d023402b2ae85815db90dd8fd3762cb685bf3873a001e0f0199bcf8134c4647737cd5fd6a32298e9095429e8aac04ed996172c5145b194eceb5f5fb5edfa5245a541594a560e85fbcb213b47740b5d94ecca892c8a1b5537c82d9f1dfcc5df3c4c4978f20e3dce1d3b581917f73638f481994a345fe01c61511d8d8\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/postendpoint",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"postendpoint"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteUserPower",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request OK\", function () {\r",
+									"    pm.response.to.be.ok;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Successfully deleted User\", function () {\r",
+									"    let jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.deleteAccount.message).contains(\"Successfully deleted publisher\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"deleteAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAqrp9b+gh7PQXOAQVnHbnPswXAX6/dZ3UYkU+KQ7TTPzp+pRudifRvqn7/cqx4zbAfDwf1beZEtjxK6KR16zxqPAQ5m0hEeboVDQk7zTUU8BlFEs3TfhwubK/OJSROyRGhpH+Cx9oMIJNDA9p3Pn74RrgkKwqEpkXUOAx/ld6U39gVxC2uhUMwtmHG1h305tWc4THVpz/nElazuqKtpC7H8mAJmfQcHV5uGm1JoLivKiCQR1l6L8JVjB5x9rINepfljAWvLMZxIqjhEppC3TW6+Gv3/6dxvwSvPrfN525MQOYEW2Cz8nq6r4lTqs5XX8dVXZ3Dqa+P8Vdg3zpU6pUfo8zavHOeGkJHiexS37fdMWGC1A/XkqTCEat5ycM5o/Kms1ox/Nza/tVi+Z2/+cZgGa9YIplaqxrWdJjCwAwJ0xAsCqz3hPTgCmP2LXwRzTrBhvrky6+d48Xcbeqst6Ut9RCNe+Aj/6nDnNBQvNt7oFvVM6Lhw6Ux9d462Mt3uF75doXIJbwczjW3IAYDHnBHbVd9V+feZNDm0IRWo3p9yINu/fIQEQKaMsSHxtxm8oTdwi/BVULhyaSXS3+gcRDMjdrB+u71ictb+iffdSX86e6d/60ouX6M1t/mdh7qFDNdMV9n7eE59Gy0jp/u9NekMkbVnvTUH9bcRAuF4o30zMCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"1d3f4630d911fea226898a7a3116166b3a96b06f\",\r\n        \"publisherName\":\"power-factchecker\",\r\n        \"signatureOnFingerPrintPublicKeyPublisherNameDELETEFLAG\":\"4aebd0ae8561ab80bbbb3bded27ca57ce20c2c02192affc822767b0cbfc465962aee4241d0b3b2934e5911c953ae42e53bf7a358a2e308b06f7e831b1722f6baeaf3d382dffc8f3798b1446c17b3f019cde2aa211b58c3bc732cec12fc0bf88fc6a283dd2afe71fb635fb4d6fb013f851bac0bf3a64cbd0dcffec0c0364268292c88c151bed234b91598506fdbb67bbc1b61b44f5183a907619a09f04e5e17cccb313c7037a217d225a49a22da1fabfc7be55e8d27a1eb758805810b7695e182a68a8c68d8ed50d02322e2af06f7a9b982ad1961fb2aa3d27ecd14a3fc59a228f601dc01dc936122c68905f75d668db8351de41c49c5dad974d5eb77255c65e47d7a93cfe8ad81a42e3fc256a4c87da4950760c70d756616136e87495912e43e051971130adb847182d51e8fca92c5dfa429a562d4709f8d816697bff5dac90009a8d79321cb992fd3643096bb3aa1fe552615a2c94c6339573ca0d8726879994a8348aa2d6740eaef8c5d1d81a9d4932797d9dafe62891eecba583e8d31b7ab6007c013ff7b8f984c16ed110487d97b6990b24c56b55237c4a6a7d67a3db3c8cce89366b65bb0601dadfb6a4fdb66e4b8a4cbb064a232549ddcf323381bc98ccb0f3afe0565ccdf6f8826df66db70a8fccd2503dfe3ee7420e218549e3fd95b4a0869366acdda5d6cf25e8f253e77df0a728c9b65f8c9fff786c9279a39d717\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/postendpoint",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"postendpoint"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteUserReal",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request OK\", function () {\r",
+									"    pm.response.to.be.ok;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Successfully deleted User\", function () {\r",
+									"    let jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.deleteAccount.message).contains(\"Successfully deleted publisher\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"deleteAccount\":{\r\n        \"publicKey\":\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAr1faDzSg07x+5hvEDGzUzpSkedtQaq0CHJV8MZrRXXUVOQ21a0eBnoVMZLADuBISyW0gj6nJ9dtu+T+KFUxJKuDIIVfNPMqmehPqqWxv8qRsUQywaRBnWm4QIW2I8BdQINvvDULFO6nG3DknyzYku3HPA+TVt147opqWqTUPivkBuEJN/ANroAq1P9WlrjbyFSdqHtuPDavXaVwq8JZhxKqhE4w0aAGryE5HCDIT1hAq42G2CC5NNW3IaZVBBMqPn/tNCp0sQtUJiQZ19erolrcAxVIFd4Rv+YuMSpYKXuyFHPcUUjwLGyj7wq5mE9YRp+xnQ0RHLl3JSoyJeGAQCKD1M6d2mI1sBP/kqQS9xFWmvDbHG9XnGrYRAWFPlEln8gPF4WyhSqDyX7959gfhowGZJksZk9l9Ofbr9BWpOp65Aib4TQJXRgfeMkmDsYneF7e2p+4Watbbe7KBlvMgR6YIRq9OYbSGPAikdVet/j0A9SAKY0DZhq2FRlzG2RAiIV0GvI+j5aZs3d4ljjy6VVK/O3URKL4znOM6mRZUl0Fq7Jo5c0JDFgeXorGbqo8RHKeSmMHh8O37sj1V1p6AWgtJgu4cSkFPkxqUp7z9XHZo/KZaUAf8YfzTqQGThTS6MpqVczrKXYsdghwFAtBep+Ba+QKuYVVIpPbwgGRyCmsCAwEAAQ==\",\r\n        \"fingerPrintPublicKey\":\"075966285278f8dbc92b49342ede3869b1a75cec\",\r\n        \"publisherName\":\"real-factchecker\",\r\n        \"signatureOnFingerPrintPublicKeyPublisherNameDELETEFLAG\":\"5c529eb36f4a7c703dab06f4edf8f9a443f24295bff8b2720ca1e0fbc84f9b8c9ab8c2da2b1542513e05ffb95c35a59740b2d70468163dbe3e4d535933df88d4e1931a05aa1925b13f773ceeb398630f99a115132baac0b8ff3081c28ac29caca6382a3003203a86ba5faa14233a96aba8929c89539f5ec6064c4f851ee2dd0a1b04cf719cc65539b4b8d3de54c75fa5024aca8d76475d1ac1b00c26491231909668ea9606d088b21191360814b58717b1f9b8b17ce1a87fea09ff35d9894da6690e2663ad878dfc095ae49108fffde5f9baedfd37b12a6344ddfe058ab4a8606f012eeaf4cbc3c7c1ae9983b395960c065a2c6eedb0edd56255412f5115a305e4215bfea02974c9b12f6c2a9282040f830f4a3a7c4c284de91e87720dea428b6c7dbf585fa4ba89bdebe71817409bd72a8ca5bcc8fd9195f6d0abf2630f38930bc06ade515d1f782e578ae9842dfee422e8bec1defc638d211c2989b98139344c9dad4e31d2206030f1668a6d58785a7d0fa620c4f6616350c1f021ab93d4d65d26deaabc6369de43cc96b6035649b9f1822586d46780e61b2b56f471402ad5c2e6b51e6e13c5f5bff89ef6caa1fed46511c945c3f2d462bd5043702cd630c5d733014f95db0032cdecd4ae5419e4eeaf5cdfd514188535b69a9fa96b237d90283cb3c75cd6892bd891f149fd7c5dd5351bbc68282e8d7047aee6810cdb5d01\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/postendpoint",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"postendpoint"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "get and compare",
+			"item": [
+				{
+					"name": "GetRevoke1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request OK\", function () {\r",
+									"    pm.response.to.be.ok;\r",
+									"});\r",
+									"\r",
+									"// delete user power\r",
+									"pm.test(\"Data insertion successfull\", function () {\r",
+									"    let jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.revokedKeys.numberOfKeys).equals(2)\r",
+									"    pm.expect(jsonData.keyList[0].publicKey).equals(\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAqrp9b+gh7PQXOAQVnHbnPswXAX6/dZ3UYkU+KQ7TTPzp+pRudifRvqn7/cqx4zbAfDwf1beZEtjxK6KR16zxqPAQ5m0hEeboVDQk7zTUU8BlFEs3TfhwubK/OJSROyRGhpH+Cx9oMIJNDA9p3Pn74RrgkKwqEpkXUOAx/ld6U39gVxC2uhUMwtmHG1h305tWc4THVpz/nElazuqKtpC7H8mAJmfQcHV5uGm1JoLivKiCQR1l6L8JVjB5x9rINepfljAWvLMZxIqjhEppC3TW6+Gv3/6dxvwSvPrfN525MQOYEW2Cz8nq6r4lTqs5XX8dVXZ3Dqa+P8Vdg3zpU6pUfo8zavHOeGkJHiexS37fdMWGC1A/XkqTCEat5ycM5o/Kms1ox/Nza/tVi+Z2/+cZgGa9YIplaqxrWdJjCwAwJ0xAsCqz3hPTgCmP2LXwRzTrBhvrky6+d48Xcbeqst6Ut9RCNe+Aj/6nDnNBQvNt7oFvVM6Lhw6Ux9d462Mt3uF75doXIJbwczjW3IAYDHnBHbVd9V+feZNDm0IRWo3p9yINu/fIQEQKaMsSHxtxm8oTdwi/BVULhyaSXS3+gcRDMjdrB+u71ictb+iffdSX86e6d/60ouX6M1t/mdh7qFDNdMV9n7eE59Gy0jp/u9NekMkbVnvTUH9bcRAuF4o30zMCAwEAAQ==\")\r",
+									"    pm.expect(jsonData.keyList[0].fingerPrint).equals(\"1d3f4630d911fea226898a7a3116166b3a96b06f\")\r",
+									"    pm.expect(jsonData.keyList[0].publisherName).equals(\"power-factchecker\")\r",
+									"    pm.expect(jsonData.keyList[0].signatureOnFingerPrintPublicKeyPublisherNameDELETEFLAG).equals(\"4aebd0ae8561ab80bbbb3bded27ca57ce20c2c02192affc822767b0cbfc465962aee4241d0b3b2934e5911c953ae42e53bf7a358a2e308b06f7e831b1722f6baeaf3d382dffc8f3798b1446c17b3f019cde2aa211b58c3bc732cec12fc0bf88fc6a283dd2afe71fb635fb4d6fb013f851bac0bf3a64cbd0dcffec0c0364268292c88c151bed234b91598506fdbb67bbc1b61b44f5183a907619a09f04e5e17cccb313c7037a217d225a49a22da1fabfc7be55e8d27a1eb758805810b7695e182a68a8c68d8ed50d02322e2af06f7a9b982ad1961fb2aa3d27ecd14a3fc59a228f601dc01dc936122c68905f75d668db8351de41c49c5dad974d5eb77255c65e47d7a93cfe8ad81a42e3fc256a4c87da4950760c70d756616136e87495912e43e051971130adb847182d51e8fca92c5dfa429a562d4709f8d816697bff5dac90009a8d79321cb992fd3643096bb3aa1fe552615a2c94c6339573ca0d8726879994a8348aa2d6740eaef8c5d1d81a9d4932797d9dafe62891eecba583e8d31b7ab6007c013ff7b8f984c16ed110487d97b6990b24c56b55237c4a6a7d67a3db3c8cce89366b65bb0601dadfb6a4fdb66e4b8a4cbb064a232549ddcf323381bc98ccb0f3afe0565ccdf6f8826df66db70a8fccd2503dfe3ee7420e218549e3fd95b4a0869366acdda5d6cf25e8f253e77df0a728c9b65f8c9fff786c9279a39d717\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/publishers/revokedPubKeys/*",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"publishers",
+								"revokedPubKeys",
+								"*"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetRevoke2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Request OK\", function () {\r",
+									"    pm.response.to.be.ok;\r",
+									"});\r",
+									"\r",
+									"// delete user real\r",
+									"pm.test(\"Data insertion successfull\", function () {\r",
+									"    let jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.revokedKeys.numberOfKeys).equals(2)\r",
+									"    pm.expect(jsonData.keyList[0].publicKey).equals(\"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAr1faDzSg07x+5hvEDGzUzpSkedtQaq0CHJV8MZrRXXUVOQ21a0eBnoVMZLADuBISyW0gj6nJ9dtu+T+KFUxJKuDIIVfNPMqmehPqqWxv8qRsUQywaRBnWm4QIW2I8BdQINvvDULFO6nG3DknyzYku3HPA+TVt147opqWqTUPivkBuEJN/ANroAq1P9WlrjbyFSdqHtuPDavXaVwq8JZhxKqhE4w0aAGryE5HCDIT1hAq42G2CC5NNW3IaZVBBMqPn/tNCp0sQtUJiQZ19erolrcAxVIFd4Rv+YuMSpYKXuyFHPcUUjwLGyj7wq5mE9YRp+xnQ0RHLl3JSoyJeGAQCKD1M6d2mI1sBP/kqQS9xFWmvDbHG9XnGrYRAWFPlEln8gPF4WyhSqDyX7959gfhowGZJksZk9l9Ofbr9BWpOp65Aib4TQJXRgfeMkmDsYneF7e2p+4Watbbe7KBlvMgR6YIRq9OYbSGPAikdVet/j0A9SAKY0DZhq2FRlzG2RAiIV0GvI+j5aZs3d4ljjy6VVK/O3URKL4znOM6mRZUl0Fq7Jo5c0JDFgeXorGbqo8RHKeSmMHh8O37sj1V1p6AWgtJgu4cSkFPkxqUp7z9XHZo/KZaUAf8YfzTqQGThTS6MpqVczrKXYsdghwFAtBep+Ba+QKuYVVIpPbwgGRyCmsCAwEAAQ==\")\r",
+									"    pm.expect(jsonData.keyList[0].fingerPrint).equals(\"075966285278f8dbc92b49342ede3869b1a75cec\")\r",
+									"    pm.expect(jsonData.keyList[0].publisherName).equals(\"real-factchecker\")\r",
+									"    pm.expect(jsonData.keyList[0].signatureOnFingerPrintPublicKeyPublisherNameDELETEFLAG).equals(\"5c529eb36f4a7c703dab06f4edf8f9a443f24295bff8b2720ca1e0fbc84f9b8c9ab8c2da2b1542513e05ffb95c35a59740b2d70468163dbe3e4d535933df88d4e1931a05aa1925b13f773ceeb398630f99a115132baac0b8ff3081c28ac29caca6382a3003203a86ba5faa14233a96aba8929c89539f5ec6064c4f851ee2dd0a1b04cf719cc65539b4b8d3de54c75fa5024aca8d76475d1ac1b00c26491231909668ea9606d088b21191360814b58717b1f9b8b17ce1a87fea09ff35d9894da6690e2663ad878dfc095ae49108fffde5f9baedfd37b12a6344ddfe058ab4a8606f012eeaf4cbc3c7c1ae9983b395960c065a2c6eedb0edd56255412f5115a305e4215bfea02974c9b12f6c2a9282040f830f4a3a7c4c284de91e87720dea428b6c7dbf585fa4ba89bdebe71817409bd72a8ca5bcc8fd9195f6d0abf2630f38930bc06ade515d1f782e578ae9842dfee422e8bec1defc638d211c2989b98139344c9dad4e31d2206030f1668a6d58785a7d0fa620c4f6616350c1f021ab93d4d65d26deaabc6369de43cc96b6035649b9f1822586d46780e61b2b56f471402ad5c2e6b51e6e13c5f5bff89ef6caa1fed46511c945c3f2d462bd5043702cd630c5d733014f95db0032cdecd4ae5419e4eeaf5cdfd514188535b69a9fa96b237d90283cb3c75cd6892bd891f149fd7c5dd5351bbc68282e8d7047aee6810cdb5d01\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/publishers/revokedPubKeys/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"publishers",
+								"revokedPubKeys",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

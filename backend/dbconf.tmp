@@ -1,0 +1,5 @@
+# For Windows, after using the template 'db.conf.template', addionally set the same credentials as in 'db.conf' here 
+# (without the single quotes) and rename this file to 'dbconf.bat'.
+
+set dbusername=USER-NAME-CHANGE-ME
+set dbpassword=PASSWORD-CHANGE-ME
